@@ -1,18 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app version="3.0"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
+<web-app version="3.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
 	<display-name>Archetype Created Web Application</display-name>
 	<!-- 设置spring容器配置文件的位置 -->
-	<!-- <context-param>
-		<param-name>contextConfigLocation</param-name>
-		<param-value>classpath:/spring-config/spring.xml</param-value>
-	</context-param> -->
+	<!-- <context-param> <param-name>contextConfigLocation</param-name> <param-value>classpath:/spring-config/spring.xml</param-value> 
+		</context-param> -->
 
 	<!-- 配置ContextLoaderListener表示该工程要以spring的方式启动。 如果没有设置上下文配置的路径启动时会默认在/WEB-INF目录下查找applicationContext.xml作为spring容器的配置文件， 
 		但是可以自己设置spring容器配置文件的位置 在spring容器的配置文件中可以初始化一些bean，如DataSource -->
-	<!-- <listener>
-		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
-	</listener> -->
+	<!-- <listener> <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class> 
+		</listener> -->
 
 	<!-- 字符集 过滤器 -->
 	<filter>
@@ -47,6 +44,13 @@
 		<servlet-name>springmvc</servlet-name>
 		<url-pattern>*.do</url-pattern>
 	</servlet-mapping>
+	<context-param>
+		<param-name>log4jConfigLocation</param-name>
+		<param-value>/WEB-INF/conf/log4j.properties</param-value>
+	</context-param>
+	<listener>
+		<listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>
+	</listener>
 
 	<welcome-file-list>
 		<welcome-file>index.html</welcome-file>
