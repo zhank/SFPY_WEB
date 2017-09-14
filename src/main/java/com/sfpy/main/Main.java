@@ -33,7 +33,7 @@ public class Main {
 		
 		Tomcat tomcat = new Tomcat();
 		tomcat.setHostname("localhost");
-		tomcat.setPort(8089);
+		tomcat.setPort(8088);
 		
 		String baseDir = FindWebRoot.getAppRoot();
 		tomcat.setBaseDir(baseDir);
@@ -49,6 +49,7 @@ public class Main {
 			}
 		}
 		System.out.println("Finded Base Web Root is :" + appBase);
+		logger.info("Finded Base Web Root is :" + appBase);
 
 		File globalWebXml = new File(baseDir + "/web.xml");
 		Map<String, String> mimeMappings = parseMimeMappingFromWebXml(globalWebXml

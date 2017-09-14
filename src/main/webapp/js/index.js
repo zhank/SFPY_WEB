@@ -12,7 +12,7 @@ $(function(){
 			data: {"userName":userName,"password":password},
 			dataType:"json",
 			success:function(result){
-				alert("成功！");   
+				window.location.href = "mainPage.html";  
 			},
 			error:function(XMLHttpRequest, textstatus,errorThrown) {
 				alert(XMLHttpRequest.status);
