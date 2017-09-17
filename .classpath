@@ -16,5 +16,5 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="output" path="debugWeb"/>
+	<classpathentry kind="output" path="debug"/>
 </classpath>

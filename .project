@@ -43,11 +43,6 @@
 		<link>
 			<name>debug</name>
 			<type>2</type>
-			<location>C:/Users/SFPY/Desktop/myWeb/WebContent/WEB-INF/classes</location>
-		</link>
-		<link>
-			<name>debugWeb</name>
-			<type>2</type>
 			<location>D:/code/webWorkspace/myWeb/WebContent/WEB-INF/classes</location>
 		</link>
 	</linkedResources>

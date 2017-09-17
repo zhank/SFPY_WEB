@@ -6,20 +6,20 @@ import com.sfpy.type.IntType;
 import com.sfpy.type.StringType;
 
 /**
- * »À‘±ª˘¥°–≈œ¢
+ * ‰∫∫ÂëòÂü∫Á°Ä‰ø°ÊÅØ
  * @author SFPY
  */
 public class TB_SFPY_USER extends AbstractTable {
 	public static String TABLE = "TB_SFPY_USER";
 
-	public static Field USER_ID = new Field("”√ªßID", "USER_ID", new IntType(), true, true);
-	public static Field USER_NAME = new Field("”√ªß√˚", "USER_NAME", new StringType());
-	public static Field USER_SEX = new Field("”√ªßID", "USER_SEX", new IntType());
-	public static Field USER_AGE = new Field("”√ªßID", "USER_AGE", new IntType());
-	public static Field USER_STATUS = new Field("”√ªßID", "USER_STATUS", new IntType());
-	public static Field USER_PWD = new Field("”√ªßID", "USER_PWD", new StringType());
-	public static Field USER_ADDRESS = new Field("”√ªßID", "USER_ADDRESS", new StringType());
-	public static Field USER_EMAIL = new Field("”√ªßID", "USER_EMAIL", new StringType());
+	public static Field USER_ID = new Field("Áî®Êà∑ID", "USER_ID", new IntType(), true, true);
+	public static Field USER_NAME = new Field("Áî®Êà∑Âêç", "USER_NAME", new StringType());
+	public static Field USER_SEX = new Field("Áî®Êà∑ID", "USER_SEX", new IntType());
+	public static Field USER_AGE = new Field("Áî®Êà∑ID", "USER_AGE", new IntType());
+	public static Field USER_STATUS = new Field("Áî®Êà∑ID", "USER_STATUS", new IntType());
+	public static Field USER_PWD = new Field("Áî®Êà∑ID", "USER_PWD", new StringType());
+	public static Field USER_ADDRESS = new Field("Áî®Êà∑ID", "USER_ADDRESS", new StringType());
+	public static Field USER_EMAIL = new Field("Áî®Êà∑ID", "USER_EMAIL", new StringType());
 	
 	public static final Field[] ALL_FIELDS = new TB_SFPY_USER().getArrayTableFields();
 }

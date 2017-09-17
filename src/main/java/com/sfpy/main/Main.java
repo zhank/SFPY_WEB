@@ -14,15 +14,13 @@ import org.apache.catalina.startup.Tomcat;
 import org.apache.catalina.startup.WebRuleSet;
 import org.apache.tomcat.util.descriptor.DigesterFactory;
 import org.apache.tomcat.util.digester.Digester;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import com.sfpy.util.EvnCheck;
 import com.sfpy.util.FindWebRoot;
 
 public class Main {
 	
-	private static final Logger logger = LoggerFactory.getLogger(Main.class);
+	//private static final Logger logger = LoggerFactory.getLogger(Main.class);
 	/**
 	 * 共享会话
 	 */
@@ -38,7 +36,7 @@ public class Main {
 		String baseDir = FindWebRoot.getAppRoot();
 		tomcat.setBaseDir(baseDir);
 		
-		String appBase = baseDir; /*+ File.separator + "WebContent";*/
+		String appBase = baseDir;
 		
 		File f = new File(appBase + "/WEB-INF/web.xml");
 		if (!f.exists()) {
@@ -49,13 +47,11 @@ public class Main {
 			}
 		}
 		System.out.println("Finded Base Web Root is :" + appBase);
-		logger.info("Finded Base Web Root is :" + appBase);
+		System.out.println("登陆地址：http://localhost:8088");
 
 		File globalWebXml = new File(baseDir + "/web.xml");
 		Map<String, String> mimeMappings = parseMimeMappingFromWebXml(globalWebXml
 				.getCanonicalPath());
-		// }}
-
 		// 2.4. Context
 		Context context = tomcat.addWebapp("/",
 				new File(appBase).getAbsolutePath());
@@ -66,10 +62,6 @@ public class Main {
 				standardContext.addMimeMapping(key, mimeMappings.get(key));
 			}
 		}
-		// --{{ 2013.03.29 删除无作用的全局定义设置　by xujun
-		/*if (sessionTimeOut > 0) {
-			standardContext.setSessionTimeout(sessionTimeOut);
-		}*/
 		standardContext.setCrossContext(shareSession);
 
 		// 下面三行，解决因未实现序列化而报的异常java.io.WriteAbortedException

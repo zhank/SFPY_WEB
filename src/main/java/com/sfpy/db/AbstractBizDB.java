@@ -22,8 +22,8 @@ import com.sfpy.field.Field;
 
 /**
  * 
- * Purpose:ÊµÏÖ³éÏóµÄIDbCall£¬·â×°Ò»ÏµÁĞIDbCallµÄ¹«ÓÃ·½·¨£¬¶ÔĞèÒª¶ÔÊı¾İ¿â½øĞĞ´¦ÀíµÄÀà£¬¿ÉÒÔ¼Ì³Ğ´ËÀà½øĞĞÊµÏÖ
- * ½¨ÒéÃ¿¸öÊµÀı¶¼²ÉÓÃµ¥ÀıÄ£Ê½½øĞĞ³õÊ¼»¯ºÍ½øĞĞ¹ÜÀí
+ * Purpose:å®ç°æŠ½è±¡çš„IDbCallï¼Œå°è£…ä¸€ç³»åˆ—IDbCallçš„å…¬ç”¨æ–¹æ³•ï¼Œå¯¹éœ€è¦å¯¹æ•°æ®åº“è¿›è¡Œå¤„ç†çš„ç±»ï¼Œå¯ä»¥ç»§æ‰¿æ­¤ç±»è¿›è¡Œå®ç°
+ * å»ºè®®æ¯ä¸ªå®ä¾‹éƒ½é‡‡ç”¨å•ä¾‹æ¨¡å¼è¿›è¡Œåˆå§‹åŒ–å’Œè¿›è¡Œç®¡ç†
  * 
  * @see
  * @since 1.1.0
@@ -34,16 +34,16 @@ public abstract class AbstractBizDB implements IDbCall, Serializable {
 
 	protected static Logger log = LoggerFactory.getLogger(IDbCall.class);
 
-	// ÒòÎª¸÷¸ö×ÓÀàĞèÒªÖ¸¶¨²»Í¬ÃûµÄÁ¬½Ó³Ø£¬Òò´ËÓ¦¸ÃÔÚ×ÓÀàÖĞÖ¸¶¨£¬·ÀÖ¹ÖØ¸´Ê¹ÓÃÍ¬ÃûÁ¬½Ó³Ø³öÏÖ´íÎó
+	// å› ä¸ºå„ä¸ªå­ç±»éœ€è¦æŒ‡å®šä¸åŒåçš„è¿æ¥æ± ï¼Œå› æ­¤åº”è¯¥åœ¨å­ç±»ä¸­æŒ‡å®šï¼Œé˜²æ­¢é‡å¤ä½¿ç”¨åŒåè¿æ¥æ± å‡ºç°é”™è¯¯
 	// protected String DB_POOL = "BIZ_POOL";
 
 	/**
-	 * ÄÚ²¿Êµ¼Êµ÷ÓÃµÄIDbOpÊµÏÖÀà£¬È±Ê¡ÊÇÎŞÓÅ»¯µÄÍ¨ÓÃÊµÏÖ
+	 * å†…éƒ¨å®é™…è°ƒç”¨çš„IDbOpå®ç°ç±»ï¼Œç¼ºçœæ˜¯æ— ä¼˜åŒ–çš„é€šç”¨å®ç°
 	 */
 	protected IDbOp m_dbOp = new DbOpBase();
 
 	/**
-	 * ¸ù¾İÇı¶¯ÊµÏÖÓÅ»¯µÄIDbOpÊµÏÖÀà
+	 * æ ¹æ®é©±åŠ¨å®ç°ä¼˜åŒ–çš„IDbOpå®ç°ç±»
 	 * 
 	 * @param jdbcDriver
 	 * @param version
@@ -56,28 +56,28 @@ public abstract class AbstractBizDB implements IDbCall, Serializable {
 	}
 
 	/**
-	 * »ñµÃ³ØµÄÃû³Æ
+	 * è·å¾—æ± çš„åç§°
 	 * 
 	 * @return
 	 */
 	abstract public String getPoolName();
 
 	/**
-	 * ÉèÖÃ³ØµÄÃû³Æ
+	 * è®¾ç½®æ± çš„åç§°
 	 * 
 	 * @return
 	 */
 	abstract public void setPoolName(String poolName);
 
 	/**
-	 * ³õÊ¼»¯Êı¾İ¿â
+	 * åˆå§‹åŒ–æ•°æ®åº“
 	 * 
 	 * @throws Exception
 	 */
 	public abstract void initDB() throws Exception;
 
 	/**
-	 * »ñÈ¡FieldListµÄ×Ö¶ÎÃûÁĞ±í
+	 * è·å–FieldListçš„å­—æ®µååˆ—è¡¨
 	 * 
 	 * @param fields
 	 * @return
@@ -94,7 +94,7 @@ public abstract class AbstractBizDB implements IDbCall, Serializable {
 	}
 
 	/**
-	 * »ù±¾Êı¾İ²Ù×÷--²åÈë
+	 * åŸºæœ¬æ•°æ®æ“ä½œ--æ’å…¥
 	 * 
 	 * @param table
 	 * @param dataMap
@@ -110,12 +110,12 @@ public abstract class AbstractBizDB implements IDbCall, Serializable {
 	}
 
 	/**
-	 * »ù±¾Êı¾İ²Ù×÷--²åÈë
+	 * åŸºæœ¬æ•°æ®æ“ä½œ--æ’å…¥
 	 * 
 	 * @param table
 	 * @param dataMap
 	 * @param isAutoGenKey
-	 *            ÊÇ·ñ·µ»Ø×ÔÔö³¤ÁĞ, true·µ»Ø
+	 *            æ˜¯å¦è¿”å›è‡ªå¢é•¿åˆ—, trueè¿”å›
 	 * @throws Exception
 	 */
 	public int insert(String table, Map<String, Object> dataMap, boolean isAutoGenKey) throws Exception {
@@ -138,7 +138,7 @@ public abstract class AbstractBizDB implements IDbCall, Serializable {
 	}
 
 	/**
-	 * »ù±¾Êı¾İ²Ù×÷--²åÈë£¨²åÈëÇ°ÅĞ¶Ï£©
+	 * åŸºæœ¬æ•°æ®æ“ä½œ--æ’å…¥ï¼ˆæ’å…¥å‰åˆ¤æ–­ï¼‰
 	 * 
 	 * @param table
 	 * @param dataMap
@@ -157,16 +157,16 @@ public abstract class AbstractBizDB implements IDbCall, Serializable {
 	}
 
 	/**
-	 * ¸üĞÂ±í¼ÇÂ¼µÄ¶à¸ö×Ö¶Î
+	 * æ›´æ–°è¡¨è®°å½•çš„å¤šä¸ªå­—æ®µ
 	 * 
 	 * @param table
-	 *            ±íÃû
+	 *            è¡¨å
 	 * @param dataMap
-	 *            ´ı¸üĞÂÊı¾İµÄMap£¬ÆäÖĞµÄkey¾ÍÊÇ×Ö¶ÎÃû£¬valueÊÇ¶ÔÓ¦¸Ã×Ö¶ÎµÄÊı¾İ
+	 *            å¾…æ›´æ–°æ•°æ®çš„Mapï¼Œå…¶ä¸­çš„keyå°±æ˜¯å­—æ®µåï¼Œvalueæ˜¯å¯¹åº”è¯¥å­—æ®µçš„æ•°æ®
 	 * @param condition
-	 *            Ìõ¼şÓï¾ä
+	 *            æ¡ä»¶è¯­å¥
 	 * @param condValues
-	 *            Ìõ¼ş²ÎÊıÁĞ±í
+	 *            æ¡ä»¶å‚æ•°åˆ—è¡¨
 	 * @throws Exception
 	 */
 	public void update(String table, Map<String, Object> dataMap, String condition, List<Object> condValues)
@@ -181,7 +181,7 @@ public abstract class AbstractBizDB implements IDbCall, Serializable {
 	}
 
 	/**
-	 * »ù±¾Êı¾İ²Ù×÷--¸üĞÂ
+	 * åŸºæœ¬æ•°æ®æ“ä½œ--æ›´æ–°
 	 * 
 	 * @param table
 	 * @param name
@@ -200,7 +200,7 @@ public abstract class AbstractBizDB implements IDbCall, Serializable {
 	}
 
 	/**
-	 * »ù±¾Êı¾İ²Ù×÷--¸üĞÂ
+	 * åŸºæœ¬æ•°æ®æ“ä½œ--æ›´æ–°
 	 * 
 	 * @param table
 	 * @param dataMap
@@ -218,7 +218,7 @@ public abstract class AbstractBizDB implements IDbCall, Serializable {
 	}
 
 	/**
-	 * »ù±¾Êı¾İ²Ù×÷--É¾³ı
+	 * åŸºæœ¬æ•°æ®æ“ä½œ--åˆ é™¤
 	 * 
 	 * @param table
 	 * @param condition
@@ -234,14 +234,14 @@ public abstract class AbstractBizDB implements IDbCall, Serializable {
 	}
 
 	/**
-	 * É¾³ı¼ÇÂ¼
+	 * åˆ é™¤è®°å½•
 	 * 
 	 * @param table
-	 *            ±íÃû
+	 *            è¡¨å
 	 * @param condition
-	 *            Ìõ¼şÓï¾ä
+	 *            æ¡ä»¶è¯­å¥
 	 * @param condValues
-	 *            Ìõ¼ş²ÎÊıÁĞ±í
+	 *            æ¡ä»¶å‚æ•°åˆ—è¡¨
 	 * @throws Exception
 	 */
 	public void delete(String table, String preparedCond, List<Object> condValues) throws Exception {
@@ -254,7 +254,7 @@ public abstract class AbstractBizDB implements IDbCall, Serializable {
 	}
 
 	/**
-	 * »ù±¾Êı¾İ²Ù×÷--²éÑ¯
+	 * åŸºæœ¬æ•°æ®æ“ä½œ--æŸ¥è¯¢
 	 * 
 	 * @param table
 	 * @return
@@ -265,11 +265,11 @@ public abstract class AbstractBizDB implements IDbCall, Serializable {
 	}
 
 	/**
-	 * »ù±¾Êı¾İ²Ù×÷--²éÑ¯
+	 * åŸºæœ¬æ•°æ®æ“ä½œ--æŸ¥è¯¢
 	 * 
 	 * @param table
 	 * @param fields
-	 * @return MapÀàĞÍ
+	 * @return Mapç±»å‹
 	 * @throws Exception
 	 */
 	public List<Map<String, Object>> searchAsMapList(String table, Field[] fields) throws Exception {
@@ -277,12 +277,12 @@ public abstract class AbstractBizDB implements IDbCall, Serializable {
 	}
 
 	/**
-	 * »ù±¾Êı¾İ²Ù×÷--²éÑ¯
+	 * åŸºæœ¬æ•°æ®æ“ä½œ--æŸ¥è¯¢
 	 * 
 	 * @param table
 	 * @param fields
 	 * @param condition
-	 * @return MapÀàĞÍ
+	 * @return Mapç±»å‹
 	 * @throws Exception
 	 */
 	public List<Map<String, Object>> searchAsMapList(String table, Field[] fields, String condition) throws Exception {
@@ -295,11 +295,11 @@ public abstract class AbstractBizDB implements IDbCall, Serializable {
 	}
 
 	/**
-	 * »ù±¾Êı¾İ²Ù×÷--²éÑ¯(·µ»ØËùÓĞ×Ö¶Î)
+	 * åŸºæœ¬æ•°æ®æ“ä½œ--æŸ¥è¯¢(è¿”å›æ‰€æœ‰å­—æ®µ)
 	 * 
 	 * @param table
 	 * @param condition
-	 * @return MapÀàĞÍ
+	 * @return Mapç±»å‹
 	 * @throws Exception
 	 */
 	public List<Map<String, Object>> searchAsMapList(String table, String condition) throws Exception {
@@ -307,7 +307,7 @@ public abstract class AbstractBizDB implements IDbCall, Serializable {
 	}
 
 	/**
-	 * »ù±¾Êı¾İ²Ù×÷--²éÑ¯(·µ»ØËùÓĞ×Ö¶Î)
+	 * åŸºæœ¬æ•°æ®æ“ä½œ--æŸ¥è¯¢(è¿”å›æ‰€æœ‰å­—æ®µ)
 	 * 
 	 * @param table
 	 * @param condition
@@ -321,7 +321,7 @@ public abstract class AbstractBizDB implements IDbCall, Serializable {
 	}
 
 	/**
-	 * »ù±¾Êı¾İ²Ù×÷--²éÑ¯
+	 * åŸºæœ¬æ•°æ®æ“ä½œ--æŸ¥è¯¢
 	 * 
 	 * @param table
 	 * @param fields
@@ -353,27 +353,27 @@ public abstract class AbstractBizDB implements IDbCall, Serializable {
 	}
 
 	/**
-	 * Í¨ÓÃ²éÑ¯£¬ÒÔList[map1, map2...]ĞÎÊ½·µ»Ø
+	 * é€šç”¨æŸ¥è¯¢ï¼Œä»¥List[map1, map2...]å½¢å¼è¿”å›
 	 * 
 	 * @param table
-	 *            ±íÃû
+	 *            è¡¨å
 	 * @param cols
-	 *            ĞèÒª·µ»ØµÄ×Ö¶ÎÃûÁĞ±í
+	 *            éœ€è¦è¿”å›çš„å­—æ®µååˆ—è¡¨
 	 * @param condition
-	 *            Ìõ¼şÓï¾ä
+	 *            æ¡ä»¶è¯­å¥
 	 * @param condValues
-	 *            Ìõ¼ş²ÎÊıÁĞ±í
+	 *            æ¡ä»¶å‚æ•°åˆ—è¡¨
 	 * @param start
-	 *            ¼ÇÂ¼µÄ¿ªÊ¼Î»ÖÃ
+	 *            è®°å½•çš„å¼€å§‹ä½ç½®
 	 * @param max
-	 *            ·µ»Ø×î´ó¼ÇÂ¼¸öÊı
+	 *            è¿”å›æœ€å¤§è®°å½•ä¸ªæ•°
 	 * @param orderBy
-	 *            ÅÅĞò×Ö¶ÎÃû
+	 *            æ’åºå­—æ®µå
 	 * @param groupBy
-	 *            ·Ö×é×Ö¶ÎÃû
+	 *            åˆ†ç»„å­—æ®µå
 	 * @param bAsc
-	 *            ÊÇ·ñÉıĞò
-	 * @return ÒÔList[map1, map2...]ĞÎÊ½·µ»Ø£¬colsÖ¸¶¨µÄ×Ö¶ÎÊı¾İ£¬×î´óÎªmax¸ö
+	 *            æ˜¯å¦å‡åº
+	 * @return ä»¥List[map1, map2...]å½¢å¼è¿”å›ï¼ŒcolsæŒ‡å®šçš„å­—æ®µæ•°æ®ï¼Œæœ€å¤§ä¸ºmaxä¸ª
 	 * @throws Exception
 	 */
 	public List<Map<String, Object>> searchAsMapList(String table, List<String> cols, String condition,
@@ -388,7 +388,7 @@ public abstract class AbstractBizDB implements IDbCall, Serializable {
 		}
 	}
 
-	// Ìí¼ÓÒ»¸öÒÔÊı¾İ¿âLabelÎªkeyµÄ·½·¨,¿¼ÂÇĞŞ¸Ä»áÓ°ÏìÆäËûÈËËùÒÔÁíĞ´ÔÚÒ»¸ö·½·¨,Ï£ÍûÔÚÏîÄ¿¿Õ´°ÆÚºÏ²¢ÆğÀ´ by maj 2016-8-8
+	// æ·»åŠ ä¸€ä¸ªä»¥æ•°æ®åº“Labelä¸ºkeyçš„æ–¹æ³•,è€ƒè™‘ä¿®æ”¹ä¼šå½±å“å…¶ä»–äººæ‰€ä»¥å¦å†™åœ¨ä¸€ä¸ªæ–¹æ³•,å¸Œæœ›åœ¨é¡¹ç›®ç©ºçª—æœŸåˆå¹¶èµ·æ¥ by maj 2016-8-8
 	public List<Map<String, Object>> searchAsMapListInLabel(String table, List<String> cols, String condition,
 			List<Object> condValues, int start, int max, String orderBy, String groupBy, boolean bAsc)
 					throws Exception {
@@ -403,7 +403,7 @@ public abstract class AbstractBizDB implements IDbCall, Serializable {
 	}
 
 	/**
-	 * »ù±¾Êı¾İ²Ù×÷--²éÑ¯
+	 * åŸºæœ¬æ•°æ®æ“ä½œ--æŸ¥è¯¢
 	 * 
 	 * @param table
 	 * @return
@@ -420,7 +420,7 @@ public abstract class AbstractBizDB implements IDbCall, Serializable {
 	}
 
 	/**
-	 * »ù±¾Êı¾İ²Ù×÷--²éÑ¯
+	 * åŸºæœ¬æ•°æ®æ“ä½œ--æŸ¥è¯¢
 	 * 
 	 * @param table
 	 * @param fields
@@ -439,7 +439,7 @@ public abstract class AbstractBizDB implements IDbCall, Serializable {
 	}
 
 	/**
-	 * »ù±¾Êı¾İ²Ù×÷--²éÑ¯
+	 * åŸºæœ¬æ•°æ®æ“ä½œ--æŸ¥è¯¢
 	 * 
 	 * @param table
 	 * @param fields
@@ -457,7 +457,7 @@ public abstract class AbstractBizDB implements IDbCall, Serializable {
 	}
 
 	/**
-	 * »ù±¾Êı¾İ²Ù×÷--²éÑ¯
+	 * åŸºæœ¬æ•°æ®æ“ä½œ--æŸ¥è¯¢
 	 * 
 	 * @param table
 	 * @param fields
@@ -477,7 +477,7 @@ public abstract class AbstractBizDB implements IDbCall, Serializable {
 	}
 
 	/**
-	 * »ù±¾Êı¾İ²Ù×÷--²éÑ¯
+	 * åŸºæœ¬æ•°æ®æ“ä½œ--æŸ¥è¯¢
 	 * 
 	 * @param table
 	 * @param fields
@@ -500,7 +500,7 @@ public abstract class AbstractBizDB implements IDbCall, Serializable {
 	}
 
 	/**
-	 * »ù±¾Êı¾İ²Ù×÷--²éÑ¯
+	 * åŸºæœ¬æ•°æ®æ“ä½œ--æŸ¥è¯¢
 	 * 
 	 * @param table
 	 * @param fields
@@ -522,7 +522,7 @@ public abstract class AbstractBizDB implements IDbCall, Serializable {
 	}
 
 	/**
-	 * »ù±¾Êı¾İ²Ù×÷--²éÑ¯
+	 * åŸºæœ¬æ•°æ®æ“ä½œ--æŸ¥è¯¢
 	 * 
 	 * @param table
 	 * @param fields
@@ -550,7 +550,7 @@ public abstract class AbstractBizDB implements IDbCall, Serializable {
 	}
 
 	/**
-	 * »ù±¾Êı¾İ²Ù×÷--²éÑ¯
+	 * åŸºæœ¬æ•°æ®æ“ä½œ--æŸ¥è¯¢
 	 * 
 	 * @param table
 	 * @param fields
@@ -577,7 +577,7 @@ public abstract class AbstractBizDB implements IDbCall, Serializable {
 	}
 
 	/**
-	 * »ù±¾Êı¾İ²Ù×÷--²éÑ¯
+	 * åŸºæœ¬æ•°æ®æ“ä½œ--æŸ¥è¯¢
 	 * 
 	 * @param table
 	 * @param fields
@@ -605,7 +605,7 @@ public abstract class AbstractBizDB implements IDbCall, Serializable {
 	}
 
 	/**
-	 * »ù±¾Êı¾İ²Ù×÷--²éÑ¯Ò»ÌõÊı¾İ
+	 * åŸºæœ¬æ•°æ®æ“ä½œ--æŸ¥è¯¢ä¸€æ¡æ•°æ®
 	 * 
 	 * @param table
 	 * @param fields
@@ -619,7 +619,7 @@ public abstract class AbstractBizDB implements IDbCall, Serializable {
 	}
 
 	/**
-	 * »ù±¾Êı¾İ²Ù×÷--²éÑ¯Ò»ÌõÊı¾İ
+	 * åŸºæœ¬æ•°æ®æ“ä½œ--æŸ¥è¯¢ä¸€æ¡æ•°æ®
 	 * 
 	 * @param table
 	 * @param fields
@@ -640,7 +640,7 @@ public abstract class AbstractBizDB implements IDbCall, Serializable {
 	}
 
 	/**
-	 * »ù±¾Êı¾İ²Ù×÷--²éÑ¯Ò»ÌõÊı¾İ
+	 * åŸºæœ¬æ•°æ®æ“ä½œ--æŸ¥è¯¢ä¸€æ¡æ•°æ®
 	 * 
 	 * @param table
 	 * @param cols
@@ -661,18 +661,18 @@ public abstract class AbstractBizDB implements IDbCall, Serializable {
 	}
 
 	/**
-	 * »ñÈ¡Ò»Ìõ¼ÇÂ¼£¬ÒÔÊı×é·½Ê½·µ»Ø¡£
+	 * è·å–ä¸€æ¡è®°å½•ï¼Œä»¥æ•°ç»„æ–¹å¼è¿”å›ã€‚
 	 * 
 	 * @param table
-	 *            ±íÃû
+	 *            è¡¨å
 	 * @param cols
-	 *            ĞèÒª·µ»ØµÄ×Ö¶ÎÃûÁĞ±í
+	 *            éœ€è¦è¿”å›çš„å­—æ®µååˆ—è¡¨
 	 * @param condition
-	 *            Ìõ¼şÓï¾ä
+	 *            æ¡ä»¶è¯­å¥
 	 * @param condValues
-	 *            Ìõ¼ş²ÎÊıÁĞ±í
+	 *            æ¡ä»¶å‚æ•°åˆ—è¡¨
 	 * @param mustUnique
-	 *            ÊÇ·ñ±ØĞëÎ¨Ò»£¿ÈôÎªTrue£¬µ«Êµ¼ÊÓÖÓĞ¶àÌõ¼ÇÂ¼£¬½«Å×³öÒì³£
+	 *            æ˜¯å¦å¿…é¡»å”¯ä¸€ï¼Ÿè‹¥ä¸ºTrueï¼Œä½†å®é™…åˆæœ‰å¤šæ¡è®°å½•ï¼Œå°†æŠ›å‡ºå¼‚å¸¸
 	 * @return
 	 * @throws Exception
 	 */
@@ -688,7 +688,7 @@ public abstract class AbstractBizDB implements IDbCall, Serializable {
 	}
 
 	/**
-	 * »ù±¾Êı¾İ²Ù×÷--²éÑ¯Ò»ÌõÊı¾İ
+	 * åŸºæœ¬æ•°æ®æ“ä½œ--æŸ¥è¯¢ä¸€æ¡æ•°æ®
 	 * 
 	 * @param table
 	 * @param cols
@@ -706,7 +706,7 @@ public abstract class AbstractBizDB implements IDbCall, Serializable {
 	}
 
 	/**
-	 * »ù±¾Êı¾İ²Ù×÷--²éÑ¯Ò»ÌõÊı¾İ
+	 * åŸºæœ¬æ•°æ®æ“ä½œ--æŸ¥è¯¢ä¸€æ¡æ•°æ®
 	 * 
 	 * @param table
 	 * @param cols
@@ -724,19 +724,19 @@ public abstract class AbstractBizDB implements IDbCall, Serializable {
 	}
 
 	/**
-	 * »ñÈ¡Ò»Ìõ¼ÇÂ¼£¬ÒÔmap·µ»Ø
+	 * è·å–ä¸€æ¡è®°å½•ï¼Œä»¥mapè¿”å›
 	 * 
 	 * @param table
-	 *            ±íÃû
+	 *            è¡¨å
 	 * @param cols
-	 *            ĞèÒª·µ»ØµÄ×Ö¶ÎÃûÁĞ±í
+	 *            éœ€è¦è¿”å›çš„å­—æ®µååˆ—è¡¨
 	 * @param condition
-	 *            Ìõ¼şÓï¾ä
+	 *            æ¡ä»¶è¯­å¥
 	 * @param condValues
-	 *            Ìõ¼ş²ÎÊıÁĞ±í
+	 *            æ¡ä»¶å‚æ•°åˆ—è¡¨
 	 * @param mustUnique
-	 *            ÊÇ·ñ±ØĞëÎ¨Ò»£¿ÈôÎªTrue£¬µ«Êµ¼ÊÓÖÓĞ¶àÌõ¼ÇÂ¼£¬½«Å×³öÒì³£
-	 * @return Êı¾İmap
+	 *            æ˜¯å¦å¿…é¡»å”¯ä¸€ï¼Ÿè‹¥ä¸ºTrueï¼Œä½†å®é™…åˆæœ‰å¤šæ¡è®°å½•ï¼Œå°†æŠ›å‡ºå¼‚å¸¸
+	 * @return æ•°æ®map
 	 * @throws Exception
 	 */
 	public Map<String, Object> getOneRowAsMap(String table, List<String> cols, String condition,
@@ -751,7 +751,7 @@ public abstract class AbstractBizDB implements IDbCall, Serializable {
 	}
 
 	/**
-	 * ¼ÆËã¼ÇÂ¼Êı
+	 * è®¡ç®—è®°å½•æ•°
 	 * 
 	 * @param table
 	 * @return
@@ -762,7 +762,7 @@ public abstract class AbstractBizDB implements IDbCall, Serializable {
 	}
 
 	/**
-	 * ¼ÆËã¼ÇÂ¼Êı
+	 * è®¡ç®—è®°å½•æ•°
 	 * 
 	 * @param table
 	 * @param condition
@@ -774,7 +774,7 @@ public abstract class AbstractBizDB implements IDbCall, Serializable {
 	}
 
 	/**
-	 * ¼ÆËã¼ÇÂ¼Êı
+	 * è®¡ç®—è®°å½•æ•°
 	 * 
 	 * @param table
 	 * @param condition
@@ -788,7 +788,7 @@ public abstract class AbstractBizDB implements IDbCall, Serializable {
 	}
 
 	/**
-	 * ¼ÆËã¼ÇÂ¼Êı
+	 * è®¡ç®—è®°å½•æ•°
 	 * 
 	 * @param table
 	 * @param condition
@@ -801,7 +801,7 @@ public abstract class AbstractBizDB implements IDbCall, Serializable {
 	}
 
 	/**
-	 * ¼ÆËã¼ÇÂ¼Êı
+	 * è®¡ç®—è®°å½•æ•°
 	 * 
 	 * @param table
 	 * @param condition
@@ -854,38 +854,38 @@ public abstract class AbstractBizDB implements IDbCall, Serializable {
 	}
 
 	/**
-	 * ¸ù¾İID²éµ½Ä³¸öµ¥Ò»×Ö¶Î(Èç£º¸ù¾İ²¿ÃÅID²éµ½²¿ÃÅÃû³Æ)
+	 * æ ¹æ®IDæŸ¥åˆ°æŸä¸ªå•ä¸€å­—æ®µ(å¦‚ï¼šæ ¹æ®éƒ¨é—¨IDæŸ¥åˆ°éƒ¨é—¨åç§°)
 	 * 
 	 * @author huangc (2006-07-24)
 	 * @param strTable
-	 *            - Òª²éÑ¯µÄ±íÃû³Æ(Èç£º"TB_DEPART")
+	 *            - è¦æŸ¥è¯¢çš„è¡¨åç§°(å¦‚ï¼š"TB_DEPART")
 	 * @param fieldID
-	 *            - Òª²éÑ¯µÄID×Ö¶Î(Èç£ºTbDepart.DEPART_ID)
+	 *            - è¦æŸ¥è¯¢çš„IDå­—æ®µ(å¦‚ï¼šTbDepart.DEPART_ID)
 	 * @param fieldObject
-	 *            - Òª·µ»Ø×Ö¶Î(Èç£ºTbDepart.DEPART_NAME)
+	 *            - è¦è¿”å›å­—æ®µ(å¦‚ï¼šTbDepart.DEPART_NAME)
 	 * @param param
-	 *            - Òª²éÑ¯µÄIDÖµ(Èç£ºmap.get(TbDepart.DEPART_NAME.name))
-	 * @return ¸úIDÖµÆ¥ÅäµÄÄÚÈİ
+	 *            - è¦æŸ¥è¯¢çš„IDå€¼(å¦‚ï¼šmap.get(TbDepart.DEPART_NAME.name))
+	 * @return è·ŸIDå€¼åŒ¹é…çš„å†…å®¹
 	 */
 	public Object getObjectFromID(String strTable, Field fieldID, Field fieldObject, Object param) throws Exception {
 		return getObjectFromID(strTable, fieldID, fieldObject, param, null);
 	}
 
 	/**
-	 * ¸ù¾İID²éµ½Ä³¸öµ¥Ò»×Ö¶Î(Èç£º¸ù¾İ²¿ÃÅID²éµ½²¿ÃÅÃû³Æ)
+	 * æ ¹æ®IDæŸ¥åˆ°æŸä¸ªå•ä¸€å­—æ®µ(å¦‚ï¼šæ ¹æ®éƒ¨é—¨IDæŸ¥åˆ°éƒ¨é—¨åç§°)
 	 * 
 	 * @author huangc (2006-07-24)
 	 * @param strTable
-	 *            - Òª²éÑ¯µÄ±íÃû³Æ(Èç£º"TB_DEPART")
+	 *            - è¦æŸ¥è¯¢çš„è¡¨åç§°(å¦‚ï¼š"TB_DEPART")
 	 * @param fieldID
-	 *            - Òª²éÑ¯µÄID×Ö¶Î(Èç£ºTbDepart.DEPART_ID)
+	 *            - è¦æŸ¥è¯¢çš„IDå­—æ®µ(å¦‚ï¼šTbDepart.DEPART_ID)
 	 * @param fieldObject
-	 *            - Òª·µ»Ø×Ö¶Î(Èç£ºTbDepart.DEPART_NAME)
+	 *            - è¦è¿”å›å­—æ®µ(å¦‚ï¼šTbDepart.DEPART_NAME)
 	 * @param param
-	 *            - Òª²éÑ¯µÄIDÖµ(Èç£ºmap.get(TbDepart.DEPART_NAME.name))
+	 *            - è¦æŸ¥è¯¢çš„IDå€¼(å¦‚ï¼šmap.get(TbDepart.DEPART_NAME.name))
 	 * @param otherCond
-	 *            - ÆäËûÌõ¼ş(Èç£ºTbDepart.DEPART_PARENT.name + " IS NOT NULL")
-	 * @return ¸úIDÖµÆ¥ÅäµÄÄÚÈİ
+	 *            - å…¶ä»–æ¡ä»¶(å¦‚ï¼šTbDepart.DEPART_PARENT.name + " IS NOT NULL")
+	 * @return è·ŸIDå€¼åŒ¹é…çš„å†…å®¹
 	 */
 	public Object getObjectFromID(String strTable, Field fieldID, Field fieldObject, Object param, String otherCond)
 			throws Exception {
@@ -905,10 +905,10 @@ public abstract class AbstractBizDB implements IDbCall, Serializable {
 	}
 
 	/**
-	 * »ñÈ¡Êı¾İ¿âÁ¬½Ó£¨µ±´ËÊµÀıÉĞÎ´³õÊ¼»¯Ê±ÏÈ½øĞĞ³õÊ¼»¯)
+	 * è·å–æ•°æ®åº“è¿æ¥ï¼ˆå½“æ­¤å®ä¾‹å°šæœªåˆå§‹åŒ–æ—¶å…ˆè¿›è¡Œåˆå§‹åŒ–)
 	 * 
 	 * @param bAutoCommit
-	 *            ÊÇ·ñ×Ô¶¯Ìá½»
+	 *            æ˜¯å¦è‡ªåŠ¨æäº¤
 	 * @return
 	 * @throws Exception
 	 */
@@ -917,7 +917,7 @@ public abstract class AbstractBizDB implements IDbCall, Serializable {
 	}
 
 	/**
-	 * ÊÍ·ÅÊı¾İ¿âÁ¬½Ó
+	 * é‡Šæ”¾æ•°æ®åº“è¿æ¥
 	 * 
 	 * @param conn
 	 * @throws Exception
@@ -929,20 +929,20 @@ public abstract class AbstractBizDB implements IDbCall, Serializable {
 			if (!conn.getAutoCommit())
 				conn.commit();
 		} catch (Exception e) {
-			log.error("Ìá½»commitÒì³£(" + getPoolName() + ")", e);
+			log.error("æäº¤commitå¼‚å¸¸(" + getPoolName() + ")", e);
 		} finally {
 			try {
 				// conn.setAutoCommit(true);
 				conn.close();
 			} catch (Exception e) {
-				log.error("¹Ø±Õconn£º", e);
+				log.error("å…³é—­connï¼š", e);
 			}
 		}
 	}
 
 	/**
-	 * ÅĞ¶ÏÒ»¸öÖµÊÇ·ñÒÑ´æÔÚÊı¾İ¿âÖĞ true:´æÔÚ£»flase:²»´æÔÚ
-	 * find_valueÒª²éÑ¶µÄÖµ£¬fieldÒª²éÑ¯×Ö¶ÎµÄĞÅÏ¢£¬tableName±íÃû£¬ifString²éÑ¯µÄ×Ö¶ÎÊÇ·ñÎª×Ö·û
+	 * åˆ¤æ–­ä¸€ä¸ªå€¼æ˜¯å¦å·²å­˜åœ¨æ•°æ®åº“ä¸­ true:å­˜åœ¨ï¼›flase:ä¸å­˜åœ¨
+	 * find_valueè¦æŸ¥è®¯çš„å€¼ï¼Œfieldè¦æŸ¥è¯¢å­—æ®µçš„ä¿¡æ¯ï¼ŒtableNameè¡¨åï¼ŒifStringæŸ¥è¯¢çš„å­—æ®µæ˜¯å¦ä¸ºå­—ç¬¦
 	 */
 	public boolean getValue(final String find_value, final Field field, final String tableName,
 			final boolean ifString) {
@@ -950,7 +950,7 @@ public abstract class AbstractBizDB implements IDbCall, Serializable {
 	}
 
 	/**
-	 * otherConÆäËûÌõ¼ş
+	 * otherConå…¶ä»–æ¡ä»¶
 	 */
 	public boolean getValue(final String find_value, final Field field, final String tableName, final boolean ifString,
 			final String otherCond) {
@@ -982,7 +982,7 @@ public abstract class AbstractBizDB implements IDbCall, Serializable {
 	}
 
 	/**
-	 * ÅúÁ¿Ö´ĞĞsqlÓï¾ä
+	 * æ‰¹é‡æ‰§è¡Œsqlè¯­å¥
 	 * 
 	 * @param table
 	 * @param condition

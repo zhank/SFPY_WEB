@@ -8,10 +8,10 @@ import java.util.List;
 
 
 /**
- * ²éÕÒÒ³ÃæÏµÍ³µÄ¸ùÂ·¾¶£¬¼´×÷Îªwar°üÐÎÊ½²¿ÊðÊ±£¬Ó¦ÓÃµÄ¸ùÂ·¾¶£¬
- * Èç¹ûÊÇ×Ô´øhttp·þÎñµÄ£¬ÔòÊÇ²éÕÒ¶ÔÓ¦µÄWebContentÂ·¾¶¡£
- * Ê¹ÓÃÊ¹ÓÃconf.ini×÷ÎªÅÐ¶ÏÒÀ¾Ý<br>
- * ÓÉÓÚÒ»°ãÊ¹ÓÃ±¾ÀàÊ±£¬ÏµÍ³»¹Î´³õÊ¼»¯£¬Òò´Ë´ËÀàÖÐ²»Ê¹ÓÃÈÕÖ¾Àà¼ÇÂ¼ÈÕÖ¾
+ * æŸ¥æ‰¾é¡µé¢ç³»ç»Ÿçš„æ ¹è·¯å¾„ï¼Œå³ä½œä¸ºwaråŒ…å½¢å¼éƒ¨ç½²æ—¶ï¼Œåº”ç”¨çš„æ ¹è·¯å¾„ï¼Œ
+ * å¦‚æžœæ˜¯è‡ªå¸¦httpæœåŠ¡çš„ï¼Œåˆ™æ˜¯æŸ¥æ‰¾å¯¹åº”çš„WebContentè·¯å¾„ã€‚
+ * ä½¿ç”¨ä½¿ç”¨conf.iniä½œä¸ºåˆ¤æ–­ä¾æ®<br>
+ * ç”±äºŽä¸€èˆ¬ä½¿ç”¨æœ¬ç±»æ—¶ï¼Œç³»ç»Ÿè¿˜æœªåˆå§‹åŒ–ï¼Œå› æ­¤æ­¤ç±»ä¸­ä¸ä½¿ç”¨æ—¥å¿—ç±»è®°å½•æ—¥å¿—
  * @author xujun
  * 
  */
@@ -22,23 +22,23 @@ public class FindWebRoot {
 										"conf" + File.separator + "spring-mvc.xml";
 
 	/**
-	 * ×÷Îª¶ÀÁ¢Ó¦ÓÃÆô¶¯Ê±µÄÓ¦ÓÃ¸ùÂ·¾¶
+	 * ä½œä¸ºç‹¬ç«‹åº”ç”¨å¯åŠ¨æ—¶çš„åº”ç”¨æ ¹è·¯å¾„
 	 */
 	private static String AppRoot;
 
 	public static String getAppRoot() throws IOException, FileNotFoundException {
 
 		if (AppRoot == null) {
-			// ²ÉÓÃList´æ´¢¶à¸öÏà¶ÔÂ·¾¶£¬ÓÃÓÚÑ°ÕÒÕæÕýµÄWebRoot
+			// é‡‡ç”¨Listå­˜å‚¨å¤šä¸ªç›¸å¯¹è·¯å¾„ï¼Œç”¨äºŽå¯»æ‰¾çœŸæ­£çš„WebRoot
 			List<String> relativePathList = new ArrayList<String>();
-			// ÏÈÕÒÀàÔÚ$WEBROOTPATH/WEB-INF/libÄ¿Â¼ÖÐjar°ü£¬¶øÅäÖÃÔÚ$WEBROOTPATH/WEB-INF/confµÄÇé¿öµÄÇé¿ö
+			// å…ˆæ‰¾ç±»åœ¨$WEBROOTPATH/WEB-INF/libç›®å½•ä¸­jaråŒ…ï¼Œè€Œé…ç½®åœ¨$WEBROOTPATH/WEB-INF/confçš„æƒ…å†µçš„æƒ…å†µ
 			relativePathList.add("./../");
-			// ÔÙÕÒÀàÔÚ$WEBROOTPATH/WEB-INF/classesÄ¿Â¼£¬¶øÅäÖÃÔÚ$WEBROOTPATH/WEB-INF/confµÄÇé¿ö
+			// å†æ‰¾ç±»åœ¨$WEBROOTPATH/WEB-INF/classesç›®å½•ï¼Œè€Œé…ç½®åœ¨$WEBROOTPATH/WEB-INF/confçš„æƒ…å†µ
 			relativePathList.add("../../");
-			// ÔÙÕÒÀàÔÚ$WEBROOTPATH/../libÄ¿Â¼ÖÐjar°ü£¬¼´libÄ¿Â¼ºÍ$WEBROOTPATHÆ½ÐÐµÄÇé¿ö£¬¶øÅäÖÃÔÚ$WEBROOTPATH/WEB-INF/confµÄÇé¿ö
+			// å†æ‰¾ç±»åœ¨$WEBROOTPATH/../libç›®å½•ä¸­jaråŒ…ï¼Œå³libç›®å½•å’Œ$WEBROOTPATHå¹³è¡Œçš„æƒ…å†µï¼Œè€Œé…ç½®åœ¨$WEBROOTPATH/WEB-INF/confçš„æƒ…å†µ
 			relativePathList.add("./WebContent/");
 			relativePathList.add("./webapp/");
-			// ÔÙÕÒÀàÔÚ$WEBROOTPATH/../classesÄ¿Â¼ÖÐ£¬¼´classesÄ¿Â¼ºÍ$WEBROOTPATHÆ½ÐÐµÄÇé¿ö£¬¶øÅäÖÃÔÚ$WEBROOTPATH/WEB-INF/confµÄÇé¿ö
+			// å†æ‰¾ç±»åœ¨$WEBROOTPATH/../classesç›®å½•ä¸­ï¼Œå³classesç›®å½•å’Œ$WEBROOTPATHå¹³è¡Œçš„æƒ…å†µï¼Œè€Œé…ç½®åœ¨$WEBROOTPATH/WEB-INF/confçš„æƒ…å†µ
 			relativePathList.add("../WebContent/");
 			relativePathList.add("../webapp/");
 
@@ -48,21 +48,21 @@ public class FindWebRoot {
 				path = Path.getRootRelativePath(relativePathList.get(i), claz);
 				File context = new File(path + CHECKFILENAME);
 				if (context.exists()) {
-					// ÕÒµ½£¬ÔòÌø³öÑ­»·
+					// æ‰¾åˆ°ï¼Œåˆ™è·³å‡ºå¾ªçŽ¯
 					isFinded = true;
 					break;
 				} else {
-					// Î´ÕÒµ½£¬³¢ÊÔÏÂÒ»¸ö
+					// æœªæ‰¾åˆ°ï¼Œå°è¯•ä¸‹ä¸€ä¸ª
 					continue;
 				}
 			}
 			if (!isFinded) {
-				// »¹ÊÇÎ´ÕÒµ½
-				// ÔÙÕÒÀàÔÚ$WEBROOTPATH/WEB-INF/classesÄ¿Â¼£¬¶øÅäÖÃÔÚ$WEBROOTPATH/WEB-INF/classes/confµÄÇé¿ö
-				path = Path.getRootPath(claz);// ÕâÖÖÇé¿ö½öÓÃÓÚÀà²âÊÔ
+				// è¿˜æ˜¯æœªæ‰¾åˆ°
+				// å†æ‰¾ç±»åœ¨$WEBROOTPATH/WEB-INF/classesç›®å½•ï¼Œè€Œé…ç½®åœ¨$WEBROOTPATH/WEB-INF/classes/confçš„æƒ…å†µ
+				path = Path.getRootPath(claz);// è¿™ç§æƒ…å†µä»…ç”¨äºŽç±»æµ‹è¯•
 				File context = new File(path + CHECKFILENAME);
 				if (!context.exists()) {
-					throw new IOException("³ÌÐò±»ÆÆ»µ»òÎ»ÖÃ²»ÕýÈ·£¬²»ÄÜÕÒµ½Ó¦ÓÃ¸ùÂ·¾¶");
+					throw new IOException("ç¨‹åºè¢«ç ´åæˆ–ä½ç½®ä¸æ­£ç¡®ï¼Œä¸èƒ½æ‰¾åˆ°åº”ç”¨æ ¹è·¯å¾„");
 				}
 			}
 			AppRoot = path;
@@ -71,7 +71,7 @@ public class FindWebRoot {
 	}
 
 	/**
-	 * ÉèÖÃ¸ùÂ·¾¶µÄ²éÕÒÀà
+	 * è®¾ç½®æ ¹è·¯å¾„çš„æŸ¥æ‰¾ç±»
 	 * @param claz
 	 */
 	public static void setClaz(Class<?> claz) {

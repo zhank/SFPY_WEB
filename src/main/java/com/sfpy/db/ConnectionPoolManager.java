@@ -4,14 +4,14 @@ import java.sql.Connection;
 import java.util.Hashtable;
 
 /**
- * Á¬½Ó¹ÜÀíÀà
+ * è¿æ¥ç®¡ç†ç±»
  * @author SFPY
  */
 public class ConnectionPoolManager {
 	
 	public static String poolName = "dbPool";
 	
-	//Á¬½Ó³Ø´æ·Å
+	//è¿æ¥æ± å­˜æ”¾
 	public Hashtable<String, IConnectionPool> pools = new Hashtable<String, IConnectionPool>();
 	
 	public static ConnectionPoolManager getInstance() {
@@ -22,12 +22,12 @@ public class ConnectionPoolManager {
 		private static ConnectionPoolManager instance = new ConnectionPoolManager();
 	}
 	
-	//³õÊ¼»¯
+	//åˆå§‹åŒ–
 	private ConnectionPoolManager() {
 		init();
 	}
 	
-	 // ³õÊ¼»¯ËùÓĞµÄÁ¬½Ó³Ø  
+	 // åˆå§‹åŒ–æ‰€æœ‰çš„è¿æ¥æ±   
 	public void init() {
 		for(int i =0;i<DBInitInfo.beans.size();i++){  
             DBbean bean = DBInitInfo.beans.get(i);  
@@ -40,7 +40,7 @@ public class ConnectionPoolManager {
 	}
 	
 	/**
-	 * Çå¿ÕÁ¬½Ó³Ø
+	 * æ¸…ç©ºè¿æ¥æ± 
 	 */
 	public void destroy(String poolName) {
 		IConnectionPool pool = getPool(poolName);
@@ -50,7 +50,7 @@ public class ConnectionPoolManager {
 	}
 	
 	/**
-	 * »ñµÃÁ¬½Ó,¸ù¾İÁ¬½Ó³ØÃû×Ö »ñµÃÁ¬½Ó  
+	 * è·å¾—è¿æ¥,æ ¹æ®è¿æ¥æ± åå­— è·å¾—è¿æ¥  
 	 * @return
 	 */
 	public Connection getConnection(String poolName) {
@@ -64,7 +64,7 @@ public class ConnectionPoolManager {
 	}
 	
 	/**
-	 * »ñµÃÁ¬½Ó³Ø  
+	 * è·å¾—è¿æ¥æ±   
 	 * @param poolName
 	 * @return
 	 */
