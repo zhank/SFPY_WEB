@@ -73,6 +73,11 @@ layui.config({
     navbar.on('click(side)', function (data) {
         tab.tabAdd(data.field);
     });
+	//右边个人信息和左边关联
+	$('#userinfo').on('click', function () {
+		var tab = navbar.config.data[0].children[3];  
+		tab.tabAdd(dd);
+	});
     //清除缓存
     $('#clearCached').on('click', function () {
         navbar.cleanCached();

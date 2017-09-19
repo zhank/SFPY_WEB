@@ -35,25 +35,13 @@
 					</div>
 					<ul class="layui-nav admin-header-item">
 						<li class="layui-nav-item">
-							<a href="javascript:;">清除缓存</a>
-						</li>
-                        <li class="layui-nav-item" id="pay">
-                            <a href="javascript:;">捐赠我</a>
-                        </li>
-						<li class="layui-nav-item">
-							<a href="javascript:;">浏览网站</a>
-						</li>
-						<li class="layui-nav-item" id="video1">
-							<a href="javascript:;">视频</a>
-						</li>
-						<li class="layui-nav-item">
 							<a href="javascript:;" class="admin-header-user">
 								<img src="../images/0.jpg" />
-								<span>beginner</span>
+								<span>sfpy_web</span>
 							</a>
 							<dl class="layui-nav-child">
-								<dd>
-									<a href="javascript:;"><i class="fa fa-user-circle" aria-hidden="true"></i> 个人信息</a>
+								<dd id="userinfo" >
+									<a href="javascript:;" ><i class="fa fa-user-circle" aria-hidden="true"></i> 个人信息</a>
 								</dd>
 								<dd>
 									<a href="javascript:;"><i class="fa fa-gear" aria-hidden="true"></i> 设置</a>
@@ -122,32 +110,6 @@
 			<script type="text/javascript" src="../plugins/layui/layui.js"></script>
 			<script type="text/javascript" src="../datas/nav.js"></script>
 			<script src="../js/index.js"></script>
-			<script>
-				layui.use('layer', function() {
-					var $ = layui.jquery,
-						layer = layui.layer;
-
-					$('#video1').on('click', function() {
-						layer.open({
-							title: 'YouTube',
-							maxmin: true,
-							type: 2,
-							content: 'video.html',
-							area: ['800px', '500px']
-						});
-                    });
-                    $('#pay').on('click', function () {
-                        layer.open({
-                            title: false,
-                            type: 1,
-                            content: '<img src="../images/xx.png" />',
-                            area: ['500px', '250px'],
-                            shadeClose: true
-                        });
-                    });
-
-				});
-			</script>
 		</div>
 	</body>
 
