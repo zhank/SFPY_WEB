@@ -1,79 +1,79 @@
 var navs = [{
-	"title": "基本元素",
+	"title": "我的帐户",
 	"icon": "fa-cubes",
 	"spread": true,
 	"children": [{
-		"title": "按钮",
+		"title": "帐户查询",
 		"icon": "&#xe641;",
 		"href": "button.html"
 	}, {
-		"title": "表单",
+		"title": "积分查询",
 		"icon": "&#xe63c;",
 		"href": "form.html"
 	}, {
-		"title": "表格",
+		"title": "交易查询",
 		"icon": "&#xe63c;",
 		"href": "table.html"
 	}, {
-		"title": "导航",
+		"title": "个人信息维护",
 		"icon": "&#xe609;",
-		"href": "nav.html"
+		"href": "../html/userInfo.html"
 	}, {
 		"title": "辅助性元素",
 		"icon": "&#xe60c;",
 		"href": "auxiliar.html"
 	}]
 }, {
-	"title": "组件",
+	"title": "资金理财",
 	"icon": "fa-cogs",
 	"spread": false,
 	"children": [{
-		"title": "BTable",
+		"title": "基金交易",
 		"icon": "fa-table",
 		"href": "btable.html"
 	}, {
-		"title": "Navbar组件",
+		"title": "理财产品",
 		"icon": "fa-navicon",
 		"href": "navbar.html"
 	}, {
-		"title": "Tab组件",
+		"title": "国债/证券",
 		"icon": "&#xe62a;",
 		"href": "tab.html"
 	}, {
-		"title": "Laytpl+Laypage",
+		"title": "贵金属/商品",
 		"icon": "&#xe628;",
 		"href": "paging.html"
 	}]
 }, {
-	"title": "第三方组件",
+	"title": " 网上缴费",
+	"icon": "fa-address-book",
+	"href": "",
+	"spread": false,
+	"children": [{
+		"title": "手机充值",
+		"icon": "fa-github",
+		"href": "https://www.github.com/"
+	}, {
+		"title": "水费",
+		"icon": "fa-qq",
+		"href": "http://www.qq.com/"
+	}, {
+		"title": "电费",
+		"icon": "&#xe609;",
+		"href": "http://fly.layui.com/"
+	}, {
+		"title": "燃气费",
+		"icon": "fa-weibo",
+		"href": "http://weibo.com/"
+	}]
+},{
+	"title": "客户留言",
 	"icon": "&#x1002;",
 	"spread": false,
 	"children": [{
 		"title": "iCheck组件",
 		"icon": "fa-check-square-o",
 		"href": "icheck.html"
-	}]
-}, {
-	"title": "地址本",
-	"icon": "fa-address-book",
-	"href": "",
-	"spread": false,
-	"children": [{
-		"title": "Github",
-		"icon": "fa-github",
-		"href": "https://www.github.com/"
-	}, {
-		"title": "QQ",
-		"icon": "fa-qq",
-		"href": "http://www.qq.com/"
-	}, {
-		"title": "Fly社区",
-		"icon": "&#xe609;",
-		"href": "http://fly.layui.com/"
-	}, {
-		"title": "新浪微博",
-		"icon": "fa-weibo",
-		"href": "http://weibo.com/"
 	}]
 }, {
 	"title": "这是一级导航",
