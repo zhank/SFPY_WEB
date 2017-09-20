@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html>
 
 	<head>
@@ -54,14 +53,35 @@
 				var layer = layui.layer,
 					$ = layui.jquery,
 					form = layui.form();
-					
-				form.on('submit(login)',function(data){
-					
-					location.href='html/index.html';
-					return false;
-				});
+						form.on('submit(login)',function(data){
+							var userName = data.field.userName;
+						password = data.field.password;
+						if(userName == "" || password == "") {
+							layer.msg('用户名或密码不能为空！',{time:2000, shift: 5, icon: 5});
+							return false;
+						}
+						$.ajax({
+								url:"http://localhost:8088/user/login.do",
+								type:"post",
+								data: {"userName":userName,"password":password},
+								dataType:"json",
+								success:function(result){
+									if(result.status == 10) {
+										location.href='html/index.html'; 
+									} else {
+										layer.msg('用户名或密码不正确！',{time:2000, shift: 5, icon: 5},function(){});	
+									}
+								},
+								error:function(XMLHttpRequest, textstatus,errorThrown) {
+									 layer.msg(XMLHttpRequest.status);
+									 layer.msg(XMLHttpRequest.readystate);
+									 layer.msg(textstatus);
+									return false;
+								}
+					});
+							return false;
+						});
 			});
 		</script>
 	</body>
-
 </html>
