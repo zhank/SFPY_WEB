@@ -1,6 +1,5 @@
 package com.sfpy.field;
 
-import java.sql.Types;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
