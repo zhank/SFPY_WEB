@@ -18,6 +18,7 @@ encoding//src/main/java/com/sfpy/main/Main.java=UTF-8
 encoding//src/main/java/com/sfpy/redis/AuthorCacheDataFactory.java=UTF-8
 encoding//src/main/java/com/sfpy/redis/JedisDBCfg.java=UTF-8
 encoding//src/main/java/com/sfpy/redis/RedisPool.java=UTF-8
+encoding//src/main/java/com/sfpy/service/UserService.java=GBK
 encoding//src/main/java/com/sfpy/util/FindRoot.java=UTF-8
 encoding//src/main/java/com/sfpy/util/FindWebRoot.java=UTF-8
 encoding//src/main/java/com/sfpy/util/Path.java=UTF-8
