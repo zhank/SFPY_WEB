@@ -30,10 +30,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * IDbOpµÄÍ¨ÓÃÊµÏÖ£¬ÊÊÓÃÓÚËùÓĞÊı¾İ¿â²Ù×÷¡£ÓëÌØ¶¨Êı¾İ¿âÏà¹ØµÄÓÅ»¯Àà¿ÉÒÔ¼Ì³Ğ´ËÀà£¬¸²¸ÇĞèÒªÓÅ»¯µÄ·½·¨¡£
+ * IDbOpçš„é€šç”¨å®ç°ï¼Œé€‚ç”¨äºæ‰€æœ‰æ•°æ®åº“æ“ä½œã€‚ä¸ç‰¹å®šæ•°æ®åº“ç›¸å…³çš„ä¼˜åŒ–ç±»å¯ä»¥ç»§æ‰¿æ­¤ç±»ï¼Œè¦†ç›–éœ€è¦ä¼˜åŒ–çš„æ–¹æ³•ã€‚
  * 
  * <p>
- * ¸ÃÀà¸ÅÄîÉÏÀàËÆApacheµÄcommons-dbutils£¬µ«dbutils»¹ÊÇ¸´ÔÓÁËĞ©£¬ÇÒ¶ÔDateÀàµÄ´¦Àí»¹Òª×öĞ©¸Ä¶¯£¬ËùÒÔÎ´Ê¹ÓÃ¡£
+ * è¯¥ç±»æ¦‚å¿µä¸Šç±»ä¼¼Apacheçš„commons-dbutilsï¼Œä½†dbutilsè¿˜æ˜¯å¤æ‚äº†äº›ï¼Œä¸”å¯¹Dateç±»çš„å¤„ç†è¿˜è¦åšäº›æ”¹åŠ¨ï¼Œæ‰€ä»¥æœªä½¿ç”¨ã€‚
  * 
  * @author zhangk
  * @version 1.0
@@ -46,7 +46,7 @@ public class DbOpBase implements IDbOp, Serializable {
 	final static Logger log = LoggerFactory.getLogger(DbOpBase.class);
 
 	/**
-	 * ¸ù¾İÊıÖµµÄÀàĞÍµ÷ÓÃ²»Í¬µÄsetXXX·½·¨
+	 * æ ¹æ®æ•°å€¼çš„ç±»å‹è°ƒç”¨ä¸åŒçš„setXXXæ–¹æ³•
 	 * 
 	 * @param pstmt
 	 * @param values
@@ -66,7 +66,7 @@ public class DbOpBase implements IDbOp, Serializable {
 	}
 
 	/**
-	 * ·µ»ØResultSet½á¹ûÖĞµÄÊı¾İ£¬»á¸ù¾İÊı¾İ¿âÀàĞÍ×Ô¶¯×ª»»ÎªjavaÀàĞÍ
+	 * è¿”å›ResultSetç»“æœä¸­çš„æ•°æ®ï¼Œä¼šæ ¹æ®æ•°æ®åº“ç±»å‹è‡ªåŠ¨è½¬æ¢ä¸ºjavaç±»å‹
 	 * 
 	 * @param index
 	 * @param rs
@@ -94,11 +94,11 @@ public class DbOpBase implements IDbOp, Serializable {
 				return null;
 			}
 		case Types.NUMERIC:
-			//oracle Ã»ÓĞ booleanµÄ×¨ÓÃsqlType, ÒÔnumber(1)´úÌæ  by maj 2016.11.02
+			//oracle æ²¡æœ‰ booleançš„ä¸“ç”¨sqlType, ä»¥number(1)ä»£æ›¿  by maj 2016.11.02
 			switch(rsmd.getPrecision(index))
 			{
 	            case 1:
-	            	//½öÎªoracleµÄÇé¿öÏÂÊ¹ÓÃ  by maj 2016.11.02
+	            	//ä»…ä¸ºoracleçš„æƒ…å†µä¸‹ä½¿ç”¨  by maj 2016.11.02
 	            	if (rsmd.getClass().getPackage().getName().equals("oracle.jdbc.driver"))
 	            	{	            
 	            		Boolean b = rs.getBoolean(index);
@@ -171,14 +171,14 @@ public class DbOpBase implements IDbOp, Serializable {
 	}
 
 	/**
-	 * ²åÈë¼ÇÂ¼
+	 * æ’å…¥è®°å½•
 	 * 
 	 * @param conn
-	 *            Êı¾İ¿âÁ¬½Ó
+	 *            æ•°æ®åº“è¿æ¥
 	 * @param table
-	 *            ±íÃû
+	 *            è¡¨å
 	 * @param dataMap
-	 *            ²åÈëÊı¾İµÄMap£¬ÆäÖĞµÄkey¾ÍÊÇ×Ö¶ÎÃû£¬valueÊÇ¶ÔÓ¦¸Ã×Ö¶ÎµÄÊı¾İ
+	 *            æ’å…¥æ•°æ®çš„Mapï¼Œå…¶ä¸­çš„keyå°±æ˜¯å­—æ®µåï¼Œvalueæ˜¯å¯¹åº”è¯¥å­—æ®µçš„æ•°æ®
 	 * @throws Exception
 	 */
 	public int insert(Connection conn, String table, Map<String, Object> dataMap) throws Exception {
@@ -186,16 +186,16 @@ public class DbOpBase implements IDbOp, Serializable {
 	}
 
 	/**
-	 * ²åÈë¼ÇÂ¼
+	 * æ’å…¥è®°å½•
 	 * 
 	 * @param conn
-	 *            Êı¾İ¿âÁ¬½Ó
+	 *            æ•°æ®åº“è¿æ¥
 	 * @param table
-	 *            ±íÃû
+	 *            è¡¨å
 	 * @param dataMap
-	 *            ²åÈëÊı¾İµÄMap£¬ÆäÖĞµÄkey¾ÍÊÇ×Ö¶ÎÃû£¬valueÊÇ¶ÔÓ¦¸Ã×Ö¶ÎµÄÊı¾İ
+	 *            æ’å…¥æ•°æ®çš„Mapï¼Œå…¶ä¸­çš„keyå°±æ˜¯å­—æ®µåï¼Œvalueæ˜¯å¯¹åº”è¯¥å­—æ®µçš„æ•°æ®
 	 * @param isAutoGenKey 
-	 *            ÊÇ·ñ×ÔÔö
+	 *            æ˜¯å¦è‡ªå¢
 	 * @throws Exception
 	 */
 	public int insert(Connection conn, String table, Map<String, Object> dataMap, boolean isAutoGenKey) throws Exception
@@ -203,30 +203,30 @@ public class DbOpBase implements IDbOp, Serializable {
 		return this.insert(conn, table, dataMap, null, isAutoGenKey);
 	}
 	/**
-	 * ²åÈë¼ÇÂ¼
+	 * æ’å…¥è®°å½•
 	 * 
 	 * @param conn
-	 *            Êı¾İ¿âÁ¬½Ó
+	 *            æ•°æ®åº“è¿æ¥
 	 * @param table
-	 *            ±íÃû
+	 *            è¡¨å
 	 * @param dataMap
-	 *            ²åÈëÊı¾İµÄMap£¬ÆäÖĞµÄkey¾ÍÊÇ×Ö¶ÎÃû£¬valueÊÇ¶ÔÓ¦¸Ã×Ö¶ÎµÄÊı¾İ
+	 *            æ’å…¥æ•°æ®çš„Mapï¼Œå…¶ä¸­çš„keyå°±æ˜¯å­—æ®µåï¼Œvalueæ˜¯å¯¹åº”è¯¥å­—æ®µçš„æ•°æ®
 	 * @param colList 
-	 * 			     ²åÈëÍê³ÉºóĞèÒª·µ»ØµÄ×Ö¶ÎÃû³Æ
+	 * 			     æ’å…¥å®Œæˆåéœ€è¦è¿”å›çš„å­—æ®µåç§°
 	 * @param isAutoGenKey 
-	 *            ÊÇ·ñ×ÔÔö
+	 *            æ˜¯å¦è‡ªå¢
 	 * @throws Exception
 	 */
 	public int insert(Connection conn, String table, Map<String, Object> dataMap, String[] colList, boolean isAutoGenKey)
 			throws Exception {
-		// ¼ì²éÊäÈë²ÎÊı
+		// æ£€æŸ¥è¾“å…¥å‚æ•°
 		if (conn == null || table == null || dataMap == null) {
-			String err = "µ÷ÓÃinsert²ÎÊı´íÎó";
+			String err = "è°ƒç”¨insertå‚æ•°é”™è¯¯";
 			log.error(err);
 			throw new IllegalArgumentException(err);
 		}
 
-		// ¹¹Ôì²åÈëÓï¾ä£¬ĞÎÈç£ºinsert into tb_test (name, type, id) values (?, ?, ?)
+		// æ„é€ æ’å…¥è¯­å¥ï¼Œå½¢å¦‚ï¼šinsert into tb_test (name, type, id) values (?, ?, ?)
 		Set<Entry<String, Object>> entrySet = dataMap.entrySet();
 		StringBuffer sql = new StringBuffer(64 + entrySet.size() * 8);
 		sql.append("insert into " + table + " (");
@@ -250,7 +250,7 @@ public class DbOpBase implements IDbOp, Serializable {
 
 		if (log.isDebugEnabled())
 			log.debug("insert SQL: " + sql);
-		// ÉèÖÃ²ÎÊı
+		// è®¾ç½®å‚æ•°
 		PreparedStatement pstmt = null;
 		if (isAutoGenKey) {	
 			if (colList != null)
@@ -268,7 +268,7 @@ public class DbOpBase implements IDbOp, Serializable {
 
 		preparedStatementSetValues(pstmt, values);
 
-		// Ö´ĞĞ
+		// æ‰§è¡Œ
 		ResultSet rs = null;
 		
 		int autoIncreaseId = 0;
@@ -294,30 +294,30 @@ public class DbOpBase implements IDbOp, Serializable {
 	}
 
 	/**
-	 * ¸üĞÂ±í¼ÇÂ¼µÄ¶à¸ö×Ö¶Î
+	 * æ›´æ–°è¡¨è®°å½•çš„å¤šä¸ªå­—æ®µ
 	 * 
 	 * @param conn
-	 *            Êı¾İ¿âÁ¬½Ó
+	 *            æ•°æ®åº“è¿æ¥
 	 * @param table
-	 *            ±íÃû
+	 *            è¡¨å
 	 * @param dataMap
-	 *            ´ı¸üĞÂÊı¾İµÄMap£¬ÆäÖĞµÄkey¾ÍÊÇ×Ö¶ÎÃû£¬valueÊÇ¶ÔÓ¦¸Ã×Ö¶ÎµÄÊı¾İ
+	 *            å¾…æ›´æ–°æ•°æ®çš„Mapï¼Œå…¶ä¸­çš„keyå°±æ˜¯å­—æ®µåï¼Œvalueæ˜¯å¯¹åº”è¯¥å­—æ®µçš„æ•°æ®
 	 * @param condition
-	 *            Ìõ¼şÓï¾ä
+	 *            æ¡ä»¶è¯­å¥
 	 * @param condValues
-	 *            Ìõ¼ş²ÎÊıÁĞ±í
+	 *            æ¡ä»¶å‚æ•°åˆ—è¡¨
 	 * @throws Exception
 	 */
 	public void update(Connection conn, String table, Map<String, Object> dataMap, String condition,
 			List<Object> condValues) throws Exception {
-		// ¼ì²éÊäÈë²ÎÊı
+		// æ£€æŸ¥è¾“å…¥å‚æ•°
 		if (conn == null || table == null || dataMap == null) {
-			String err = "µ÷ÓÃupdate²ÎÊı´íÎó";
+			String err = "è°ƒç”¨updateå‚æ•°é”™è¯¯";
 			log.error(err);
 			throw new IllegalArgumentException(err);
 		}
 
-		// ¹¹Ôì¸üĞÂÓï¾ä£¬ĞÎÈç£ºupdate tb_test set name=?, type=?, id=? where xx
+		// æ„é€ æ›´æ–°è¯­å¥ï¼Œå½¢å¦‚ï¼šupdate tb_test set name=?, type=?, id=? where xx
 		Set<Entry<String, Object>> entrySet = dataMap.entrySet();
 		StringBuffer sql = new StringBuffer(64 + entrySet.size() * 8);
 		sql.append("update " + table + " set ");
@@ -336,15 +336,15 @@ public class DbOpBase implements IDbOp, Serializable {
 		if (log.isDebugEnabled())
 			log.debug("update SQL: " + sql);
 
-		// ÉèÖÃ²ÎÊı
+		// è®¾ç½®å‚æ•°
 		PreparedStatement pstmt = conn.prepareStatement(sql.toString());
 		if (condition != null && condValues != null) {
-			// Èç¹ûÓĞÌõ¼ş²ÎÊı£¬¼ÓÔÚºóÃæ
+			// å¦‚æœæœ‰æ¡ä»¶å‚æ•°ï¼ŒåŠ åœ¨åé¢
 			values.addAll(condValues);
 		}
 		preparedStatementSetValues(pstmt, values);
 
-		// Ö´ĞĞ
+		// æ‰§è¡Œ
 		try {
 			pstmt.executeUpdate();
 		} finally {
@@ -353,30 +353,30 @@ public class DbOpBase implements IDbOp, Serializable {
 	}
 
 	/**
-	 * ¸üĞÂ±í¼ÇÂ¼µÄÒ»¸ö×Ö¶Î
+	 * æ›´æ–°è¡¨è®°å½•çš„ä¸€ä¸ªå­—æ®µ
 	 * 
 	 * @param conn
-	 *            Êı¾İ¿âÁ¬½Ó
+	 *            æ•°æ®åº“è¿æ¥
 	 * @param table
-	 *            ±íÃû
+	 *            è¡¨å
 	 * @param name
-	 *            ´ı¸üĞÂ×Ö¶ÎÃû
+	 *            å¾…æ›´æ–°å­—æ®µå
 	 * @param value
-	 *            ´ı¸üĞÂÊı¾İ
+	 *            å¾…æ›´æ–°æ•°æ®
 	 * @param condition
-	 *            ÎŞ²ÎÊıµÄÌõ¼şÓï¾ä
+	 *            æ— å‚æ•°çš„æ¡ä»¶è¯­å¥
 	 * @throws Exception
 	 */
 	public void update(Connection conn, String table, String name, Object value, String condition)
 			throws Exception {
-		// ¼ì²éÊäÈë²ÎÊı
+		// æ£€æŸ¥è¾“å…¥å‚æ•°
 		if (conn == null || table == null || name == null || value == null || condition == null) {
-			String err = "µ÷ÓÃupdate²ÎÊı´íÎó";
+			String err = "è°ƒç”¨updateå‚æ•°é”™è¯¯";
 			log.error(err);
-			throw new IllegalArgumentException("µ÷ÓÃupdate²ÎÊı´íÎó");
+			throw new IllegalArgumentException("è°ƒç”¨updateå‚æ•°é”™è¯¯");
 		}
 
-		// ¹¹Ôì¸üĞÂÓï¾ä£¬ĞÎÈç£ºupdate tb_test set name=?
+		// æ„é€ æ›´æ–°è¯­å¥ï¼Œå½¢å¦‚ï¼šupdate tb_test set name=?
 		StringBuffer sql = new StringBuffer(64);
 		sql.append("update " + table + " set " + name + "=?");
 		sql.append(" where " + condition);
@@ -384,15 +384,15 @@ public class DbOpBase implements IDbOp, Serializable {
 		if (log.isDebugEnabled())
 			log.debug("update SQL: " + sql);
 
-		// ÉèÖÃ²ÎÊı
+		// è®¾ç½®å‚æ•°
 		PreparedStatement pstmt = conn.prepareStatement(sql.toString());
 		// pstmt.setObject(1, value);
-		// TimeStampÀàĞÍ£¬²»ÄÜÊ¹ÓÃnew Date½øĞĞ
+		// TimeStampç±»å‹ï¼Œä¸èƒ½ä½¿ç”¨new Dateè¿›è¡Œ
 		List<Object> values = new ArrayList<Object>();
 		values.add(value);
 		preparedStatementSetValues(pstmt, values);
 
-		// Ö´ĞĞ
+		// æ‰§è¡Œ
 		try {
 			pstmt.executeUpdate();
 		} finally {
@@ -401,22 +401,22 @@ public class DbOpBase implements IDbOp, Serializable {
 	}
 
 	/**
-	 * É¾³ı¼ÇÂ¼
+	 * åˆ é™¤è®°å½•
 	 * 
 	 * @param conn
-	 *            Êı¾İ¿âÁ¬½Ó
+	 *            æ•°æ®åº“è¿æ¥
 	 * @param table
-	 *            ±íÃû
+	 *            è¡¨å
 	 * @param condition
-	 *            Ìõ¼şÓï¾ä
+	 *            æ¡ä»¶è¯­å¥
 	 * @param condValues
-	 *            Ìõ¼ş²ÎÊıÁĞ±í
+	 *            æ¡ä»¶å‚æ•°åˆ—è¡¨
 	 * @throws Exception
 	 */
 	public void delete(Connection conn, String table, String condition, List<Object> condValues)
 			throws Exception {
 		if (conn == null || table == null) {
-			String err = "µ÷ÓÃdelete²ÎÊı´íÎó";
+			String err = "è°ƒç”¨deleteå‚æ•°é”™è¯¯";
 			log.error(err);
 			throw new IllegalArgumentException(err);
 		}
@@ -443,21 +443,21 @@ public class DbOpBase implements IDbOp, Serializable {
 	}
 
 	/**
-	 * »ñÈ¡Ò»Ìõ¼ÇÂ¼£¬ÒÔmap·µ»Ø
+	 * è·å–ä¸€æ¡è®°å½•ï¼Œä»¥mapè¿”å›
 	 * 
 	 * @param conn
-	 *            Êı¾İ¿âÁ¬½Ó
+	 *            æ•°æ®åº“è¿æ¥
 	 * @param table
-	 *            ±íÃû
+	 *            è¡¨å
 	 * @param cols
-	 *            ĞèÒª·µ»ØµÄ×Ö¶ÎÃûÁĞ±í
+	 *            éœ€è¦è¿”å›çš„å­—æ®µååˆ—è¡¨
 	 * @param condition
-	 *            Ìõ¼şÓï¾ä
+	 *            æ¡ä»¶è¯­å¥
 	 * @param condValues
-	 *            Ìõ¼ş²ÎÊıÁĞ±í
+	 *            æ¡ä»¶å‚æ•°åˆ—è¡¨
 	 * @param mustUnique
-	 *            ÊÇ·ñ±ØĞëÎ¨Ò»£¿ÈôÎªTrue£¬µ«Êµ¼ÊÓÖÓĞ¶àÌõ¼ÇÂ¼£¬½«Å×³öÒì³£
-	 * @return Êı¾İmap
+	 *            æ˜¯å¦å¿…é¡»å”¯ä¸€ï¼Ÿè‹¥ä¸ºTrueï¼Œä½†å®é™…åˆæœ‰å¤šæ¡è®°å½•ï¼Œå°†æŠ›å‡ºå¼‚å¸¸
+	 * @return æ•°æ®map
 	 * @throws Exception
 	 */
 	public Map<String, Object> getOneRowAsMap(Connection conn, String table, List<String> cols,
@@ -469,20 +469,20 @@ public class DbOpBase implements IDbOp, Serializable {
 	}
 
 	/**
-	 * »ñÈ¡Ò»Ìõ¼ÇÂ¼£¬ÒÔÊı×é·½Ê½·µ»Ø¡£
+	 * è·å–ä¸€æ¡è®°å½•ï¼Œä»¥æ•°ç»„æ–¹å¼è¿”å›ã€‚
 	 * 
 	 * @param conn
-	 *            Êı¾İ¿âÁ¬½Ó
+	 *            æ•°æ®åº“è¿æ¥
 	 * @param table
-	 *            ±íÃû
+	 *            è¡¨å
 	 * @param cols
-	 *            ĞèÒª·µ»ØµÄ×Ö¶ÎÃûÁĞ±í
+	 *            éœ€è¦è¿”å›çš„å­—æ®µååˆ—è¡¨
 	 * @param condition
-	 *            Ìõ¼şÓï¾ä
+	 *            æ¡ä»¶è¯­å¥
 	 * @param condValues
-	 *            Ìõ¼ş²ÎÊıÁĞ±í
+	 *            æ¡ä»¶å‚æ•°åˆ—è¡¨
 	 * @param mustUnique
-	 *            ÊÇ·ñ±ØĞëÎ¨Ò»£¿ÈôÎªTrue£¬µ«Êµ¼ÊÓÖÓĞ¶àÌõ¼ÇÂ¼£¬½«Å×³öÒì³£
+	 *            æ˜¯å¦å¿…é¡»å”¯ä¸€ï¼Ÿè‹¥ä¸ºTrueï¼Œä½†å®é™…åˆæœ‰å¤šæ¡è®°å½•ï¼Œå°†æŠ›å‡ºå¼‚å¸¸
 	 * @return
 	 * @throws Exception
 	 */
@@ -492,29 +492,29 @@ public class DbOpBase implements IDbOp, Serializable {
 	}
 
 	/**
-	 * »ñÈ¡Ò»ÌõÊı¾İµÄÊµÏÖ£¬¸ù¾İmap²ÎÊı¾ö¶¨ÒÔmap»¹ÊÇÊı×é·½Ê½·µ»Ø
+	 * è·å–ä¸€æ¡æ•°æ®çš„å®ç°ï¼Œæ ¹æ®mapå‚æ•°å†³å®šä»¥mapè¿˜æ˜¯æ•°ç»„æ–¹å¼è¿”å›
 	 * 
 	 * @param conn
-	 *            Êı¾İ¿âÁ¬½Ó
+	 *            æ•°æ®åº“è¿æ¥
 	 * @param table
-	 *            ±íÃû
+	 *            è¡¨å
 	 * @param cols
-	 *            ĞèÒª·µ»ØµÄ×Ö¶ÎÃûÁĞ±í
+	 *            éœ€è¦è¿”å›çš„å­—æ®µååˆ—è¡¨
 	 * @param condition
-	 *            Ìõ¼şÓï¾ä
+	 *            æ¡ä»¶è¯­å¥
 	 * @param condValues
-	 *            Ìõ¼ş²ÎÊıÁĞ±í
+	 *            æ¡ä»¶å‚æ•°åˆ—è¡¨
 	 * @param mustUnique
-	 *            ÊÇ·ñ±ØĞëÎ¨Ò»£¿ÈôÎªTrue£¬µ«Êµ¼ÊÓÖÓĞ¶àÌõ¼ÇÂ¼£¬½«Å×³öÒì³£
+	 *            æ˜¯å¦å¿…é¡»å”¯ä¸€ï¼Ÿè‹¥ä¸ºTrueï¼Œä½†å®é™…åˆæœ‰å¤šæ¡è®°å½•ï¼Œå°†æŠ›å‡ºå¼‚å¸¸
 	 * @param map
-	 *            Èô²»Îªnull£¬ÉèÖÃ·µ»ØÊı¾İµ½ÆäÖĞ£»·ñÔòÒÔÊı×é·µ»Ø
-	 * @return Èômap²»Îªnull£¬ÉèÖÃ·µ»ØÊı¾İµ½map£¬·µ»Ønull£»·ñÔòÒÔÊı×é·µ»Ø
+	 *            è‹¥ä¸ä¸ºnullï¼Œè®¾ç½®è¿”å›æ•°æ®åˆ°å…¶ä¸­ï¼›å¦åˆ™ä»¥æ•°ç»„è¿”å›
+	 * @return è‹¥mapä¸ä¸ºnullï¼Œè®¾ç½®è¿”å›æ•°æ®åˆ°mapï¼Œè¿”å›nullï¼›å¦åˆ™ä»¥æ•°ç»„è¿”å›
 	 * @throws Exception
 	 */
 	protected Object[] getOneRow(Connection conn, String table, List<String> cols, String condition,
 			List<Object> condValues, boolean mustUnique, Map<String, Object> map) throws Exception {
 		if (conn == null || table == null) {
-			String err = "µ÷ÓÃgetOneRow²ÎÊı´íÎó";
+			String err = "è°ƒç”¨getOneRowå‚æ•°é”™è¯¯";
 			log.error(err);
 			throw new IllegalArgumentException(err);
 		}
@@ -551,8 +551,8 @@ public class DbOpBase implements IDbOp, Serializable {
 			ResultSet rs = pstmt.executeQuery();
 
 			if (!rs.next()) {
-				// ÎŞÊı¾İ
-				String err = "Î´·¢ÏÖÒª²éÕÒµÄÊı¾İ¡£[" + table + ":" + sql;
+				// æ— æ•°æ®
+				String err = "æœªå‘ç°è¦æŸ¥æ‰¾çš„æ•°æ®ã€‚[" + table + ":" + sql;
 				log.error(err);
 				throw new Exception(err);
 			}
@@ -573,7 +573,7 @@ public class DbOpBase implements IDbOp, Serializable {
 
 			if (mustUnique) {
 				if (rs.next()) {
-					String err = "Ëù²éÕÒµÄÊı¾İÏî²»Î¨Ò»¡£[" + table + ":" + sql;
+					String err = "æ‰€æŸ¥æ‰¾çš„æ•°æ®é¡¹ä¸å”¯ä¸€ã€‚[" + table + ":" + sql;
 					log.error(err);
 					throw new Exception(err);
 				}
@@ -591,29 +591,29 @@ public class DbOpBase implements IDbOp, Serializable {
 	}
 
 	/**
-	 * Í¨ÓÃ²éÑ¯£¬ÒÔList[map1, map2...]ĞÎÊ½·µ»Ø
+	 * é€šç”¨æŸ¥è¯¢ï¼Œä»¥List[map1, map2...]å½¢å¼è¿”å›
 	 * 
 	 * @param conn
-	 *            Êı¾İ¿âÁ¬½Ó
+	 *            æ•°æ®åº“è¿æ¥
 	 * @param table
-	 *            ±íÃû
+	 *            è¡¨å
 	 * @param cols
-	 *            ĞèÒª·µ»ØµÄ×Ö¶ÎÃûÁĞ±í
+	 *            éœ€è¦è¿”å›çš„å­—æ®µååˆ—è¡¨
 	 * @param condition
-	 *            Ìõ¼şÓï¾ä
+	 *            æ¡ä»¶è¯­å¥
 	 * @param condValues
-	 *            Ìõ¼ş²ÎÊıÁĞ±í
+	 *            æ¡ä»¶å‚æ•°åˆ—è¡¨
 	 * @param start
-	 *            ¼ÇÂ¼µÄ¿ªÊ¼Î»ÖÃ
+	 *            è®°å½•çš„å¼€å§‹ä½ç½®
 	 * @param max
-	 *            ·µ»Ø×î´ó¼ÇÂ¼¸öÊı
+	 *            è¿”å›æœ€å¤§è®°å½•ä¸ªæ•°
 	 * @param orderBy
-	 *            ÅÅĞò×Ö¶ÎÃû
+	 *            æ’åºå­—æ®µå
 	 * @param groupBy
-	 *            ·Ö×é×Ö¶ÎÃû
+	 *            åˆ†ç»„å­—æ®µå
 	 * @param bAsc
-	 *            ÊÇ·ñÉıĞò
-	 * @return ÒÔList[map1, map2...]ĞÎÊ½·µ»Ø£¬colsÖ¸¶¨µÄ×Ö¶ÎÊı¾İ£¬×î´óÎªmax¸ö
+	 *            æ˜¯å¦å‡åº
+	 * @return ä»¥List[map1, map2...]å½¢å¼è¿”å›ï¼ŒcolsæŒ‡å®šçš„å­—æ®µæ•°æ®ï¼Œæœ€å¤§ä¸ºmaxä¸ª
 	 * @throws Exception
 	 */
 	@SuppressWarnings("unchecked")
@@ -624,7 +624,7 @@ public class DbOpBase implements IDbOp, Serializable {
 				orderBy, groupBy, bAsc, true);
 	}
 
-	//Ìí¼ÓÒ»¸öÒÔÊı¾İ¿âLabelÎªkeyµÄ·½·¨,¿¼ÂÇĞŞ¸Ä»áÓ°ÏìÆäËûÈËËùÒÔÁíĞ´ÔÚÒ»¸ö·½·¨,Ï£ÍûÔÚÏîÄ¿¿Õ´°ÆÚºÏ²¢ÆğÀ´  by maj 2016-8-8
+	//æ·»åŠ ä¸€ä¸ªä»¥æ•°æ®åº“Labelä¸ºkeyçš„æ–¹æ³•,è€ƒè™‘ä¿®æ”¹ä¼šå½±å“å…¶ä»–äººæ‰€ä»¥å¦å†™åœ¨ä¸€ä¸ªæ–¹æ³•,å¸Œæœ›åœ¨é¡¹ç›®ç©ºçª—æœŸåˆå¹¶èµ·æ¥  by maj 2016-8-8
 	@SuppressWarnings("unchecked")
 	public List<Map<String, Object>> searchAsMapListInLabel(Connection conn, String table, List<String> cols,
 			String condition, List<Object> condValues, int start, int max, String orderBy, String groupBy,
@@ -633,29 +633,29 @@ public class DbOpBase implements IDbOp, Serializable {
 				orderBy, groupBy, bAsc, true);
 	}
 	/**
-	 * Í¨ÓÃ²éÑ¯£¬ÒÔList[array1, array2...]ĞÎÊ½·µ»Ø
+	 * é€šç”¨æŸ¥è¯¢ï¼Œä»¥List[array1, array2...]å½¢å¼è¿”å›
 	 * 
 	 * @param conn
-	 *            Êı¾İ¿âÁ¬½Ó
+	 *            æ•°æ®åº“è¿æ¥
 	 * @param table
-	 *            ±íÃû
+	 *            è¡¨å
 	 * @param cols
-	 *            ĞèÒª·µ»ØµÄ×Ö¶ÎÃûÁĞ±í
+	 *            éœ€è¦è¿”å›çš„å­—æ®µååˆ—è¡¨
 	 * @param condition
-	 *            Ìõ¼şÓï¾ä
+	 *            æ¡ä»¶è¯­å¥
 	 * @param condValues
-	 *            Ìõ¼ş²ÎÊıÁĞ±í
+	 *            æ¡ä»¶å‚æ•°åˆ—è¡¨
 	 * @param start
-	 *            ¼ÇÂ¼µÄ¿ªÊ¼Î»ÖÃ
+	 *            è®°å½•çš„å¼€å§‹ä½ç½®
 	 * @param max
-	 *            ·µ»Ø×î´ó¼ÇÂ¼¸öÊı
+	 *            è¿”å›æœ€å¤§è®°å½•ä¸ªæ•°
 	 * @param orderBy
-	 *            ÅÅĞò×Ö¶ÎÃû
+	 *            æ’åºå­—æ®µå
 	 * @param groupBy
-	 *            ·Ö×é×Ö¶ÎÃû
+	 *            åˆ†ç»„å­—æ®µå
 	 * @param bAsc
-	 *            ÊÇ·ñÉıĞò
-	 * @return ÒÔList[array1, array2...]ĞÎÊ½·µ»Ø£¬colsÖ¸¶¨µÄ×Ö¶ÎÊı¾İ
+	 *            æ˜¯å¦å‡åº
+	 * @return ä»¥List[array1, array2...]å½¢å¼è¿”å›ï¼ŒcolsæŒ‡å®šçš„å­—æ®µæ•°æ®
 	 * @throws Exception
 	 */
 	@SuppressWarnings("unchecked")
@@ -667,44 +667,44 @@ public class DbOpBase implements IDbOp, Serializable {
 	}
 
 	/**
-	 * ²éÑ¯µÄ¾ßÌåÊµÏÖ£¬¸ù¾İ×îºó²ÎÊı¾ö¶¨ÊÇÒÔmap-list»¹ÊÇarray-list·µ»Ø
+	 * æŸ¥è¯¢çš„å…·ä½“å®ç°ï¼Œæ ¹æ®æœ€åå‚æ•°å†³å®šæ˜¯ä»¥map-listè¿˜æ˜¯array-listè¿”å›
 	 * 
 	 * @param conn
-	 *            Êı¾İ¿âÁ¬½Ó
+	 *            æ•°æ®åº“è¿æ¥
 	 * @param table
-	 *            ±íÃû
+	 *            è¡¨å
 	 * @param cols
-	 *            ĞèÒª·µ»ØµÄ×Ö¶ÎÃûÁĞ±í
+	 *            éœ€è¦è¿”å›çš„å­—æ®µååˆ—è¡¨
 	 * @param condition
-	 *            Ìõ¼şÓï¾ä
+	 *            æ¡ä»¶è¯­å¥
 	 * @param condValues
-	 *            Ìõ¼ş²ÎÊıÁĞ±í
+	 *            æ¡ä»¶å‚æ•°åˆ—è¡¨
 	 * @param start
-	 *            ¼ÇÂ¼µÄ¿ªÊ¼Î»ÖÃ
+	 *            è®°å½•çš„å¼€å§‹ä½ç½®
 	 * @param max
-	 *            ·µ»Ø×î´ó¼ÇÂ¼¸öÊı
+	 *            è¿”å›æœ€å¤§è®°å½•ä¸ªæ•°
 	 * @param orderBy
-	 *            ÅÅĞò×Ö¶ÎÃû
+	 *            æ’åºå­—æ®µå
 	 * @param groupBy
-	 *            ·Ö×é×Ö¶ÎÃû
+	 *            åˆ†ç»„å­—æ®µå
 	 * @param bAsc
-	 *            ÊÇ·ñÉıĞò
+	 *            æ˜¯å¦å‡åº
 	 * @param bMap
-	 *            true: ÒÔList[map1, map1...]ĞÎÊ½·µ»Ø; false: ÒÔList[array1,
-	 *            array2...]ĞÎÊ½·µ»Ø
-	 * @return ÓÉbMap²ÎÊı¾ö¶¨
+	 *            true: ä»¥List[map1, map1...]å½¢å¼è¿”å›; false: ä»¥List[array1,
+	 *            array2...]å½¢å¼è¿”å›
+	 * @return ç”±bMapå‚æ•°å†³å®š
 	 * @throws Exception
 	 */
 	protected List<?> search(Connection conn, String table, List<String> cols, String condition,
 			List<Object> condValues, int start, int max, String orderBy, String groupBy, boolean bAsc,
 			boolean bMap) throws Exception {
 		if (conn == null || table == null) {
-			String err = "µ÷ÓÃsearch²ÎÊı´íÎó";
+			String err = "è°ƒç”¨searchå‚æ•°é”™è¯¯";
 			log.error(err);
 			throw new IllegalArgumentException(err);
 		}
 
-		// 1 ¹¹ÔìÓï¾ä
+		// 1 æ„é€ è¯­å¥
 		StringBuffer sql = new StringBuffer(64);
 		int i;
 		if (cols == null)
@@ -743,12 +743,12 @@ public class DbOpBase implements IDbOp, Serializable {
 			preparedStatementSetValues(pstmt, condValues);
 		}
 
-		// 2 Ö´ĞĞ²éÑ¯
+		// 2 æ‰§è¡ŒæŸ¥è¯¢
 		List<Object> ret = new ArrayList<Object>();
 		try {
 			ResultSet rs = pstmt.executeQuery();
 
-			// 3 ¹¹Ôì½á¹û
+			// 3 æ„é€ ç»“æœ
 			int colCount = 0;
 			ResultSetMetaData rsmd = rs.getMetaData();
 			colCount = rsmd.getColumnCount();
@@ -756,7 +756,7 @@ public class DbOpBase implements IDbOp, Serializable {
 			int startCounter = 0;
 			int fetchCount = 0;
 			if (bMap) {
-				// map½á¹û
+				// mapç»“æœ
 				while (rs.next()) {
 					if (fetchCount == max)
 						break;
@@ -773,7 +773,7 @@ public class DbOpBase implements IDbOp, Serializable {
 					}
 				}
 			} else {
-				// array½á¹û
+				// arrayç»“æœ
 				while (rs.next()) {
 					if (fetchCount == max)
 						break;
@@ -800,18 +800,18 @@ public class DbOpBase implements IDbOp, Serializable {
 		return ret;
 	}
 
-	//Ìí¼ÓÒ»¸öÒÔÊı¾İ¿âLabelÎªkeyµÄ·½·¨,¿¼ÂÇĞŞ¸Ä»áÓ°ÏìÆäËûÈËËùÒÔÁíĞ´ÔÚÒ»¸ö·½·¨,Ï£ÍûÔÚÏîÄ¿¿Õ´°ÆÚºÏ²¢ÆğÀ´  by maj 2016-8-8
+	//æ·»åŠ ä¸€ä¸ªä»¥æ•°æ®åº“Labelä¸ºkeyçš„æ–¹æ³•,è€ƒè™‘ä¿®æ”¹ä¼šå½±å“å…¶ä»–äººæ‰€ä»¥å¦å†™åœ¨ä¸€ä¸ªæ–¹æ³•,å¸Œæœ›åœ¨é¡¹ç›®ç©ºçª—æœŸåˆå¹¶èµ·æ¥  by maj 2016-8-8
 	protected List<?> searchInLabel(Connection conn, String table, List<String> cols,
 			String condition, List<Object> condValues, int start, int max,
 			String orderBy, String groupBy, boolean bAsc, boolean bMap)
 			throws Exception {
 		if (conn == null || table == null) {
-			String err = "µ÷ÓÃsearch²ÎÊı´íÎó";
+			String err = "è°ƒç”¨searchå‚æ•°é”™è¯¯";
 			log.error(err);
 			throw new IllegalArgumentException(err);
 		}
 
-		// 1 ¹¹ÔìÓï¾ä
+		// 1 æ„é€ è¯­å¥
 		StringBuffer sql = new StringBuffer(64);
 		int i;
 		if (cols == null)
@@ -850,12 +850,12 @@ public class DbOpBase implements IDbOp, Serializable {
 			preparedStatementSetValues(pstmt, condValues);
 		}
 
-		// 2 Ö´ĞĞ²éÑ¯
+		// 2 æ‰§è¡ŒæŸ¥è¯¢
 		List<Object> ret = new ArrayList<Object>();
 		try {
 			ResultSet rs = pstmt.executeQuery();
 
-			// 3 ¹¹Ôì½á¹û
+			// 3 æ„é€ ç»“æœ
 			int colCount = 0;
 			ResultSetMetaData rsmd = rs.getMetaData();
 			colCount = rsmd.getColumnCount();
@@ -863,7 +863,7 @@ public class DbOpBase implements IDbOp, Serializable {
 			int startCounter = 0;
 			int fetchCount = 0;
 			if (bMap) {
-				// map½á¹û
+				// mapç»“æœ
 				while (rs.next()) {
 					if (fetchCount == max)
 						break;
@@ -880,7 +880,7 @@ public class DbOpBase implements IDbOp, Serializable {
 					}
 				}
 			} else {
-				// array½á¹û
+				// arrayç»“æœ
 				while (rs.next()) {
 					if (fetchCount == max)
 						break;
@@ -908,25 +908,25 @@ public class DbOpBase implements IDbOp, Serializable {
 		
 	}
 	/**
-	 * µÃµ½¼ÇÂ¼¸öÊı
+	 * å¾—åˆ°è®°å½•ä¸ªæ•°
 	 * 
 	 * @param conn
-	 *            Êı¾İ¿âÁ¬½Ó
+	 *            æ•°æ®åº“è¿æ¥
 	 * @param table
-	 *            ±íÃû
+	 *            è¡¨å
 	 * @param condition
-	 *            Ìõ¼şÓï¾ä
+	 *            æ¡ä»¶è¯­å¥
 	 * @param condValues
-	 *            Ìõ¼şÓï¾äÁĞ±í
+	 *            æ¡ä»¶è¯­å¥åˆ—è¡¨
 	 * @param distinct
-	 *            Êı¾İ¿âdistinct
-	 * @return ·ûºÏÌõ¼şµÄ¼ÇÂ¼¸öÊı
+	 *            æ•°æ®åº“distinct
+	 * @return ç¬¦åˆæ¡ä»¶çš„è®°å½•ä¸ªæ•°
 	 * @throws Exception
 	 */
 	public int getCount(Connection conn, String table, String condition, List<Object> condValues,
 			String distinct) throws Exception {
 		if (conn == null || table == null) {
-			String err = "µ÷ÓÃgetCount²ÎÊı´íÎó";
+			String err = "è°ƒç”¨getCountå‚æ•°é”™è¯¯";
 			log.error(err);
 			throw new IllegalArgumentException(err);
 		}
@@ -952,7 +952,7 @@ public class DbOpBase implements IDbOp, Serializable {
 
 			ResultSet rs = pstmt.executeQuery();
 
-			if (!rs.next()) // ÎŞÊı¾İ
+			if (!rs.next()) // æ— æ•°æ®
 				return 0;
 
 			return rs.getInt(1);
@@ -962,28 +962,28 @@ public class DbOpBase implements IDbOp, Serializable {
 	}
 
 	/**
-	 * µÃµ½¼ÇÂ¼¸öÊı
+	 * å¾—åˆ°è®°å½•ä¸ªæ•°
 	 * 
 	 * @param type
-	 *            Êı¾İÀàĞÍ
+	 *            æ•°æ®ç±»å‹
 	 * @param conn
-	 *            Êı¾İ¿âÁ¬½Ó
+	 *            æ•°æ®åº“è¿æ¥
 	 * @param table
-	 *            ±íÃû
+	 *            è¡¨å
 	 * @param condition
-	 *            Ìõ¼şÓï¾ä
+	 *            æ¡ä»¶è¯­å¥
 	 * @param condValues
-	 *            Ìõ¼şÓï¾äÁĞ±í
+	 *            æ¡ä»¶è¯­å¥åˆ—è¡¨
 	 * @param distinct
-	 *            Êı¾İ¿âdistinct
-	 * @return ·ûºÏÌõ¼şµÄ¼ÇÂ¼¸öÊı
+	 *            æ•°æ®åº“distinct
+	 * @return ç¬¦åˆæ¡ä»¶çš„è®°å½•ä¸ªæ•°
 	 * @throws Exception
 	 */
 	@SuppressWarnings("unchecked")
 	public <T> T getMax(Class<T> type, Connection conn, String table, String col, String condition,
 			List<Object> condValues) throws Exception {
 		if (conn == null || table == null) {
-			String err = "µ÷ÓÃgetCount²ÎÊı´íÎó";
+			String err = "è°ƒç”¨getCountå‚æ•°é”™è¯¯";
 			log.error(err);
 			throw new IllegalArgumentException(err);
 		}
@@ -1003,7 +1003,7 @@ public class DbOpBase implements IDbOp, Serializable {
 		}
 		try {
 			ResultSet rs = pstmt.executeQuery();
-			if (!rs.next()) // ÎŞÊı¾İ
+			if (!rs.next()) // æ— æ•°æ®
 				return null;
 			return ((T) rs.getObject(1));
 		} finally {
@@ -1015,7 +1015,7 @@ public class DbOpBase implements IDbOp, Serializable {
 	public <T> T getMin(Class<Integer> type, Connection conn, String table, String col, String condition,
 			List<Object> condValues) throws Exception {
 		if (conn == null || table == null) {
-			String err = "µ÷ÓÃgetCount²ÎÊı´íÎó";
+			String err = "è°ƒç”¨getCountå‚æ•°é”™è¯¯";
 			log.error(err);
 			throw new IllegalArgumentException(err);
 		}
@@ -1037,7 +1037,7 @@ public class DbOpBase implements IDbOp, Serializable {
 		}
 		try {
 			ResultSet rs = pstmt.executeQuery();
-			// ÎŞÊı¾İ
+			// æ— æ•°æ®
 			if (!rs.next()) {
 				return null;
 			}
@@ -1048,13 +1048,13 @@ public class DbOpBase implements IDbOp, Serializable {
 	}
 
 	/**
-	 * Ö±½ÓÅúÁ¿Ö´ĞĞsqlÓï¾ä£¬²»·µ»ØÈÎºÎÖµ
+	 * ç›´æ¥æ‰¹é‡æ‰§è¡Œsqlè¯­å¥ï¼Œä¸è¿”å›ä»»ä½•å€¼
 	 */
 	public void execSQL(Connection conn, String[] sqls) throws Exception {
 		Statement statement = conn.createStatement();
 		try {
-			// ·ÖÅú´ÎÖ´ĞĞ
-			// Ò»´ÎÖ´ĞĞµÄÃüÁîÊı
+			// åˆ†æ‰¹æ¬¡æ‰§è¡Œ
+			// ä¸€æ¬¡æ‰§è¡Œçš„å‘½ä»¤æ•°
 			int linePerTime = 30;
 			int remainder = sqls.length % linePerTime;
 			int loopTime = (sqls.length / linePerTime) + (remainder > 0 ? 1 : 0);
@@ -1076,7 +1076,7 @@ public class DbOpBase implements IDbOp, Serializable {
 	public int insertIfNotExists(Connection conn, String table, Map<String, Object> dataMap,
 			String condition, List<Object> condValues) throws Exception {
 		if (condition != null && (getCount(conn, table, condition, condValues, null) > 0)) {
-			throw new Exception("¼ÇÂ¼ÒÑ¾­´æÔÚ");
+			throw new Exception("è®°å½•å·²ç»å­˜åœ¨");
 		}
 		return insert(conn, table, dataMap, true);
 	}

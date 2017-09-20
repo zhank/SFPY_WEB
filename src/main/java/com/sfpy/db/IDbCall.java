@@ -1,112 +1,99 @@
-/*
- * Created on 2006-11-6
- *
- * @author renwei
- * 
- * Copyright (C) 2006 KOAL SOFTWARE.
- */
 package com.sfpy.db;
 
 import java.util.List;
 import java.util.Map;
 
-/**
- * ÓëconnectionÎŞ¹ØµÄÊı¾İ¿â»ù±¾CRUD²Ù×÷½Ó¿Ú£¬WCLÄ³Ğ©×é¼şÒÀÀµ´Ë½Ó¿ÚÊµÏÖÊı¾İ¿â²Ù×÷¡£º¯ÊıÔ­ĞÍ¾ÍÊÇIDbOpµÄº¯ÊıÈ¥³ıconnection²ÎÊı
- * @author renwei
- * @version 1.0
- * @since 1.0
- */
 public interface IDbCall {
 	/**
-	 * ²åÈë¼ÇÂ¼
-	 * @param table ±íÃû
-	 * @param dataMap ²åÈëÊı¾İµÄMap£¬ÆäÖĞµÄkey¾ÍÊÇ×Ö¶ÎÃû£¬valueÊÇ¶ÔÓ¦¸Ã×Ö¶ÎµÄÊı¾İ
+	 * é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿé“°ï¿½
+	 * @param table é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·
+	 * @param dataMap é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ·ç¢‰æ‹·Mapé”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿå«ç¢‰æ‹·keyé”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿè¡—è®¹æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·valueé”Ÿè§’è®¹æ‹·åº”é”Ÿæ–¤æ‹·é”Ÿè¡—æ®µç¢‰æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·
 	 * @throws Exception
 	 */
 	public int insert(String table, Map<String,Object> dataMap) throws Exception;
 
 	/**
-	 * ¸üĞÂ±í¼ÇÂ¼µÄ¶à¸ö×Ö¶Î
-	 * @param table ±íÃû
-	 * @param dataMap ´ı¸üĞÂÊı¾İµÄMap£¬ÆäÖĞµÄkey¾ÍÊÇ×Ö¶ÎÃû£¬valueÊÇ¶ÔÓ¦¸Ã×Ö¶ÎµÄÊı¾İ
-	 * @param condition Ìõ¼şÓï¾ä
-	 * @param condValues Ìõ¼ş²ÎÊıÁĞ±í
+	 * é”Ÿæ–¤æ‹·é”Ÿé“°æ†‹æ‹·é”Ÿé“°ç¡·æ‹·äº©é”Ÿæ–¤æ‹·é”Ÿè¡—è®¹æ‹·
+	 * @param table é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·
+	 * @param dataMap é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ·ç¢‰æ‹·Mapé”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿå«ç¢‰æ‹·keyé”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿè¡—è®¹æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·valueé”Ÿè§’è®¹æ‹·åº”é”Ÿæ–¤æ‹·é”Ÿè¡—æ®µç¢‰æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·
+	 * @param condition é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿï¿½
+	 * @param condValues é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿå«æ†‹æ‹·
 	 * @throws Exception
 	 */
 	public void update(String table, Map<String,Object> dataMap, String condition, List<Object> condValues) throws Exception;
 
 	/**
-	 * ¸üĞÂ±í¼ÇÂ¼µÄÒ»¸ö×Ö¶Î
-	 * @param table ±íÃû
-	 * @param name ´ı¸üĞÂ×Ö¶ÎÃû
-	 * @param value ´ı¸üĞÂÊı¾İ
-	 * @param condition ÎŞ²ÎÊıµÄÌõ¼şÓï¾ä
+	 * é”Ÿæ–¤æ‹·é”Ÿé“°æ†‹æ‹·é”Ÿé“°ç¡·æ‹·é”Ÿæ­ä¼™æ‹·é”Ÿæ–¤æ‹·ä¾„é”Ÿï¿½
+	 * @param table é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·
+	 * @param name é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿè¡—è®¹æ‹·é”Ÿæ–¤æ‹·
+	 * @param value é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·
+	 * @param condition é”Ÿç«è¯§æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿï¿½
 	 * @throws Exception
 	 */
 	public void update(String table, String name, Object value, String condition) throws Exception;
 
 	/**
-	 * É¾³ı¼ÇÂ¼
-	 * @param table ±íÃû
-	 * @param condition Ìõ¼şÓï¾ä
-	 * @param condValues Ìõ¼ş²ÎÊıÁĞ±í
+	 * åˆ é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·å½•
+	 * @param table é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·
+	 * @param condition é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿï¿½
+	 * @param condValues é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿå«æ†‹æ‹·
 	 * @throws Exception
 	 */
 	public void delete(String table, String preparedCond, List<Object> condValues) throws Exception;
 
 	/**
-	 * »ñÈ¡Ò»Ìõ¼ÇÂ¼£¬ÒÔmap·µ»Ø
-	 * @param table ±íÃû
-	 * @param cols ĞèÒª·µ»ØµÄ×Ö¶ÎÃûÁĞ±í
-	 * @param condition Ìõ¼şÓï¾ä
-	 * @param condValues Ìõ¼ş²ÎÊıÁĞ±í
-	 * @param mustUnique ÊÇ·ñ±ØĞëÎ¨Ò»£¿ÈôÎªTrue£¬µ«Êµ¼ÊÓÖÓĞ¶àÌõ¼ÇÂ¼£¬½«Å×³öÒì³£
-	 * @return Êı¾İmap
+	 * é”Ÿæ–¤æ‹·å–ä¸€é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·å½•é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·mapé”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·
+	 * @param table é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·
+	 * @param cols é”Ÿæ–¤æ‹·è¦é”Ÿæ–¤æ‹·é”Ÿæˆªç¢‰æ‹·é”Ÿè¡—è®¹æ‹·é”Ÿæ–¤æ‹·é”Ÿå«æ†‹æ‹·
+	 * @param condition é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿï¿½
+	 * @param condValues é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿå«æ†‹æ‹·
+	 * @param mustUnique é”Ÿè§’å‡¤æ‹·é”Ÿæ–¤æ‹·é”Ÿè½¿ã„’ä¼™æ‹·é”Ÿæ–¤æ‹·é”Ÿè½¿çŒ…rueé”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·å®é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿå«è®¹æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·å½•é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿé˜¶ç­¹æ‹·é”Ÿå±Šå¸¸
+	 * @return é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·map
 	 * @throws Exception
 	 */
 	public Map<String,Object> getOneRowAsMap(String table, List<String> cols, String condition, List<Object> condValues, boolean mustUnique)
 			throws Exception;
 
 	/**
-	 * »ñÈ¡Ò»Ìõ¼ÇÂ¼£¬ÒÔÊı×é·½Ê½·µ»Ø¡£
-	 * @param table ±íÃû
-	 * @param cols ĞèÒª·µ»ØµÄ×Ö¶ÎÃûÁĞ±í
-	 * @param condition Ìõ¼şÓï¾ä
-	 * @param condValues Ìõ¼ş²ÎÊıÁĞ±í
-	 * @param mustUnique ÊÇ·ñ±ØĞëÎ¨Ò»£¿ÈôÎªTrue£¬µ«Êµ¼ÊÓÖÓĞ¶àÌõ¼ÇÂ¼£¬½«Å×³öÒì³£
+	 * é”Ÿæ–¤æ‹·å–ä¸€é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·å½•é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿä»‹æ–¹å¼é”Ÿæ–¤æ‹·é”Ÿæˆªâ˜…æ‹·
+	 * @param table é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·
+	 * @param cols é”Ÿæ–¤æ‹·è¦é”Ÿæ–¤æ‹·é”Ÿæˆªç¢‰æ‹·é”Ÿè¡—è®¹æ‹·é”Ÿæ–¤æ‹·é”Ÿå«æ†‹æ‹·
+	 * @param condition é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿï¿½
+	 * @param condValues é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿå«æ†‹æ‹·
+	 * @param mustUnique é”Ÿè§’å‡¤æ‹·é”Ÿæ–¤æ‹·é”Ÿè½¿ã„’ä¼™æ‹·é”Ÿæ–¤æ‹·é”Ÿè½¿çŒ…rueé”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·å®é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿå«è®¹æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·å½•é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿé˜¶ç­¹æ‹·é”Ÿå±Šå¸¸
 	 * @return
 	 * @throws Exception
 	 */
 	public Object[] getOneRowAsArray(String table, List<String> cols, String condition, List<Object> condValues, boolean mustUnique)
 			throws Exception;
 
-	//Ìí¼ÓÒ»¸öÒÔÊı¾İ¿âLabelÎªkeyµÄ·½·¨,¿¼ÂÇĞŞ¸Ä»áÓ°ÏìÆäËûÈËËùÒÔÁíĞ´ÔÚÒ»¸ö·½·¨,Ï£ÍûÔÚÏîÄ¿¿Õ´°ÆÚºÏ²¢ÆğÀ´  by maj 2016-8-8
+	//é”Ÿæ–¤æ‹·é”Ÿæ­ä¼™æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·è˜é”Ÿçµƒabelä¸ºkeyé”Ÿä¾¥å‡¤æ‹·é”Ÿæ–¤æ‹·,é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿç«æ”¹ä¼™æ‹·å½±é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·å†™é”Ÿæ–¤æ‹·ä¸€é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·,å¸Œé”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·ç›®é”Ÿç§¸è¾¾æ‹·é”ŸèŠ‚åˆè¯§æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·  by maj 2016-8-8
 	public List<Map<String,Object>> searchAsMapListInLabel(String table, List<String> cols, String condition, List<Object> condValues, int start, int max,
 			String orderBy, String groupBy, boolean bAsc) throws Exception;
 	/**
-	 * Í¨ÓÃ²éÑ¯£¬ÒÔList[array1, array2...]ĞÎÊ½·µ»Ø
-	 * @param table ±íÃû
-	 * @param cols ĞèÒª·µ»ØµÄ×Ö¶ÎÃûÁĞ±í
-	 * @param condition Ìõ¼şÓï¾ä
-	 * @param condValues Ìõ¼ş²ÎÊıÁĞ±í
-	 * @param start ¼ÇÂ¼µÄ¿ªÊ¼Î»ÖÃ
-	 * @param max ·µ»Ø×î´ó¼ÇÂ¼¸öÊı
-	 * @param orderBy ÅÅĞò×Ö¶ÎÃû
-	 * @param groupBy ·Ö×é×Ö¶ÎÃû
-	 * @param bAsc ÊÇ·ñÉıĞò
-	 * @return ÒÔList[array1, array2...]ĞÎÊ½·µ»Ø£¬colsÖ¸¶¨µÄ×Ö¶ÎÊı¾İ
+	 * é€šé”ŸçŸ«è¯§æ‹·è¯¢é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·List[array1, array2...]é”Ÿæ–¤æ‹·å¼é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·
+	 * @param table é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·
+	 * @param cols é”Ÿæ–¤æ‹·è¦é”Ÿæ–¤æ‹·é”Ÿæˆªç¢‰æ‹·é”Ÿè¡—è®¹æ‹·é”Ÿæ–¤æ‹·é”Ÿå«æ†‹æ‹·
+	 * @param condition é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿï¿½
+	 * @param condValues é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿå«æ†‹æ‹·
+	 * @param start é”Ÿæ–¤æ‹·å½•é”Ÿä¾¥åŒ¡æ‹·å§‹ä½é”Ÿæ–¤æ‹·
+	 * @param max é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·å½•é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·
+	 * @param orderBy é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿè¡—è®¹æ‹·é”Ÿæ–¤æ‹·
+	 * @param groupBy é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿè¡—è®¹æ‹·é”Ÿæ–¤æ‹·
+	 * @param bAsc é”Ÿè§’å‡¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·
+	 * @return é”Ÿæ–¤æ‹·List[array1, array2...]é”Ÿæ–¤æ‹·å¼é”Ÿæ–¤æ‹·é”Ÿæˆªï½æ‹·colsæŒ‡é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿè¡—è®¹æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·
 	 * @throws Exception
 	 */
 	public List<Map<String, Object>> searchAsMapList(String table, List<String> cols, String condition, List<Object> condValues, int start, int max,
 			String orderBy, String groupBy, boolean bAsc) throws Exception;
 
 	/**
-	 * µÃµ½¼ÇÂ¼¸öÊı
-	 * @param table ±íÃû
-	 * @param condition Ìõ¼şÓï¾ä
-	 * @param condValues Ìõ¼şÓï¾äÁĞ±í
-	 * @param distinct Êı¾İ¿âdistinct
-	 * @return ·ûºÏÌõ¼şµÄ¼ÇÂ¼¸öÊı
+	 * é”ŸçŸ«ç¢‰æ‹·é”Ÿæ–¤æ‹·å½•é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·
+	 * @param table é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·
+	 * @param condition é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿï¿½
+	 * @param condValues é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·æ–œé”Ÿï¿½
+	 * @param distinct é”Ÿæ–¤æ‹·é”Ÿæ·åŒ¡æ‹·distinct
+	 * @return é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿä¾¥ç¡·æ‹·å½•é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·
 	 * @throws Exception
 	 */
 	public int getCount(String table, String condition, List<Object> condValues, String distinct) throws Exception;

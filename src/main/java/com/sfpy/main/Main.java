@@ -22,7 +22,7 @@ public class Main {
 	
 	//private static final Logger logger = LoggerFactory.getLogger(Main.class);
 	/**
-	 * 鍏变韩浼氳瘽
+	 * 共享会话
 	 */
 	protected static boolean shareSession = false;
 	
@@ -43,11 +43,11 @@ public class Main {
 			appBase = baseDir + File.separator + "webapp";
 			f = new File(appBase + "/WEB-INF/conf/spring-mvc.xml");
 			if (!f.exists()) {
-				throw new Exception("鏃犳硶鎵惧埌椤甸潰鐩綍" + appBase);
+				throw new Exception("无法找到页面目录" + appBase);
 			}
 		}
 		System.out.println("Finded Base Web Root is :" + appBase);
-		System.out.println("鐧婚檰鍦板潃锛歨ttp://localhost:8088");
+		System.out.println("登陆地址:http://localhost:8088");
 
 		File globalWebXml = new File(baseDir + "/web.xml");
 		Map<String, String> mimeMappings = parseMimeMappingFromWebXml(globalWebXml
@@ -64,7 +64,7 @@ public class Main {
 		}
 		standardContext.setCrossContext(shareSession);
 
-		// 涓嬮潰涓夎锛岃В鍐冲洜鏈疄鐜板簭鍒楀寲鑰屾姤鐨勫紓甯竕ava.io.WriteAbortedException
+		// 下面三行，解决因未实现序列化而报的异常java.io.WriteAbortedException
 		PersistentManager persistentManager = new PersistentManager();
 		persistentManager.setSaveOnRestart(false);
 		persistentManager.setStore(new FileStore());
