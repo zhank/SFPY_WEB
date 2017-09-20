@@ -1,112 +1,116 @@
-/*
- * Created on 2006-11-6
- *
- * @author renwei
- * 
- * Copyright (C) 2006 KOAL SOFTWARE.
- */
 package com.sfpy.db;
 
 import java.util.List;
 import java.util.Map;
 
-/**
- * ÓëconnectionÎŞ¹ØµÄÊı¾İ¿â»ù±¾CRUD²Ù×÷½Ó¿Ú£¬WCLÄ³Ğ©×é¼şÒÀÀµ´Ë½Ó¿ÚÊµÏÖÊı¾İ¿â²Ù×÷¡£º¯ÊıÔ­ĞÍ¾ÍÊÇIDbOpµÄº¯ÊıÈ¥³ıconnection²ÎÊı
- * @author renwei
- * @version 1.0
- * @since 1.0
- */
 public interface IDbCall {
 	/**
-	 * ²åÈë¼ÇÂ¼
-	 * @param table ±íÃû
-	 * @param dataMap ²åÈëÊı¾İµÄMap£¬ÆäÖĞµÄkey¾ÍÊÇ×Ö¶ÎÃû£¬valueÊÇ¶ÔÓ¦¸Ã×Ö¶ÎµÄÊı¾İ
+	 * æ’å…¥è®°å½•
+	 * @param table è¡¨å
+	 * @param dataMap æ’å…¥æ•°æ®çš„Mapï¼Œå…¶ä¸­çš„keyå°±æ˜¯å­—æ®µåï¼Œvalueæ˜¯å¯¹åº”è¯¥å­—æ®µçš„æ•°æ®
 	 * @throws Exception
 	 */
 	public int insert(String table, Map<String,Object> dataMap) throws Exception;
 
 	/**
-	 * ¸üĞÂ±í¼ÇÂ¼µÄ¶à¸ö×Ö¶Î
-	 * @param table ±íÃû
-	 * @param dataMap ´ı¸üĞÂÊı¾İµÄMap£¬ÆäÖĞµÄkey¾ÍÊÇ×Ö¶ÎÃû£¬valueÊÇ¶ÔÓ¦¸Ã×Ö¶ÎµÄÊı¾İ
-	 * @param condition Ìõ¼şÓï¾ä
-	 * @param condValues Ìõ¼ş²ÎÊıÁĞ±í
+	 * æ›´æ–°è¡¨è®°å½•çš„å¤šä¸ªå­—æ®µ
+	 * @param table è¡¨å
+	 * @param dataMap å¾…æ›´æ–°æ•°æ®çš„Mapï¼Œå…¶ä¸­çš„keyå°±æ˜¯å­—æ®µåï¼Œvalueæ˜¯å¯¹åº”è¯¥å­—æ®µçš„æ•°æ®
+	 * @param condition æ¡ä»¶è¯­å¥
+	 * @param condValues æ¡ä»¶å‚æ•°åˆ—è¡¨
 	 * @throws Exception
 	 */
 	public void update(String table, Map<String,Object> dataMap, String condition, List<Object> condValues) throws Exception;
 
 	/**
-	 * ¸üĞÂ±í¼ÇÂ¼µÄÒ»¸ö×Ö¶Î
-	 * @param table ±íÃû
-	 * @param name ´ı¸üĞÂ×Ö¶ÎÃû
-	 * @param value ´ı¸üĞÂÊı¾İ
-	 * @param condition ÎŞ²ÎÊıµÄÌõ¼şÓï¾ä
+	 * æ›´æ–°è¡¨è®°å½•çš„ä¸€ä¸ªå­—æ®µ
+	 * @param table è¡¨å
+	 * @param name å¾…æ›´æ–°å­—æ®µå
+	 * @param value å¾…æ›´æ–°æ•°æ®
+	 * @param condition æ— å‚æ•°çš„æ¡ä»¶è¯­å¥
 	 * @throws Exception
 	 */
 	public void update(String table, String name, Object value, String condition) throws Exception;
 
 	/**
-	 * É¾³ı¼ÇÂ¼
-	 * @param table ±íÃû
-	 * @param condition Ìõ¼şÓï¾ä
-	 * @param condValues Ìõ¼ş²ÎÊıÁĞ±í
+	 * åˆ é™¤è®°å½•
+	 * @param table è¡¨å
+	 * @param condition æ¡ä»¶è¯­å¥
+	 * @param condValues æ¡ä»¶å‚æ•°åˆ—è¡¨
 	 * @throws Exception
 	 */
 	public void delete(String table, String preparedCond, List<Object> condValues) throws Exception;
 
 	/**
-	 * »ñÈ¡Ò»Ìõ¼ÇÂ¼£¬ÒÔmap·µ»Ø
-	 * @param table ±íÃû
-	 * @param cols ĞèÒª·µ»ØµÄ×Ö¶ÎÃûÁĞ±í
-	 * @param condition Ìõ¼şÓï¾ä
-	 * @param condValues Ìõ¼ş²ÎÊıÁĞ±í
-	 * @param mustUnique ÊÇ·ñ±ØĞëÎ¨Ò»£¿ÈôÎªTrue£¬µ«Êµ¼ÊÓÖÓĞ¶àÌõ¼ÇÂ¼£¬½«Å×³öÒì³£
-	 * @return Êı¾İmap
+	 * è·å–ä¸€æ¡è®°å½•ï¼Œä»¥mapè¿”å›
+	 * @param table è¡¨å
+	 * @param cols éœ€è¦è¿”å›çš„å­—æ®µååˆ—è¡¨
+	 * @param condition æ¡ä»¶è¯­å¥
+	 * @param condValues æ¡ä»¶å‚æ•°åˆ—è¡¨
+	 * @param mustUnique æ˜¯å¦å¿…é¡»å”¯ä¸€ï¼Ÿè‹¥ä¸ºTrueï¼Œä½†å®é™…åˆæœ‰å¤šæ¡è®°å½•ï¼Œå°†æŠ›å‡ºå¼‚å¸¸
+	 * @return æ•°æ®map
 	 * @throws Exception
 	 */
 	public Map<String,Object> getOneRowAsMap(String table, List<String> cols, String condition, List<Object> condValues, boolean mustUnique)
 			throws Exception;
 
 	/**
-	 * »ñÈ¡Ò»Ìõ¼ÇÂ¼£¬ÒÔÊı×é·½Ê½·µ»Ø¡£
-	 * @param table ±íÃû
-	 * @param cols ĞèÒª·µ»ØµÄ×Ö¶ÎÃûÁĞ±í
-	 * @param condition Ìõ¼şÓï¾ä
-	 * @param condValues Ìõ¼ş²ÎÊıÁĞ±í
-	 * @param mustUnique ÊÇ·ñ±ØĞëÎ¨Ò»£¿ÈôÎªTrue£¬µ«Êµ¼ÊÓÖÓĞ¶àÌõ¼ÇÂ¼£¬½«Å×³öÒì³£
+	 * è·å–ä¸€æ¡è®°å½•ï¼Œä»¥æ•°ç»„æ–¹å¼è¿”å›ã€‚
+	 * @param table è¡¨å
+	 * @param cols éœ€è¦è¿”å›çš„å­—æ®µååˆ—è¡¨
+	 * @param condition æ¡ä»¶è¯­å¥
+	 * @param condValues æ¡ä»¶å‚æ•°åˆ—è¡¨
+	 * @param mustUnique æ˜¯å¦å¿…é¡»å”¯ä¸€ï¼Ÿè‹¥ä¸ºTrueï¼Œä½†å®é™…åˆæœ‰å¤šæ¡è®°å½•ï¼Œå°†æŠ›å‡ºå¼‚å¸¸
 	 * @return
 	 * @throws Exception
 	 */
 	public Object[] getOneRowAsArray(String table, List<String> cols, String condition, List<Object> condValues, boolean mustUnique)
 			throws Exception;
 
-	//Ìí¼ÓÒ»¸öÒÔÊı¾İ¿âLabelÎªkeyµÄ·½·¨,¿¼ÂÇĞŞ¸Ä»áÓ°ÏìÆäËûÈËËùÒÔÁíĞ´ÔÚÒ»¸ö·½·¨,Ï£ÍûÔÚÏîÄ¿¿Õ´°ÆÚºÏ²¢ÆğÀ´  by maj 2016-8-8
+	/**
+	 * é€šç”¨æŸ¥è¯¢ï¼Œä»¥List[map1, map2...]å½¢å¼è¿”å›
+	 * @param table è¡¨å
+	 * @param cols éœ€è¦è¿”å›çš„å­—æ®µååˆ—è¡¨
+	 * @param condition æ¡ä»¶è¯­å¥
+	 * @param condValues æ¡ä»¶å‚æ•°åˆ—è¡¨
+	 * @param start è®°å½•çš„å¼€å§‹ä½ç½®
+	 * @param max è¿”å›æœ€å¤§è®°å½•ä¸ªæ•°
+	 * @param orderBy æ’åºå­—æ®µå
+	 * @param groupBy åˆ†ç»„å­—æ®µå
+	 * @param bAsc æ˜¯å¦å‡åº
+	 * @return ä»¥List[map1, map2...]å½¢å¼è¿”å›ï¼ŒcolsæŒ‡å®šçš„å­—æ®µæ•°æ®ï¼Œæœ€å¤§ä¸ºmaxä¸ª
+	 * @throws Exception
+	 */
+	public List<Map<String,Object>> searchAsMapList(String table, List<String> cols, String condition, List<Object> condValues, int start, int max,
+			String orderBy, String groupBy, boolean bAsc) throws Exception;
+
+	//æ·»åŠ ä¸€ä¸ªä»¥æ•°æ®åº“Labelä¸ºkeyçš„æ–¹æ³•,è€ƒè™‘ä¿®æ”¹ä¼šå½±å“å…¶ä»–äººæ‰€ä»¥å¦å†™åœ¨ä¸€ä¸ªæ–¹æ³•,å¸Œæœ›åœ¨é¡¹ç›®ç©ºçª—æœŸåˆå¹¶èµ·æ¥  by maj 2016-8-8
 	public List<Map<String,Object>> searchAsMapListInLabel(String table, List<String> cols, String condition, List<Object> condValues, int start, int max,
 			String orderBy, String groupBy, boolean bAsc) throws Exception;
 	/**
-	 * Í¨ÓÃ²éÑ¯£¬ÒÔList[array1, array2...]ĞÎÊ½·µ»Ø
-	 * @param table ±íÃû
-	 * @param cols ĞèÒª·µ»ØµÄ×Ö¶ÎÃûÁĞ±í
-	 * @param condition Ìõ¼şÓï¾ä
-	 * @param condValues Ìõ¼ş²ÎÊıÁĞ±í
-	 * @param start ¼ÇÂ¼µÄ¿ªÊ¼Î»ÖÃ
-	 * @param max ·µ»Ø×î´ó¼ÇÂ¼¸öÊı
-	 * @param orderBy ÅÅĞò×Ö¶ÎÃû
-	 * @param groupBy ·Ö×é×Ö¶ÎÃû
-	 * @param bAsc ÊÇ·ñÉıĞò
-	 * @return ÒÔList[array1, array2...]ĞÎÊ½·µ»Ø£¬colsÖ¸¶¨µÄ×Ö¶ÎÊı¾İ
+	 * é€šç”¨æŸ¥è¯¢ï¼Œä»¥List[array1, array2...]å½¢å¼è¿”å›
+	 * @param table è¡¨å
+	 * @param cols éœ€è¦è¿”å›çš„å­—æ®µååˆ—è¡¨
+	 * @param condition æ¡ä»¶è¯­å¥
+	 * @param condValues æ¡ä»¶å‚æ•°åˆ—è¡¨
+	 * @param start è®°å½•çš„å¼€å§‹ä½ç½®
+	 * @param max è¿”å›æœ€å¤§è®°å½•ä¸ªæ•°
+	 * @param orderBy æ’åºå­—æ®µå
+	 * @param groupBy åˆ†ç»„å­—æ®µå
+	 * @param bAsc æ˜¯å¦å‡åº
+	 * @return ä»¥List[array1, array2...]å½¢å¼è¿”å›ï¼ŒcolsæŒ‡å®šçš„å­—æ®µæ•°æ®
 	 * @throws Exception
 	 */
-	public List<Map<String, Object>> searchAsMapList(String table, List<String> cols, String condition, List<Object> condValues, int start, int max,
+	public List<Object[]> searchAsArrayList(String table, List<String> cols, String condition, List<Object> condValues, int start, int max,
 			String orderBy, String groupBy, boolean bAsc) throws Exception;
 
 	/**
-	 * µÃµ½¼ÇÂ¼¸öÊı
-	 * @param table ±íÃû
-	 * @param condition Ìõ¼şÓï¾ä
-	 * @param condValues Ìõ¼şÓï¾äÁĞ±í
-	 * @param distinct Êı¾İ¿âdistinct
-	 * @return ·ûºÏÌõ¼şµÄ¼ÇÂ¼¸öÊı
+	 * å¾—åˆ°è®°å½•ä¸ªæ•°
+	 * @param table è¡¨å
+	 * @param condition æ¡ä»¶è¯­å¥
+	 * @param condValues æ¡ä»¶è¯­å¥åˆ—è¡¨
+	 * @param distinct æ•°æ®åº“distinct
+	 * @return ç¬¦åˆæ¡ä»¶çš„è®°å½•ä¸ªæ•°
 	 * @throws Exception
 	 */
 	public int getCount(String table, String condition, List<Object> condValues, String distinct) throws Exception;

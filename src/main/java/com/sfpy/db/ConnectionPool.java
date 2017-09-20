@@ -10,16 +10,16 @@ import java.util.Vector;
 
 public class ConnectionPool implements IConnectionPool {
 
-	// è¿æ¥æ± å±æ€§é…ç½®
+	// Á¬½Ó³ØÊôĞÔÅäÖÃ
 	private DBbean dbBean;
-	private boolean isActive = false; // è¿æ¥æ± æ´»åŠ¨çŠ¶æ€
-	private int countActive = 0; // è®°å½•åˆ›å»ºçš„æ€»çš„è¿æ¥æ•°
+	private boolean isActive = false; // Á¬½Ó³Ø»î¶¯×´Ì¬
+	private int countActive = 0; // ¼ÇÂ¼´´½¨µÄ×ÜµÄÁ¬½ÓÊı
 
-	// ç©ºé—²è¿æ¥
+	// ¿ÕÏĞÁ¬½Ó
 	private List<Connection> freeConnection = new Vector<Connection>();
-	// æ´»åŠ¨è¿æ¥
+	// »î¶¯Á¬½Ó
 	private List<Connection> activeConnection = new Vector<Connection>();
-	// å°†çº¿ç¨‹å’Œè¿æ¥ç»‘å®šï¼Œä¿è¯äº‹åŠ¡èƒ½ç»Ÿä¸€æ‰§è¡Œ
+	// ½«Ïß³ÌºÍÁ¬½Ó°ó¶¨£¬±£Ö¤ÊÂÎñÄÜÍ³Ò»Ö´ĞĞ
 	private static ThreadLocal<Connection> threadLocal = new ThreadLocal<Connection>();
 
 	public ConnectionPool(DBbean dbBean) {
@@ -29,13 +29,13 @@ public class ConnectionPool implements IConnectionPool {
 		checkPool();
 	}
 
-	// åˆå§‹åŒ–
+	// ³õÊ¼»¯
 	public void init() {
 		try {
 			Class.forName(dbBean.getDriverName());
 			for (int i = 0; i < dbBean.getInitConnection(); i++) {
 				Connection conn = newConnection();
-				// åˆå§‹åŒ–æœ€å°è¿æ¥æ•°
+				// ³õÊ¼»¯×îĞ¡Á¬½ÓÊı
 				if (conn != null) {
 					freeConnection.add(conn);
 					countActive++;
@@ -49,11 +49,11 @@ public class ConnectionPool implements IConnectionPool {
 		}
 	}
 
-	// è·å¾—è¿æ¥
+	// »ñµÃÁ¬½Ó
 	public Connection getConnection() {
 		Connection conn = null;
 		try {
-			// åˆ¤æ–­æ˜¯å¦è¶…è¿‡æœ€å¤§è¿æ¥æ•°é™åˆ¶
+			// ÅĞ¶ÏÊÇ·ñ³¬¹ı×î´óÁ¬½ÓÊıÏŞÖÆ
 			if (countActive < dbBean.getMaxActiveConnections()) {
 				if (freeConnection.size() > 0) {
 					conn = freeConnection.get(0);
@@ -65,7 +65,7 @@ public class ConnectionPool implements IConnectionPool {
 					conn = newConnection();
 				}
 			} else {
-				// ç»§ç»­è·å¾—è¿æ¥,ç›´åˆ°ä»æ–°è·å¾—è¿æ¥
+				// ¼ÌĞø»ñµÃÁ¬½Ó,Ö±µ½´ÓĞÂ»ñµÃÁ¬½Ó
 				wait(this.dbBean.getConnTimeOut());
 				conn = getConnection();
 			}
@@ -79,7 +79,7 @@ public class ConnectionPool implements IConnectionPool {
 		return conn;
 	}
 
-	// è·å¾—æ–°è¿æ¥
+	// »ñµÃĞÂÁ¬½Ó
 	public synchronized Connection newConnection() throws ClassNotFoundException, SQLException {
 		Connection conn = null;
 		if (dbBean != null) {
@@ -89,7 +89,7 @@ public class ConnectionPool implements IConnectionPool {
 		return conn;
 	}
 
-	// åˆ¤æ–­è¿æ¥æ˜¯å¦å¯ç”¨
+	// ÅĞ¶ÏÁ¬½ÓÊÇ·ñ¿ÉÓÃ
 	public boolean isValid(Connection conn) {
 		try {
 			if (conn == null || conn.isClosed()) {
@@ -102,10 +102,10 @@ public class ConnectionPool implements IConnectionPool {
 	}
 
 	/**
-	 *  è·å¾—å½“å‰è¿æ¥
+	 *  »ñµÃµ±Ç°Á¬½Ó
 	 */
 	public Connection getCurrentConnection() {
-		// é»˜è®¤çº¿ç¨‹é‡Œé¢å–
+		// Ä¬ÈÏÏß³ÌÀïÃæÈ¡
 		Connection conn = threadLocal.get();
 		if (!isValid(conn)) {
 			conn = getConnection();
@@ -119,12 +119,12 @@ public class ConnectionPool implements IConnectionPool {
 			activeConnection.remove(conn);
 			countActive--;
 			threadLocal.remove();
-			// å”¤é†’æ‰€æœ‰æ­£å¾…ç­‰å¾…çš„çº¿ç¨‹ï¼Œå»æŠ¢è¿æ¥
+			// »½ĞÑËùÓĞÕı´ıµÈ´ıµÄÏß³Ì£¬È¥ÇÀÁ¬½Ó
 			notifyAll();
 		}
 	}
 
-	// é”€æ¯è¿æ¥æ± 
+	// Ïú»ÙÁ¬½Ó³Ø
 	public synchronized void destroy() {
 		for (Connection conn : freeConnection) {
 			try {
@@ -152,18 +152,18 @@ public class ConnectionPool implements IConnectionPool {
 		return isActive;
 	}
 
-	// å®šæ—¶æ£€æŸ¥è¿æ¥æ± æƒ…å†µ
+	// ¶¨Ê±¼ì²éÁ¬½Ó³ØÇé¿ö
 	public void checkPool() {
 		if (dbBean.isCheckPool()) {
 			new Timer().schedule(new TimerTask() {
 				@Override
 				public void run() {
-					// 1.å¯¹çº¿ç¨‹é‡Œé¢çš„è¿æ¥çŠ¶æ€
-					// 2.è¿æ¥æ± æœ€å° æœ€å¤§è¿æ¥æ•°
-					// 3.å…¶ä»–çŠ¶æ€è¿›è¡Œæ£€æŸ¥ï¼Œå› ä¸ºè¿™é‡Œè¿˜éœ€è¦å†™å‡ ä¸ªçº¿ç¨‹ç®¡ç†çš„ç±»ï¼Œæš‚æ—¶å°±ä¸æ·»åŠ äº†
-					System.out.println("ç©ºçº¿æ± è¿æ¥æ•°ï¼š" + freeConnection.size());
-					System.out.println("æ´»åŠ¨è¿æ¥æ•°ï¼šï¼š" + activeConnection.size());
-					System.out.println("æ€»çš„è¿æ¥æ•°ï¼š" + countActive);
+					// 1.¶ÔÏß³ÌÀïÃæµÄÁ¬½Ó×´Ì¬
+					// 2.Á¬½Ó³Ø×îĞ¡ ×î´óÁ¬½ÓÊı
+					// 3.ÆäËû×´Ì¬½øĞĞ¼ì²é£¬ÒòÎªÕâÀï»¹ĞèÒªĞ´¼¸¸öÏß³Ì¹ÜÀíµÄÀà£¬ÔİÊ±¾Í²»Ìí¼ÓÁË
+					System.out.println("¿ÕÏß³ØÁ¬½ÓÊı£º" + freeConnection.size());
+					System.out.println("»î¶¯Á¬½ÓÊı£º£º" + activeConnection.size());
+					System.out.println("×ÜµÄÁ¬½ÓÊı£º" + countActive);
 				}
 			}, dbBean.getLazyCheck(), dbBean.getPeriodCheck());
 		}

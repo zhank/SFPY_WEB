@@ -1,34 +1,34 @@
 package com.sfpy.db;
 
 /**
- * è¿æ¥æ± å±æ€§
+ * Á¬½Ó³ØÊôĞÔ
  * @author SFPY
  */
 public class DBbean {
-	// è¿æ¥æ± å±æ€§
+	// Á¬½Ó³ØÊôĞÔ
 	private String driverName;
 	private String url;
 	private String userName;
 	private String password;
 
-	// è¿æ¥æ± åå­—
+	// Á¬½Ó³ØÃû×Ö
 	private String poolName;
-	private int minConnections = 1; // ç©ºé—²æ± ï¼Œæœ€å°è¿æ¥æ•°
-	private int maxConnections = 10; // ç©ºé—²æ± ï¼Œæœ€å¤§è¿æ¥æ•°
+	private int minConnections = 1; // ¿ÕÏĞ³Ø£¬×îĞ¡Á¬½ÓÊı
+	private int maxConnections = 10; // ¿ÕÏĞ³Ø£¬×î´óÁ¬½ÓÊı
 
-	private int initConnection = 5; // åˆå§‹åŒ–
+	private int initConnection = 5; // ³õÊ¼»¯
 
-	private long connTimeOut = 1000; // é‡å¤è·å¾—è¿æ¥çš„é¢‘ç‡
+	private long connTimeOut = 1000; // ÖØ¸´»ñµÃÁ¬½ÓµÄÆµÂÊ
 
-	private int maxActiveConnections = 100; // æœ€å¤§å…è®¸è¿æ¥æ•°ï¼Œå’Œæ•°æ®åº“å¯¹åº”
+	private int maxActiveConnections = 100; // ×î´óÔÊĞíÁ¬½ÓÊı£¬ºÍÊı¾İ¿â¶ÔÓ¦
 
-	private long connectionTimeOut = 1000 * 60 * 20; // è¿æ¥è¶…æ—¶æ—¶é—´ï¼Œ é»˜è®¤20åˆ†é’Ÿ
+	private long connectionTimeOut = 1000 * 60 * 20; // Á¬½Ó³¬Ê±Ê±¼ä£¬ Ä¬ÈÏ20·ÖÖÓ
 
-	private boolean isCurrentConnection = true; // æ˜¯å¦è·å¾—å½“å‰è¿æ¥
+	private boolean isCurrentConnection = true; // ÊÇ·ñ»ñµÃµ±Ç°Á¬½Ó
 
-	private boolean isCheckPool = true; // æ˜¯å¦æ­£å¼æ£€æŸ¥è¿æ¥æ± 
-	private long lazyCheck = 1000 * 60 * 60; // å»¶è¿Ÿå¤šé•¿æ—¶é—´åå¼€å§‹ æ£€æŸ¥
-	private long periodCheck = 1000 * 60 * 60;// æ£€æŸ¥é¢‘ç‡
+	private boolean isCheckPool = true; // ÊÇ·ñÕıÊ½¼ì²éÁ¬½Ó³Ø
+	private long lazyCheck = 1000 * 60 * 60; // ÑÓ³Ù¶à³¤Ê±¼äºó¿ªÊ¼ ¼ì²é
+	private long periodCheck = 1000 * 60 * 60;// ¼ì²éÆµÂÊ
 
 	public DBbean(String driverName, String url, String userName, String password, String poolName) {
 		super();

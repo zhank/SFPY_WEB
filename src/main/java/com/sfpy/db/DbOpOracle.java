@@ -20,7 +20,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * Oracleæ•°æ®åº“ä¼˜åŒ–ï¼Œä¼˜åŒ–åˆ†é¡µæŸ¥è¯¢è¯­å¥ã€‚
+ * OracleÊý¾Ý¿âÓÅ»¯£¬ÓÅ»¯·ÖÒ³²éÑ¯Óï¾ä¡£
  * @version 1.0
  * @see IDbOp
  * @since 1.0
@@ -33,7 +33,7 @@ public class DbOpOracle extends DbOpBase {
 	
 	public static void register(){
 		IDbOp self = new DbOpOracle();
-		// æ³¨å†Œè‡ªå·±
+		// ×¢²á×Ô¼º
 		DbOpMgr.register("oracle.jdbc.driver.OracleDriver", 0, self);
 		DbOpMgr.register("oracle.jdbc.driver.OracleDriver", 8, self);
 		DbOpMgr.register("oracle.jdbc.driver.OracleDriver", 9, self);
@@ -46,17 +46,17 @@ public class DbOpOracle extends DbOpBase {
 			String orderBy, String groupBy, boolean bAsc, boolean bMap)
 			throws Exception {
 		if (conn == null || table == null) {
-			String err = "è°ƒç”¨searchå‚æ•°é”™è¯¯";
+			String err = "µ÷ÓÃsearch²ÎÊý´íÎó";
 			log.error(err);
 			throw new IllegalArgumentException(err);
 		}
 		
-		// 1 æž„é€ è¯­å¥
+		// 1 ¹¹ÔìÓï¾ä
 		StringBuffer sql = new StringBuffer(160);
 		int i;
 		
-		// æž„é€ åˆ†é¡µæŸ¥è¯¢ {{
-		// å‚è§ï¼šgoogle â€œOracleåˆ†é¡µæŸ¥è¯¢è¯­å¥â€
+		// ¹¹Ôì·ÖÒ³²éÑ¯ {{
+		// ²Î¼û£ºgoogle ¡°Oracle·ÖÒ³²éÑ¯Óï¾ä¡±
 		if (start > 0) {
 			sql.append("select * from ( select row_.*, rownum rownum_ from ( ");
 		} else {
@@ -92,7 +92,7 @@ public class DbOpOracle extends DbOpBase {
 				sql.append(" desc");
 		}
 		
-		// æž„é€ åˆ†é¡µæŸ¥è¯¢ {{
+		// ¹¹Ôì·ÖÒ³²éÑ¯ {{
 		if (start > 0) {
 			sql.append(" ) row_ where rownum <= " + (start + max) + ") where rownum_ > " + start);
 		} else {
@@ -109,12 +109,12 @@ public class DbOpOracle extends DbOpBase {
 		    preparedStatementSetValues(pstmt, condValues);
 		}
 			
-		// 2 æ‰§è¡ŒæŸ¥è¯¢
+		// 2 Ö´ÐÐ²éÑ¯
 		List<Object> ret = new ArrayList<Object>();
 		try {
 			ResultSet rs = pstmt.executeQuery();
 			
-			// 3 æž„é€ ç»“æžœ
+			// 3 ¹¹Ôì½á¹û
 			int colCount = 0;
 			ResultSetMetaData rsmd = rs.getMetaData();
 			colCount = rsmd.getColumnCount();
@@ -122,7 +122,7 @@ public class DbOpOracle extends DbOpBase {
 			int startCounter = start;
 			int fetchCount = 0;
 			if (bMap) {
-				// mapç»“æžœ
+				// map½á¹û
 				while (rs.next()) {
 					if (fetchCount == max)
 						break;
@@ -139,7 +139,7 @@ public class DbOpOracle extends DbOpBase {
 					}
 				}
 			} else {
-				// arrayç»“æžœ
+				// array½á¹û
 				while (rs.next()) {
 					if (fetchCount == max)
 						break;

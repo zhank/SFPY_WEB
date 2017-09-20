@@ -75,8 +75,8 @@ layui.config({
     });
 	//右边个人信息和左边关联
 	$('#userinfo').on('click', function () {
-		var tab = navbar.config.data[0].children[3];  
-		tab.tabAdd(dd);
+		var userTab = navbar.config.data[0].children[3];  
+		tab.tabAdd(userTab);
 	});
     //清除缓存
     $('#clearCached').on('click', function () {
@@ -207,7 +207,7 @@ function lock($, layer) {
 
                 var userName = $lockBox.find('input[name=username]').val();
                 var pwd = $lockBox.find('input[name=password]').val();
-                if (pwd === '输入密码解锁..' || pwd.length === 0) {
+                if (pwd == "" || pwd == '输入密码解锁..' ) {
                     layer.msg('请输入密码..', {
                         icon: 2,
                         time: 1000
@@ -234,10 +234,10 @@ function lock($, layer) {
                         layer.msg(res.msg, { icon: 2, time: 1000 });
                     }
                 }, 'json');
-                //isShowLock = false;
+                isShowLock = false;
                 //演示：默认输入密码都算成功
                 //关闭锁屏层
-                //layer.close(lockIndex);
+                layer.close(lockIndex);
             };
         }
     });

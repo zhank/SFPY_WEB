@@ -6,7 +6,7 @@ import java.util.List;
 import com.sfpy.util.PropertiesUtils;
 
 /**
- * åˆå§‹åŒ–ï¼ŒåŠ è½½æ‰€æœ‰é…ç½®æ–‡ä»¶
+ * ³õÊ¼»¯£¬¼ÓÔØËùÓĞÅäÖÃÎÄ¼ş
  * 
  * @author SFPY
  */

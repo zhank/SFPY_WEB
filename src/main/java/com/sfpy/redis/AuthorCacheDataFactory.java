@@ -6,17 +6,17 @@ import org.slf4j.LoggerFactory;
 import redis.clients.jedis.Jedis;
 
 /**
- * æƒé™ç»Ÿè®¡ç¼“å­˜
+ * È¨ÏŞÍ³¼Æ»º´æ
  * 
  * @author zhangkk
- * @date 2017å¹´9æœˆ14æ—¥
+ * @date 2017Äê9ÔÂ14ÈÕ
  */
 public class AuthorCacheDataFactory {
 
 	private static final Logger logger = LoggerFactory.getLogger(AuthorCacheDataFactory.class);
 
 	/**
-	 * æƒé™ç»Ÿè®¡ä¸»ç•Œé¢ åº”ç”¨Id+èº«ä»½ç±»å‹ è§’è‰²æƒé™ç»Ÿè®¡ï¼šroleId+èº«ä»½ç±»å‹
+	 * È¨ÏŞÍ³¼ÆÖ÷½çÃæ Ó¦ÓÃId+Éí·İÀàĞÍ ½ÇÉ«È¨ÏŞÍ³¼Æ£ºroleId+Éí·İÀàĞÍ
 	 */
 
 	private AuthorCacheDataFactory() {
@@ -31,7 +31,7 @@ public class AuthorCacheDataFactory {
 	}
 
 	/**
-	 * åº”ç”¨ç»Ÿè®¡èŠ‚ç‚¹ä¸»é”®ï¼š"appId_userType";
+	 * Ó¦ÓÃÍ³¼Æ½ÚµãÖ÷¼ü£º"appId_userType";
 	 * 
 	 * @param orgId
 	 * @return
@@ -41,7 +41,7 @@ public class AuthorCacheDataFactory {
 	}
 
 	/**
-	 * æ›´æ–°åº”ç”¨ç»Ÿè®¡æ•°æ®
+	 * ¸üĞÂÓ¦ÓÃÍ³¼ÆÊı¾İ
 	 * 
 	 * @param appId
 	 * @param userType
@@ -53,7 +53,7 @@ public class AuthorCacheDataFactory {
 	}
 
 	/**
-	 * æ›´æ–°ç¼“å­˜ä¸­ç»Ÿè®¡ä¿¡æ¯
+	 * ¸üĞÂ»º´æÖĞÍ³¼ÆĞÅÏ¢
 	 * 
 	 * @param jedis
 	 * @param key
@@ -66,11 +66,11 @@ public class AuthorCacheDataFactory {
 		}
 		jedis.set(key, value.toString());
 		long t2 = System.currentTimeMillis();
-		System.out.println("æ›´æ–°ç»Ÿè®¡èŠ‚ç‚¹=" + (t2 - t1));
+		System.out.println("¸üĞÂÍ³¼Æ½Úµã=" + (t2 - t1));
 	}
 
 	/**
-	 * åˆ é™¤ç¼“å­˜æ•°æ®
+	 * É¾³ı»º´æÊı¾İ
 	 * 
 	 * @param key
 	 */
@@ -81,7 +81,7 @@ public class AuthorCacheDataFactory {
 	}
 
 	/**
-	 * é€šè¿‡keyè·å–ç»Ÿè®¡æ•°æ®
+	 * Í¨¹ıkey»ñÈ¡Í³¼ÆÊı¾İ
 	 * 
 	 * @param key
 	 * @return
@@ -94,10 +94,10 @@ public class AuthorCacheDataFactory {
 	}
 
 	/**
-	 * åŠ è½½ç»Ÿè®¡æ•°æ®
+	 * ¼ÓÔØÍ³¼ÆÊı¾İ
 	 * 
 	 * @param isReloadAllData
-	 *            å¼ºåˆ¶æ›´æ–°æ‰€æœ‰ç¼“å­˜æ•°æ®
+	 *            Ç¿ÖÆ¸üĞÂËùÓĞ»º´æÊı¾İ
 	 */
 
 }
