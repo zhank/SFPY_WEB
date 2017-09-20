@@ -47,7 +47,7 @@ public class UserService {
 					result.setData(userId);;
 				}
 			} else {
-				System.out.println("òž×CÊ§”¡£¡");
+				System.out.println("ÑéÖ¤Ê§°Ü£¡");
 				result.setStatus(-1);
 				result.setMsg("");
 			}
