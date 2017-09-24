@@ -1,20 +1,10 @@
+=\=\=\=\=\=\=
+<<<<<<<=HEAD
+>>>>>>>=branch 'develop' of https\://github.com/zhank/SFPY_WEB.git
 eclipse.preferences.version=1
-encoding//src/main/java/com/sfpy/constant/UserStatus.java=UTF-8
 encoding//src/main/java/com/sfpy/db/IConnectionPool.java=GBK
 encoding//src/main/java/com/sfpy/db/IDbCall.java=UTF-8
-<<<<<<< HEAD
-encoding//src/main/java/com/sfpy/db/IDbOp.java=UTF-8
 encoding//src/main/java/com/sfpy/entity/TB_SFPY_USER.java=UTF-8
 encoding//src/main/java/com/sfpy/field/AbstractTable.java=UTF-8
 encoding//src/main/java/com/sfpy/field/Field.java=UTF-8
-encoding//src/main/java/com/sfpy/main/Main.java=UTF-8
-encoding//src/main/java/com/sfpy/redis/AuthorCacheDataFactory.java=UTF-8
-encoding//src/main/java/com/sfpy/redis/JedisDBCfg.java=UTF-8
-encoding//src/main/java/com/sfpy/redis/RedisPool.java=UTF-8
-encoding//src/main/java/com/sfpy/service/UserService.java=GBK
-encoding//src/main/java/com/sfpy/util/FindRoot.java=UTF-8
-encoding//src/main/java/com/sfpy/util/FindWebRoot.java=UTF-8
-encoding//src/main/java/com/sfpy/util/Path.java=UTF-8
-=======
->>>>>>> branch 'develop' of https://github.com/zhank/SFPY_WEB.git
-encoding//src/test/java=UTF-8
+encoding//src/test/java=GBK

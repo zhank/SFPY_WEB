@@ -1,10 +1,3 @@
-/*
- * Created on 2006-11-6
- *
- * @author renwei
- * 
- * Copyright (C) 2006 KOAL SOFTWARE.
- */
 package com.sfpy.db;
 
 import java.util.HashMap;
@@ -17,7 +10,7 @@ import org.slf4j.LoggerFactory;
 /**
  * 负责管理IDbOp的实现类，提供注册接口，数据库的优化类可注册后被使用。目前缺省只注册已知的优化类（见regDefault）。
  * 另外编写的优化类需要在getDbOp前注册后，才能被获取。
- * @author renwei
+ * @author zhangk
  * @version 1.0
  * @since 1.0
  */

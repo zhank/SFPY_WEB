@@ -1,19 +1,18 @@
 package com.sfpy.util;
 
-import org.apache.catalina.LifecycleException;
 import org.apache.catalina.connector.Connector;
 import org.apache.catalina.startup.Tomcat;
 import org.apache.tomcat.util.IntrospectionUtils;
 
 /**
- * tomcatæœåŠ¡å¯åŠ¨ç±»
+ * tomcat·şÎñÆô¶¯Àà
  * 
  * @author SFPY
  *
  */
 public class TomcatService {
 	/**
-	 * httpç»‘å®šIPï¼Œé»˜è®¤ä¸ºæ‰€æœ‰IP
+	 * http°ó¶¨IP£¬Ä¬ÈÏÎªËùÓĞIP
 	 */
 	protected static String httpBindIP = "0.0.0.0";
 	public static void main(String[] args) throws Exception {
@@ -30,3 +29,4 @@ public class TomcatService {
 	}
 
 }
+	
