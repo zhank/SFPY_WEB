@@ -1,0 +1,63 @@
+﻿<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>Table</title>
+		<link rel="stylesheet" href="../plugins/layui/css/layui.css" media="all" />
+		<link rel="stylesheet" href="../css/global.css" media="all">
+		<link rel="stylesheet" href="../plugins/font-awesome/css/font-awesome.min.css">
+		<link rel="stylesheet" href="../css/table.css" />
+	</head>
+
+	<body>
+		<div class="admin-main">
+		<form class="layui-form" action="">
+				<div class="layui-form-item">
+					<div class="layui-inline">
+					<label class="layui-form-label">身份证号</label>
+					<div class="layui-input-inline">
+						<input type="tel" name="userCode" lay-verify="identity" autocomplete="off" class="layui-input" placeholder="支持模糊查询..">
+					</div>
+					</div>
+					<div class="layui-inline">
+						<button class="layui-btn" lay-submit="" lay-filter="demo1">查询</button>
+						<button type="reset" class="layui-btn layui-btn-primary">重置</button>
+					</div>
+				</div>
+			</form>
+			<fieldset class="layui-elem-field">
+				<legend>交易信息</legend>
+				<div class="layui-field-box layui-form">
+					<table class="layui-table admin-table" lay-filter="table" >
+						<thead>
+							<tr>
+								<th style="width: 30px;"><input type="checkbox" lay-filter="allselector" lay-skin="primary"></th>
+								<th lay-data="{ align:'center'}">交易账号</th>
+								<th>对方账号</th>
+								<th>交易金额</th>
+								<th>交易时间</th>
+							</tr>
+						</thead>
+						<tbody id="content">
+						</tbody>
+					</table>
+				</div>
+			</fieldset>
+			<div class="admin-table-page">
+				<div id="paged" class="page">
+				</div>
+			</div>
+		</div>
+		<!--模板-->
+		<script type="text/html" id="tpl">
+			//
+   layui.use('table', function(){
+	var table = layui.table;
+  
+	});
+
+		</script>
+	</body>
+
+</html>
