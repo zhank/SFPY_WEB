@@ -44,20 +44,51 @@
 					</table>
 				</div>
 			</fieldset>
-			<div class="admin-table-page">
-				<div id="paged" class="page">
-				</div>
-			</div>
 		</div>
-		<!--模板-->
-		<script type="text/html" id="tpl">
-			//
-   layui.use('table', function(){
-	var table = layui.table;
-  
-	});
+		<script>
+		layui.use('table', function(){
+		 var layer = layui.layer,table = layui.table;
+		 //加载列表的后端 url
+    var getListUrl = '';
 
-		</script>
+    //对于任意一个 table，按照官方的说法，有三种不同的初始化渲染方式，不多介绍，而这里使用的方式姑且看做第三种：转换静态表格 方式
+    //转换静态表格方式，自然首先需要有一个已经存在的表格，然后再通过 js 方式转化为 Layui 表格
+    //无论哪种方式的 Layui table 初始化自然需要配置项
+    //通过转化的方式初始化 Layui table，配置项部分可以在 源table中，部分在js中，源 table 的源代码上文已经给出，下面给出一个示例的 js 中的配置项
+    var tableOptions = {
+        url: getListUrl, //请求地址
+        method: 'POST', //方式
+        id: 'listReload', //生成 Layui table 的标识 id，必须提供，用于后文刷新操作，笔者该处出过问题
+        page: false, //是否分页
+        where: { type: "all" }, //请求后端接口的条件，该处就是条件错误点，按照官方给出的代码示例，原先写成了 where: { key : { type: "all" } }，结果并不是我想的那样，如此写，key 将是后端的一个类作为参数，里面有 type 属性，如果误以为 key 是 Layui 提供的格式，那就大错特错了
+        response: { //定义后端 json 格式，详细参见官方文档
+            statusName: 'Code', //状态字段名称
+            statusCode: '200', //状态字段成功值
+            msgName: 'Message', //消息字段
+            countName: 'Total', //总数字段
+            dataName: 'Result' //数据字段
+        }
+    };
+		    //表初始化
+        var createTable = function () {
+            table.init('EditListTable', tableOptions);// table lay-filter
+        };
+		
+		//表刷新方法
+        var reloadTable = function (item) {
+            table.reload("listReload", { //此处是上文提到的 初始化标识id
+                where: {
+                    //key: { //该写法上文已经提到
+                        type: item.type, id: item.id
+                    //}
+                }
+            });
+        };
+		
+		 //表初始化
+        createTable();
+		});
+</script>
 	</body>
 
 </html>

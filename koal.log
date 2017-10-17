@@ -16,3 +16,10 @@
 2017-09-17 20:56:38 [INFO ] annotation.RequestMappingHandlerMapping (registerHandlerMethod:180) - Mapped "{[/user/login.do],methods=[],params=[],headers=[],consumes=[],produces=[],custom=[]}" onto public com.sfpy.entity.ResultInfo com.sfpy.controller.LoginController.execute(java.lang.String,java.lang.String)
 2017-09-17 20:56:39 [INFO ] servlet.DispatcherServlet (initServletBean:476) - FrameworkServlet 'springmvc': initialization completed in 667 ms
 2017-09-17 20:56:39 [INFO ] http11.Http11Protocol (start:446) - Starting ProtocolHandler ["http-bio-8088"]
+2017-10-11 22:11:12 [ERROR] db.DbOpBase (search:703) - 调用search参数错误
+2017-10-11 22:11:13 [ERROR] db.DbOpBase (search:703) - 调用search参数错误
+2017-10-11 22:11:28 [ERROR] db.DbOpBase (search:703) - 调用search参数错误
+2017-10-12 20:58:08 [ERROR] db.DbOpBase (search:703) - 调用search参数错误
+2017-10-12 20:59:02 [ERROR] db.DbOpBase (search:703) - 调用search参数错误
+2017-10-12 20:59:30 [ERROR] db.DbOpBase (search:703) - 调用search参数错误
+2017-10-12 21:00:47 [ERROR] db.DbOpBase (search:703) - 调用search参数错误

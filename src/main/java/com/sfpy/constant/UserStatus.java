@@ -1,7 +1,7 @@
 package com.sfpy.constant;
 
 public enum UserStatus {
-	NORMAL(10, "æ­£å¸¸"), DELETE(-1, "æ³¨é”€");
+	NORMAL(10, "Õý³£"), DELETE(-1, "×¢Ïú");
 
 	int id;
 	String desc;

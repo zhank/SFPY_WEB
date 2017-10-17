@@ -5,7 +5,7 @@ var navs = [{
 	"children": [{
 		"title": "帐户查询",
 		"icon": "&#xe641;",
-		"href": "accountQuery.html"
+		"href": "../html/accountQuery.html"
 	}, {
 		"title": "积分查询",
 		"icon": "&#xe63c;",
@@ -13,7 +13,7 @@ var navs = [{
 	}, {
 		"title": "交易查询",
 		"icon": "&#xe63c;",
-		"href": "transactionQuery.html"
+		"href": "../html/transactionQuery.html"
 	}, {
 		"title": "个人信息维护",
 		"icon": "&#xe609;",

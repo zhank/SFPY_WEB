@@ -8,7 +8,7 @@ import java.util.List;
 
 
 /**
- * æ ¹è·¯å¾„æŸ¥æ‰¾ç±»
+ * ¸ùÂ·¾¶²éÕÒÀà
  * 
  * @author SFPY
  */
@@ -18,7 +18,7 @@ public class FindRoot {
 	public static final String CHECKFILENAME = "/WEB-INF/conf/spring-mvc.xml";
 	private static final String CHECKFILENAME_TEST = "/conf/spring-mvc.xml";
 	/**
-	 * ä½œä¸ºç‹¬ç«‹åº”ç”¨å¯åŠ¨æ—¶çš„åº”ç”¨æ ¹è·¯å¾„ï¼Œ
+	 * ×÷Îª¶ÀÁ¢Ó¦ÓÃÆô¶¯Ê±µÄÓ¦ÓÃ¸ùÂ·¾¶£¬
 	 */
 	private static String AppRoot;
 	private static String WebRoot;
@@ -35,16 +35,16 @@ public class FindRoot {
 		if (AppRoot != null) {
 			return AppRoot;
 		}
-		// é‡‡ç”¨Listå­˜å‚¨å¤šä¸ªç›¸å¯¹è·¯å¾„ï¼Œç”¨äºå¯»æ‰¾çœŸæ­£çš„WebRootï¼Œç„¶åä½¿ç”¨å…¶ç›¸å¯¹è·¯å¾„ï¼Œç¡®è®¤æ›´ä¸Šä¸€çº§çš„AppRoot
+		// ²ÉÓÃList´æ´¢¶à¸öÏà¶ÔÂ·¾¶£¬ÓÃÓÚÑ°ÕÒÕæÕıµÄWebRoot£¬È»ºóÊ¹ÓÃÆäÏà¶ÔÂ·¾¶£¬È·ÈÏ¸üÉÏÒ»¼¶µÄAppRoot
 		List<String> relativePathList = new ArrayList<String>();
-		// å…ˆæ‰¾ç±»åœ¨$WEBROOTPATH/WEB-INF/libç›®å½•ä¸­jaråŒ…ï¼Œè€Œé…ç½®åœ¨$WEBROOTPATH/WEB-INF/confçš„æƒ…å†µçš„æƒ…å†µ
+		// ÏÈÕÒÀàÔÚ$WEBROOTPATH/WEB-INF/libÄ¿Â¼ÖĞjar°ü£¬¶øÅäÖÃÔÚ$WEBROOTPATH/WEB-INF/confµÄÇé¿öµÄÇé¿ö
 		relativePathList.add("./../");
-		// å†æ‰¾ç±»åœ¨$WEBROOTPATH/WEB-INF/classesç›®å½•ï¼Œè€Œé…ç½®åœ¨$WEBROOTPATH/WEB-INF/confçš„æƒ…å†µ
+		// ÔÙÕÒÀàÔÚ$WEBROOTPATH/WEB-INF/classesÄ¿Â¼£¬¶øÅäÖÃÔÚ$WEBROOTPATH/WEB-INF/confµÄÇé¿ö
 		relativePathList.add("../../");
-		// å†æ‰¾ç±»åœ¨$WEBROOTPATH/../libç›®å½•ä¸­jaråŒ…(å³$REALAPTH/libç›®å½•)ï¼Œå³libç›®å½•å’Œ$WEBROOTPATHå¹³è¡Œçš„æƒ…å†µï¼Œè€Œé…ç½®åœ¨$WEBROOTPATH/WEB-INF/confçš„æƒ…å†µ
+		// ÔÙÕÒÀàÔÚ$WEBROOTPATH/../libÄ¿Â¼ÖĞjar°ü(¼´$REALAPTH/libÄ¿Â¼)£¬¼´libÄ¿Â¼ºÍ$WEBROOTPATHÆ½ĞĞµÄÇé¿ö£¬¶øÅäÖÃÔÚ$WEBROOTPATH/WEB-INF/confµÄÇé¿ö
 		relativePathList.add("./WebContent/");
 		relativePathList.add("./webapp/");
-		// å†æ‰¾ç±»åœ¨$WEBROOTPATH/../classesç›®å½•ä¸­(å³$REALAPTH/classesç›®å½•)ï¼Œå³classesç›®å½•å’Œ$WEBROOTPATHå¹³è¡Œçš„æƒ…å†µï¼Œè€Œé…ç½®åœ¨$WEBROOTPATH/WEB-INF/confçš„æƒ…å†µ
+		// ÔÙÕÒÀàÔÚ$WEBROOTPATH/../classesÄ¿Â¼ÖĞ(¼´$REALAPTH/classesÄ¿Â¼)£¬¼´classesÄ¿Â¼ºÍ$WEBROOTPATHÆ½ĞĞµÄÇé¿ö£¬¶øÅäÖÃÔÚ$WEBROOTPATH/WEB-INF/confµÄÇé¿ö
 		relativePathList.add("../WebContent/");
 		relativePathList.add("../webapp/");
 
@@ -54,26 +54,26 @@ public class FindRoot {
 			path = Path.getRootRelativePath(relativePathList.get(i), claz);
 			File context = new File(path + CHECKFILENAME);
 			if (context.exists()) {
-				// æ‰¾åˆ°ï¼Œåˆ™è·³å‡ºå¾ªç¯
+				// ÕÒµ½£¬ÔòÌø³öÑ­»·
 				isFinded = true;
 				break;
 			} else {
-				// æœªæ‰¾åˆ°ï¼Œå°è¯•ä¸‹ä¸€ä¸ª
+				// Î´ÕÒµ½£¬³¢ÊÔÏÂÒ»¸ö
 				continue;
 			}
 		}
 		if (!isFinded) {
-			// è¿˜æ˜¯æœªæ‰¾åˆ°
-			// å†æ‰¾ç±»åœ¨classesç›®å½•ï¼Œè€Œé…ç½®åœ¨classes/confçš„æƒ…å†µ
-			path = Path.getRootPath(claz);// è¿™ç§æƒ…å†µä»…ç”¨äºç±»æµ‹è¯•
+			// »¹ÊÇÎ´ÕÒµ½
+			// ÔÙÕÒÀàÔÚclassesÄ¿Â¼£¬¶øÅäÖÃÔÚclasses/confµÄÇé¿ö
+			path = Path.getRootPath(claz);// ÕâÖÖÇé¿ö½öÓÃÓÚÀà²âÊÔ
 			File context = new File(path + CHECKFILENAME_TEST);
 			if (!context.exists()) {
 				System.out.println(context);
-				throw new IOException("ç¨‹åºè¢«ç ´åæˆ–ä½ç½®ä¸æ­£ç¡®ï¼Œä¸èƒ½æ‰¾åˆ°åº”ç”¨æ ¹è·¯å¾„ï¼Œ" + "åœ¨å¯åŠ¨ç›®å½•ä¸‹å¿…é¡»å­˜åœ¨/conf/spring-mvc.xmlæ–‡ä»¶");
+				throw new IOException("³ÌĞò±»ÆÆ»µ»òÎ»ÖÃ²»ÕıÈ·£¬²»ÄÜÕÒµ½Ó¦ÓÃ¸ùÂ·¾¶£¬" + "ÔÚÆô¶¯Ä¿Â¼ÏÂ±ØĞë´æÔÚ/conf/spring-mvc.xmlÎÄ¼ş");
 			}
 		}
 		WebRoot = new File(path).getCanonicalPath();
-		// å®é™…çš„appPathåº”è¯¥å†å‘ä¸Šä¸€çº§
+		// Êµ¼ÊµÄappPathÓ¦¸ÃÔÙÏòÉÏÒ»¼¶
 		AppRoot = new File(path + "/../").getCanonicalPath();
 		return AppRoot;
 	}

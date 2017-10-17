@@ -14,6 +14,7 @@ public final class BizDB extends AbstractBizDB{
 	}
 
 	private static boolean inited = false;
+	
 	/**
 	 * 构造函数设定为保护，强制外部类访问此类通过getInstance()方法完成初始化后调用
 	 * 
@@ -28,6 +29,19 @@ public final class BizDB extends AbstractBizDB{
 	 */
 	public static BizDB getInstanceWithoutInit() {
 		return Inner.instance;
+	}
+	
+	/**
+	 * 根据驱动实现优化的IDbOp实现类
+	 * 
+	 * @param jdbcDriver
+	 * @param version
+	 */
+	public void enableOptimize(String jdbcDriver, int version) {
+		IDbOp newDbOp = DbOpMgr.getDbOp(jdbcDriver, version);
+		if (newDbOp != null) {
+			m_dbOp = newDbOp;
+		}
 	}
 
 	/**
@@ -62,5 +76,14 @@ public final class BizDB extends AbstractBizDB{
 	@Override
 	public void initDB() throws Exception {
 		//ConnectionPoolManager.getInstance().init();
+	}
+	
+	/**
+	 * 获取优化以后的查询类
+	 * 
+	 * @return
+	 */
+	public IDbOp getOptimizeDbOp() {
+		return m_dbOp;
 	}
 }
