@@ -20,7 +20,7 @@ public class TbSfpyClient extends AbstractTable {
 	public static Field CLIENT_IDENTITY = new Field("身份证号", "CLIENT_IDENTITY", new StringType());
 	public static Field CLIENT_BALANCE = new Field("余额", "CLIENT_BALANCE", new StringType());
 	public static Field CLIENT_BANK_ID = new Field("开户银行", "CLIENT_BANK_ID", new StringType());
-	public static Field CLIENT_ACCOUNT_ID = new Field("银行卡号", "CLIENT_ACCOUNT_ID", new StringType());
+	public static Field CLIENT_ACCOUNT_CODE = new Field("银行卡号", "CLIENT_ACCOUNT_CODE", new StringType());
 	public static Field CLIENT_STATUS = new Field("状态", "CLIENT_STATUS", new IntType());
 	public static Field CLIENT_ADDRESS = new Field("地址", "CLIENT_ADDRESS", new StringType(256));
 	public static Field CLIENT_TIME = new Field("开户时间", "CLIENT_TIME", new DateType());

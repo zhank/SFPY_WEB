@@ -29,15 +29,17 @@ public class AccountQueryService {
 			Map<String, Object> userMap = userData.get(0);
 			
 			Map<String, Object> dataMap = new HashMap<String, Object>();
-			Object clientId = userMap.get(TbSfpyClient.CLIENT_ID.name);
+			//Object clientId = userMap.get(TbSfpyClient.CLIENT_ID.name);
 			Object clientName = userMap.get(TbSfpyClient.CLIENT_NAME.name);
 			Object clientBankId = userMap.get(TbSfpyClient.CLIENT_BANK_ID.name);
 			Object clientBalance = userMap.get(TbSfpyClient.CLIENT_BALANCE.name);
+			Object accountCode = userMap.get(TbSfpyClient.CLIENT_ACCOUNT_CODE.name);
 			
-			dataMap.put(TbSfpyClient.CLIENT_ID.name, clientId);
+			//dataMap.put(TbSfpyClient.CLIENT_ID.name, clientId);
 			dataMap.put(TbSfpyClient.CLIENT_NAME.name, clientName);
 			dataMap.put(TbSfpyClient.CLIENT_BANK_ID.name, clientBankId);
 			dataMap.put(TbSfpyClient.CLIENT_BALANCE.name, clientBalance);
+			dataMap.put(TbSfpyClient.CLIENT_ACCOUNT_CODE.name, accountCode);
 			resultData.add(dataMap);
 			String jsonStr = JSON.toJSONString(resultData);
 			result.setData(jsonStr);

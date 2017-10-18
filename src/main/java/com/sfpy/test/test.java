@@ -1,11 +1,5 @@
 package com.sfpy.test;
 
-import java.util.List;
-
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
-
-import com.sfpy.dao.UserDao;
 import com.sfpy.db.BizDB;
 import com.sfpy.entity.TB_SFPY_USER;
 

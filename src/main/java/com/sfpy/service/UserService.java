@@ -1,11 +1,9 @@
 package com.sfpy.service;
 
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.stereotype.Service;
 
-import com.sfpy.db.BizDB;
 import com.sfpy.entity.ResultInfo;
 import com.sfpy.entity.TB_SFPY_USER;
 
@@ -30,7 +28,10 @@ public class UserService {
 
 	public ResultInfo checkLogin(String userName, String password) {
 		ResultInfo result = new ResultInfo();
-		StringBuffer cond = new StringBuffer();
+		result.setStatus(10);
+		result.setMsg("µÇÂ½³É¹¦£¡");
+		return result;
+		/*StringBuffer cond = new StringBuffer();
 		cond.append(TB_SFPY_USER.USER_NAME.toSqlEQ(userName)).append(" AND ")
 				.append(TB_SFPY_USER.USER_PWD.toSqlEQ(password));
 
@@ -54,7 +55,7 @@ public class UserService {
 			}
 		} catch (Exception e) {
 		}
-		return result;
+		return result;*/
 	}
 
 }

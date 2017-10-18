@@ -26,47 +26,50 @@
 					</div>
 				</div>
 			</form>
-			<fieldset class="layui-elem-field">
-				<legend>账户信息</legend>
-				<div class="layui-field-box layui-form">
-					<table class="layui-table admin-table">
-						<thead>
-							<tr>
-								<th style="width: 30px;"><input type="checkbox" lay-filter="allselector" lay-skin="primary"></th>
-								<th>姓名</th>
-								<th>开户银行</th>
-								<th>银行卡号</th>
-								<th>余额</th>
-								<th>可选操作</th>
-							</tr>
-						</thead>
-						<tbody id="content">
-						</tbody>
-					</table>
-				</div>
-			</fieldset>
+			<table id="userAccountTab"></table>
 			<div class="admin-table-page">
 				<div id="paged" class="page">
 				</div>
 			</div>
 		</div>
-		<script type="text/javascript" src="plugins/layui/layui.js"></script>
+	<script type="text/javascript" src="../plugins/layui/layui.js"></script>
 		<script>
-		var userCode = "32032219921217621X";
-		$.ajax({
-			url:"http://localhost:8089/account/accountQuery.do",
-			type:"post",
-			data: {"userCode":userCode},
-			dataType:"json",
-			success:function(result){
-				
-			},
-			error:function(XMLHttpRequest, textstatus,errorThrown) {
-				 layer.msg(XMLHttpRequest.status);
-				 layer.msg(XMLHttpRequest.readystate);
-				 layer.msg(textstatus);
-				return false;
-			}
+		layui.use('table', function(){
+			  var table = layui.table,
+			  $ = layui.jquery;
+			  var userCode = "32032219921217621X";
+				$.ajax({
+					url:"http://localhost:8088/account/accountQuery.do",
+					type:"post",
+					data: {"userCode":userCode},
+					dataType:"json",
+					success:function(result){
+					var userData = eval("("+result.data+")");
+						table.render({
+							 elem: '#userAccountTab',
+							 data:userData,
+							 height: 272,
+							 skin: 'row',
+							 cols: [[ //标题栏
+							          {field: 'CLIENT_NAME', title: '姓名', width:200, sort: true},
+							           {field: 'CLIENT_BANK_ID', title: '开户银行', width:200},
+							           {field: 'CLIENT_ACCOUNT_CODE', title: '银行账号' ,width:200},
+							           {field: 'CLIENT_BALANCE', title: '余额', width:200}
+							         ]] ,
+							 //表格风格
+							 even: true,
+							 page: true, //是否显示分页
+							 limits: [5, 7, 10],
+							 limit: 10 //每页默认显示的数量
+						});
+					},
+					error:function(XMLHttpRequest, textstatus,errorThrown) {
+						 layer.msg(XMLHttpRequest.status);
+						 layer.msg(XMLHttpRequest.readystate);
+						 layer.msg(textstatus);
+						return false;
+					}
+		});
 });
 		</script>
 	</body>
