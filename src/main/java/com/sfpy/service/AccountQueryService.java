@@ -8,6 +8,7 @@ import java.util.Map;
 import org.springframework.stereotype.Service;
 
 import com.alibaba.fastjson.JSON;
+import com.sfpy.constant.BankInfo;
 import com.sfpy.constant.UserStatus;
 import com.sfpy.dao.TbSfpyClientDao;
 import com.sfpy.entity.ResultInfo;
@@ -32,12 +33,18 @@ public class AccountQueryService {
 			//Object clientId = userMap.get(TbSfpyClient.CLIENT_ID.name);
 			Object clientName = userMap.get(TbSfpyClient.CLIENT_NAME.name);
 			Object clientBankId = userMap.get(TbSfpyClient.CLIENT_BANK_ID.name);
+			Object clientIdentity = userMap.get(TbSfpyClient.CLIENT_IDENTITY.name);
+			String bankName = BankInfo.UNKNOWN.getDesc();
+			if(clientBankId != null) {
+				bankName = BankInfo.getBankName((Integer)clientBankId);
+			}
 			Object clientBalance = userMap.get(TbSfpyClient.CLIENT_BALANCE.name);
 			Object accountCode = userMap.get(TbSfpyClient.CLIENT_ACCOUNT_CODE.name);
 			
 			//dataMap.put(TbSfpyClient.CLIENT_ID.name, clientId);
 			dataMap.put(TbSfpyClient.CLIENT_NAME.name, clientName);
-			dataMap.put(TbSfpyClient.CLIENT_BANK_ID.name, clientBankId);
+			dataMap.put(TbSfpyClient.CLIENT_IDENTITY.name, clientIdentity);
+			dataMap.put(TbSfpyClient.CLIENT_BANK_ID.name, bankName);
 			dataMap.put(TbSfpyClient.CLIENT_BALANCE.name, clientBalance);
 			dataMap.put(TbSfpyClient.CLIENT_ACCOUNT_CODE.name, accountCode);
 			resultData.add(dataMap);
