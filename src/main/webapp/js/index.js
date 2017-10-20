@@ -10,6 +10,10 @@ layui.config({
         $ = layui.jquery,
         layer = layui.layer,
         navbar = layui.navbar();
+    var userId = getCookie("userId");
+    if(userId == null || userId == "undefined") {
+    	location.href='../login.html'; 
+    }
     tab = layui.tab({
         elem: '.admin-nav-card' //设置选项卡容器
         ,

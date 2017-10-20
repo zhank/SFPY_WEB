@@ -12,7 +12,7 @@
 
 	<body>
 		<div class="admin-main">
-			<form class="layui-form" action="">
+			<form class="layui-form">
 				<div class="layui-form-item">
 					<div class="layui-inline">
 					<label class="layui-form-label">身份证号</label>
@@ -21,7 +21,7 @@
 					</div>
 					</div>
 					<div class="layui-inline">
-						<button class="layui-btn" lay-submit="" lay-filter="demo1">查询</button>
+						<button class="layui-btn" lay-submit lay-filter="queryUser"">查询</button>
 						<button type="reset" class="layui-btn layui-btn-primary">重置</button>
 					</div>
 				</div>
@@ -33,45 +33,8 @@
 			</div>
 		</div>
 	<script type="text/javascript" src="../plugins/layui/layui.js"></script>
-		<script>
-		layui.use('table', function(){
-			  var table = layui.table,
-			  $ = layui.jquery;
-			  var userCode = "32032219921217621X";
-				$.ajax({
-					url:"http://localhost:8088/account/accountQuery.do",
-					type:"post",
-					data: {"userCode":userCode},
-					dataType:"json",
-					success:function(result){
-					var userData = eval("("+result.data+")");
-						table.render({
-							 elem: '#userAccountTab',
-							 data:userData,
-							 height: 272,
-							 skin: 'row',
-							 cols: [[ //标题栏
-							          {field: 'CLIENT_NAME', title: '姓名', width:200, sort: true},
-							           {field: 'CLIENT_BANK_ID', title: '开户银行', width:200},
-							           {field: 'CLIENT_ACCOUNT_CODE', title: '银行账号' ,width:200},
-							           {field: 'CLIENT_BALANCE', title: '余额', width:200}
-							         ]] ,
-							 //表格风格
-							 even: true,
-							 page: true, //是否显示分页
-							 limits: [5, 7, 10],
-							 limit: 10 //每页默认显示的数量
-						});
-					},
-					error:function(XMLHttpRequest, textstatus,errorThrown) {
-						 layer.msg(XMLHttpRequest.status);
-						 layer.msg(XMLHttpRequest.readystate);
-						 layer.msg(textstatus);
-						return false;
-					}
-		});
-});
-		</script>
+		<script type="text/javascript" src="../js/account.js"></script>
+
 	</body>
 
 </html>

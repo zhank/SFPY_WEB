@@ -1,11 +1,14 @@
 package com.sfpy.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Service;
 
+import com.sfpy.dao.TbSfpyClientDao;
 import com.sfpy.entity.ResultInfo;
 import com.sfpy.entity.TB_SFPY_USER;
+import com.sfpy.entity.TbSfpyClient;
 
 @Service
 public class UserService {
@@ -28,19 +31,15 @@ public class UserService {
 
 	public ResultInfo checkLogin(String userName, String password) {
 		ResultInfo result = new ResultInfo();
-		result.setStatus(10);
-		result.setMsg("登陆成功！");
-		return result;
-		/*StringBuffer cond = new StringBuffer();
-		cond.append(TB_SFPY_USER.USER_NAME.toSqlEQ(userName)).append(" AND ")
-				.append(TB_SFPY_USER.USER_PWD.toSqlEQ(password));
+		StringBuffer cond = new StringBuffer();
+		cond.append(TbSfpyClient.CLIENT_NAME.toSqlEQ(userName)).append(" AND ")
+				.append(TbSfpyClient.CLIENT_PSWD.toSqlEQ(password));
 
 		try {
-			List<Map<String, Object>> userList = BizDB.getInstance().searchAsMapList(TB_SFPY_USER.TABLE,
-					TB_SFPY_USER.ALL_FIELDS, cond.toString());
+			List<Map<String, Object>> userList = TbSfpyClientDao.getInstance().searchByCond(cond.toString());
 			if (userList != null && !userList.isEmpty()) {
 				Map<String, Object> dataMap = userList.get(0);
-				Object userId = dataMap.get(TB_SFPY_USER.USER_ID.name);
+				Object userId = dataMap.get(TbSfpyClient.CLIENT_ID.name);
 				if (userId != null) {
 					System.out.println("登陆成功");
 					result.setStatus(10);
@@ -55,7 +54,7 @@ public class UserService {
 			}
 		} catch (Exception e) {
 		}
-		return result;*/
+		return result;
 	}
 
 }
