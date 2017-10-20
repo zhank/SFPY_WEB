@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <title>Login - KitAdminCore</title>
+    <title>Login - SFPYCORE</title>
     <script>
         if (window != window.top) top.location.href = self.location.href;
     </script>
@@ -15,9 +15,6 @@
     <link href="plugins/sideshow/css/normalize.css" rel="stylesheet" />
     <link href="plugins/sideshow/css/demo.css" rel="stylesheet" />
     <link href="plugins/sideshow/css/component.css" rel="stylesheet" />
-    <!--[if IE]>
-        <script src="./plugins/sideshow/js/html5.js"></script>
-    <![endif]-->
     <style>
         canvas {
             position: absolute;
@@ -124,7 +121,7 @@
                         </form>
                     </div>
                     <footer>
-                        <p>KIT ADMIN © <a href="http://blog.zhengjinfan.cn" style="color:white; font-size:18px;" target="_blank">www.zhengjinfan.cn</a></p>
+                        <p>SFPY ADMIN © <a href="http://www.chinaSfpy.cn" style="color:white; font-size:18px;" target="_blank">www.chinaSfpy.cn</a></p>
                     </footer>
                 </div>
             </div>
@@ -137,6 +134,7 @@
     <script src="plugins/sideshow/js/EasePack.min.js"></script>
     <script src="plugins/sideshow/js/rAF.js"></script>
     <script src="plugins/sideshow/js/demo-1.js"></script>
+	<script src="js/cookie_util.js"></script>
     <script>
         layui.use(['layer', 'form'], function() {
             var layer = layui.layer,
@@ -154,24 +152,33 @@
             $(window).on('load', function() {
                 layer.close(index);
                 form.on('submit(login)', function(data) {
-                    var loadIndex = layer.load(2, {
-                        shade: [0.3, '#333']
-                    });
-                    location.href = '/';
-                    // $.post(data.form.action, data.field, function(res) {
-                    //     if (!res.rel) {
-                    //         layer.msg(res.msg, {
-                    //             icon: 2
-                    //         });
-                    //         loadIndex && layer.close(loadIndex);
-                    //         $('#changeCode').click(); //刷新验证码
-                    //     } else {
-                    //         setTimeout(function() {
-                    //             location.href = '/'
-                    //         }, 1500);
-                    //     }
-                    // }, 'json');
-                    return false;
+						var userName = data.field.userName;
+						password = data.field.password;
+                 			if(userName == "" || password == "") {
+							layer.msg('用户名或密码不能为空！',{time:2000, shift: 5, icon: 5});
+							return false;
+						}
+						$.ajax({
+								url:"http://localhost:8088/user/login.do",
+								type:"post",
+								data: {"userName":userName,"password":password},
+								dataType:"json",
+								success:function(result){
+									if(result.status == 10) {
+										addCookie("userId", result.data);
+										location.href='html/index.html'; 
+									} else {
+										layer.msg('用户名或密码不正确！',{time:2000, shift: 5, icon: 5},function(){});	
+									}
+								},
+								error:function(XMLHttpRequest, textstatus,errorThrown) {
+									 layer.msg(XMLHttpRequest.status);
+									 layer.msg(XMLHttpRequest.readystate);
+									 layer.msg(textstatus);
+									return false;
+								}
+					});
+					return false;
                 });
             }());
 
