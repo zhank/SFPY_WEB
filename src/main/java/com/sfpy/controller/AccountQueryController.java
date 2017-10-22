@@ -17,14 +17,16 @@ public class AccountQueryController {
 	
 	@RequestMapping("/accountQuery.do")
 	@ResponseBody
-	public ResultInfo execute(String userCode) {
-		ResultInfo resultInfo = null;
-		try {
-			resultInfo = accountQueryService.getUserAccountByUserCode(userCode);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return resultInfo;
+	public ResultInfo execute(String userCode) throws Exception {
+		return  accountQueryService.getUserAccountByUserCode(userCode);
+	}
+	
+	
+	
+	@RequestMapping("/userBalance.do")
+	@ResponseBody
+	public ResultInfo getUserMoneyBalanceByUserId(String clientId) throws Exception {
+		return  accountQueryService.getUserMoneyBalanceByClientId(clientId);
 	}
 
 }

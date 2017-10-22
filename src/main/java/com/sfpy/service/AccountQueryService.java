@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.alibaba.fastjson.JSON;
 import com.sfpy.constant.BankInfo;
+import com.sfpy.constant.ResultStatus;
 import com.sfpy.constant.UserStatus;
 import com.sfpy.dao.TbSfpyClientDao;
 import com.sfpy.entity.ResultInfo;
@@ -54,35 +55,36 @@ public class AccountQueryService {
 			result.setStatus(10);
 			return result;
 		}
+		return result;
+	}
+	
+	/**
+	 * 获取用户余额
+	 * @param userId
+	 * @return
+	 * @throws Exception 
+	 */
 
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-		/*	Object clientId = userMap.get(TbSfpyClient.CLIENT_ID.name);
-			if (clientId != null) {
-				StringBuffer accoutCond = new StringBuffer();
-				accoutCond.append(TbSfpyTransfer.CLIENT_ID.toSqlEQ(clientId));
-				List<Map<String, Object>> transferDataList = TbSfpyTransferDao.getInstance().searchByCond(accoutCond.toString(), TbSfpyTransfer.TRANSFER_TIME.name,
-						true);
-				if(transferDataList != null && !transferDataList.isEmpty()) {
-					for(int i = 0; i < transferDataList.size(); i++) {
-						Map<String, Object> dataMap = transferDataList.get(i);
-						Object obmsId = dataMap.get(TbSfpyTransfer.OBMS_ID.name);
-						clientId = dataMap.get(TbSfpyTransfer.CLIENT_ID.name);
-						Object transferTime = dataMap.get(TbSfpyTransfer.TRANSFER_TIME.name);
-						Object transferMoney = dataMap.get(TbSfpyTransfer.TRANSFER_MONEY.name);
-					}
+	public ResultInfo getUserMoneyBalanceByClientId(String clientId) throws Exception {
+		ResultInfo result = new ResultInfo();
+		
+		if (clientId != null) {
+			StringBuffer accoutCond = new StringBuffer();
+			accoutCond.append(TbSfpyClient.CLIENT_ID.toSqlEQ(clientId));
+			Map<String, Object> dataMap = TbSfpyClientDao.getInstance().getDataById(clientId);
+			if(dataMap != null && !dataMap.isEmpty()) {
+				Object balance = dataMap.get(TbSfpyClient.CLIENT_BALANCE.name);
+				if(balance != null) {
+					result.setData(balance);
+					result.setStatus(ResultStatus.SUCCESS.getId());
+					result.setMsg(ResultStatus.SUCCESS.getDesc());
+				} else {
+					result.setData(null);
+					result.setStatus(ResultStatus.FAIL.getId());
+					result.setMsg(ResultStatus.FAIL.getDesc());
 				}
-			}*/
+			}
+		}
 		return result;
 	}
 

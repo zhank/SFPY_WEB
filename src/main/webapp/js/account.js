@@ -25,7 +25,7 @@ function queryUser(table, userCode) {
 			table.render({
 				 elem: '#userAccountTab',
 				 data:userData,
-				 height: 150,
+				 height: 78,
 				 skin: 'row',
 				 cols: [[ //标题栏
 				          {field: 'CLIENT_NAME', title: '姓名', width:300},
@@ -34,11 +34,7 @@ function queryUser(table, userCode) {
 				           {field: 'CLIENT_ACCOUNT_CODE', title: '银行账号' ,width:300},
 				           {field: 'CLIENT_BALANCE', title: '余额', width:300}
 				         ]] ,
-				 //表格风格
-				 even: true,
-				 page: true, //是否显示分页
-				 limits: [1],
-				 limit: 1 //每页默认显示的数量
+				 page: false
 			});
 		},
 		error:function(XMLHttpRequest, textstatus,errorThrown) {
@@ -48,4 +44,26 @@ function queryUser(table, userCode) {
 			return false;
 		}
 });
+}
+
+function getUserBalance($) {
+	var  balance;
+	 var clientId = getCookie("clientId");
+		if(clientId == null || clientId == "undefined") {
+			location.href='../login.html'; 
+		} else {
+			$.ajax({
+				async:false,
+				url:"http://localhost:8088/account/userBalance.do",
+				type:"post",
+				data: {"clientId":clientId},
+				dataType:"json",
+				success:function(result){
+					if(result.status == 10) {
+						 balance = result.data;
+					}
+				}
+			});
+		}
+		return  balance;
 }
