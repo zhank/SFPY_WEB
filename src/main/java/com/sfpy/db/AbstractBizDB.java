@@ -905,7 +905,7 @@ public abstract class AbstractBizDB implements IDbCall, Serializable {
 	 * @throws Exception
 	 */
 	public Connection getConn(boolean bAutoCommit) throws Exception {
-		return ConnectionPoolManager.getInstance().getConnection(ConnectionPoolManager.poolName);
+		return ConnectionPoolManager.getInstance().getConnection("dbPool");
 	}
 
 	/**

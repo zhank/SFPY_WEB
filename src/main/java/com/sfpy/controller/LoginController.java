@@ -3,6 +3,7 @@ package com.sfpy.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.sfpy.entity.ResultInfo;
@@ -17,7 +18,7 @@ public class LoginController {
 	
 	@RequestMapping("/login.do")
 	@ResponseBody
-	public ResultInfo execute(String userName, String password) {
+	public ResultInfo execute(@RequestParam("userName") String userName, @RequestParam("password")  String password) {
 		ResultInfo resultInfo = userService.checkLogin(userName, password);
 		return resultInfo;
 	}

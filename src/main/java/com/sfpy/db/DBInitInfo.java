@@ -11,10 +11,11 @@ import com.sfpy.util.PropertiesUtils;
  * @author SFPY
  */
 public class DBInitInfo {
-	public static List<DBbean> beans = new ArrayList<DBbean>();  
+	public static List<DBbean> beans = null;
 
 	static {
-		DBbean dbBean = new DBbean();
+		beans = new ArrayList<DBbean>();  
+		DBbean  dbBean = new DBbean();
 		PropertiesUtils.loadFile("db.properties");
 		String jdbcDriver = PropertiesUtils.getPropertyValue("driver");
 		String dbUrl = PropertiesUtils.getPropertyValue("url");
@@ -29,7 +30,7 @@ public class DBInitInfo {
 		dbBean.setMinConnections(5);
 		dbBean.setMaxConnections(100);
 		
-		dbBean.setPoolName(ConnectionPoolManager.poolName);
+		dbBean.setPoolName("dbPool");
 		beans.add(dbBean);
 	}
 
