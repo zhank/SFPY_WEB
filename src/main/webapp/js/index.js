@@ -1,19 +1,17 @@
 /** index.js By Beginner Emain:zheng_jinfan@126.com HomePage:http://www.zhengjinfan.cn */
-
 var tab;
-
 layui.config({
     base: '../js/',
     version: new Date().getTime()
 }).use(['element', 'layer', 'navbar', 'tab'], function () {
-    var element = layui.element,
+		 var clientId = getCookie("clientId");
+		if(clientId == null || clientId == "undefined") {
+			location.href='../login.html'; 
+		}
+		var element = layui.element,
         $ = layui.jquery,
         layer = layui.layer,
-        navbar = layui.navbar();
-    var userId = getCookie("userId");
-    if(userId == null || userId == "undefined") {
-    	location.href='../login.html'; 
-    }
+        navbar = layui.navbar();  
     tab = layui.tab({
         elem: '.admin-nav-card' //设置选项卡容器
         ,

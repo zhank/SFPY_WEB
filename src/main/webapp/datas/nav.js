@@ -76,9 +76,9 @@ var navs = [{
 		"href": "icheck.html"
 	}]
 }, {
-	"title": "这是一级导航",
+	"title": "转账汇款",
 	"icon": "fa-stop-circle",
-	"href": "https://www.baidu.com",
+	"href": "../html/transaction.html",
 	"spread": false
 }, {
 	"title": "其他",
