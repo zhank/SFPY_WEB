@@ -49,8 +49,8 @@
 		<param-value>/WEB-INF/conf/log4j.properties</param-value>
 	</context-param>
 	<listener>
-		<listener-class>com.sfpy.listener.OnlineCounterListener</listener-class>   
-		<!-- <listener-class>org.springframework.web.util.Log4jConfigListener</listener-class> -->
+		<!-- <listener-class>com.sfpy.listener.OnlineCounterListener</listener-class>    -->
+		 <listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>
 	</listener>
 	<welcome-file-list>
 		<welcome-file>login.html</welcome-file>

@@ -89,6 +89,9 @@ BEGIN
     SELECT GEN_SFPY_TRANSFER.NEXTVAL INTO :NEW.OBMS_ID FROM DUAL;
 END;
 
+--测试帐号--
+insert into tb_sfpy_client t (t.client_name, t.client_pswd, client_identity, t.client_balance, t.client_status, t.client_address, t.client_account_code, t.client_bank_id)
+values('admin', 'admin', 320322199212176213, 9999.99, 10, '中国南京', '12345678903', 30);
 
 
 

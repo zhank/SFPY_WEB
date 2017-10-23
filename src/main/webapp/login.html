@@ -165,7 +165,7 @@
 								dataType:"json",
 								success:function(result){
 									if(result.status == 10) {
-										addCookie("userId", result.data);
+										addCookie("clientId", result.data);
 										location.href='html/index.html'; 
 									} else {
 										layer.msg('用户名或密码不正确！',{time:2000, shift: 5, icon: 5},function(){});	
