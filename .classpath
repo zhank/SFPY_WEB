@@ -22,5 +22,5 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="output" path="debug2"/>
+	<classpathentry kind="output" path="src/debug"/>
 </classpath>
