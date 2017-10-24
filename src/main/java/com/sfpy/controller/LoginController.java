@@ -13,14 +13,5 @@ import com.sfpy.service.UserService;
 @RequestMapping("/user")
 public class LoginController {
 	
-	@Autowired
-	private UserService userService;
-	
-	@RequestMapping("/login.do")
-	@ResponseBody
-	public ResultInfo execute(@RequestParam("userName") String userName, @RequestParam("password")  String password) {
-		ResultInfo resultInfo = userService.checkLogin(userName, password);
-		return resultInfo;
-	}
 
 }

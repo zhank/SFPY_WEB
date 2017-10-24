@@ -17,8 +17,8 @@ import com.sfpy.entity.TbSfpyClient;
 
 @Service
 public class AccountQueryService {
-
-	public ResultInfo getUserAccountByUserCode(String userCode) throws Exception {
+	
+	public ResultInfo getUserAccountByUserCode(Object userCode) throws Exception {
 		ResultInfo result = new ResultInfo();
 
 		StringBuffer cond = new StringBuffer();
