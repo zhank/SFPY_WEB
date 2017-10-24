@@ -43,12 +43,7 @@
 		<link>
 			<name>debug</name>
 			<type>2</type>
-			<location>D:/code/webWorkspace/myWeb/WebContent/WEB-INF/classes</location>
-		</link>
-		<link>
-			<name>debug2</name>
-			<type>2</type>
-			<location>D:/code/webWorkspace/myWeb/WebContent/WEB-INF/classes</location>
+			<location>C:/Users/Administrator/Desktop/myWeb/WebContent/WEB-INF/classes</location>
 		</link>
 	</linkedResources>
 </projectDescription>
