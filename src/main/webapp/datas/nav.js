@@ -23,7 +23,12 @@ var navs = [{
 		"icon": "&#xe60c;",
 		"href": "auxiliar.html"
 	}]
-}, {
+},  {
+	"title": "转账汇款",
+	"icon": "fa-stop-circle",
+	"href": "../html/transaction.html",
+	"spread": false
+},{
 	"title": "资金理财",
 	"icon": "fa-cogs",
 	"spread": false,
@@ -75,11 +80,6 @@ var navs = [{
 		"icon": "fa-check-square-o",
 		"href": "icheck.html"
 	}]
-}, {
-	"title": "转账汇款",
-	"icon": "fa-stop-circle",
-	"href": "../html/transaction.html",
-	"spread": false
 }, {
 	"title": "其他",
 	"icon": "fa-stop-circle",
