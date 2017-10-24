@@ -49,7 +49,7 @@ public class Main {
 		System.out.println("Finded Base Web Root is :" + appBase);
 		System.out.println("µÇÂ½µØÖ·:http://localhost:8088");
 
-		File globalWebXml = new File(baseDir + "/web.xml");
+		File globalWebXml = new File(baseDir + "/WIN-INF/web.xml");
 		Map<String, String> mimeMappings = parseMimeMappingFromWebXml(globalWebXml
 				.getCanonicalPath());
 		// 2.4. Context
