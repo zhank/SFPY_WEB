@@ -6,6 +6,7 @@ import java.util.Map;
 import org.springframework.stereotype.Service;
 
 import com.sfpy.constant.ResultStatus;
+import com.sfpy.constant.UserStatus;
 import com.sfpy.dao.TbSfpyClientDao;
 import com.sfpy.entity.ResultInfo;
 import com.sfpy.entity.TB_SFPY_USER;
@@ -41,7 +42,6 @@ public class UserService {
 		StringBuffer cond = new StringBuffer();
 		cond.append(TbSfpyClient.CLIENT_NAME.toSqlEQ(userName)).append(" AND ")
 				.append(TbSfpyClient.CLIENT_PSWD.toSqlEQ(password));
-
 		try {
 			List<Map<String, Object>> userList = TbSfpyClientDao.getInstance().searchByCond(cond.toString());
 			if (userList != null && !userList.isEmpty()) {
@@ -52,6 +52,37 @@ public class UserService {
 					result.setStatus(10);
 					result.setMsg("登陆成功！");
 					result.setData(userId);
+					;
+				}
+			} else {
+				System.out.println("验证失败！");
+				result.setStatus(-1);
+				result.setMsg("");
+			}
+		} catch (Exception e) {
+		}
+		return result;
+	}
+	
+	/**
+	 * 获取人员姓名
+	 * @return
+	 */
+	public ResultInfo getUserNameByUserCode(Object userCode) {
+		ResultInfo result = new ResultInfo();
+		StringBuffer cond = new StringBuffer();
+		cond.append(TbSfpyClient.CLIENT_IDENTITY.toSqlEQ(userCode)).append(" AND ")
+				.append(TbSfpyClient.CLIENT_STATUS.toSqlEQ(UserStatus.NORMAL.getId()));
+		try {
+			List<Map<String, Object>> userList = TbSfpyClientDao.getInstance().searchByCond(cond.toString());
+			if (userList != null && !userList.isEmpty()) {
+				Map<String, Object> dataMap = userList.get(0);
+				Object userName = dataMap.get(TbSfpyClient.CLIENT_REALLY_NAME.name);
+				if (userName != null) {
+					System.out.println("登陆成功");
+					result.setStatus(10);
+					result.setMsg("登陆成功！");
+					result.setData(userName);
 					;
 				}
 			} else {

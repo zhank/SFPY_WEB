@@ -38,6 +38,15 @@ function queryUserCodeById($, clientId) {
 }
 
 function queryUser(table, userCode) {
+	winWidth = 1368;
+	if(window.innerWidth) {
+		 winWidth = window.innerWidth;
+	}
+	else if ((document.body) && (document.body.clientWidth)) {
+		winWidth = document.body.clientWidth;
+	}
+	var colWidth = (winWidth - 39) / 5;
+		
 	$.ajax({
 		url:"http://localhost:8088/account/accountQuery.do",
 		type:"post",
@@ -51,11 +60,11 @@ function queryUser(table, userCode) {
 				 height: 78,
 				 skin: 'row',
 				 cols: [[ //标题栏
-				          {field: 'CLIENT_NAME', title: '姓名', width:300},
-				          {field: 'CLIENT_IDENTITY', title: '身份证号', width:300},
-				           {field: 'CLIENT_BANK_ID', title: '开户银行', width:300},
-				           {field: 'CLIENT_ACCOUNT_CODE', title: '银行账号' ,width:300},
-				           {field: 'CLIENT_BALANCE', title: '余额', width:300}
+				          {field: 'CLIENT_REALLY_NAME', title: '姓名', width:colWidth},
+				          {field: 'CLIENT_IDENTITY', title: '身份证号', width:colWidth},
+				           {field: 'CLIENT_BANK_ID', title: '开户银行', width:colWidth},
+				           {field: 'CLIENT_ACCOUNT_CODE', title: '银行账号' ,width:colWidth},
+				           {field: 'CLIENT_BALANCE', title: '余额', width:colWidth}
 				         ]] ,
 				 page: false
 			});
@@ -89,4 +98,21 @@ function getUserBalance($) {
 			});
 		}
 		return  balance;
+}
+
+function getUserNameByUserCode($, userCode){
+	 var userName;
+	 $.ajax({
+				async:false,
+				url:"http://localhost:8088/user/getUserNameByUserCode.do",
+				type:"post",
+				data: {"userCode":userCode},
+				dataType:"json",
+				success:function(result){
+					if(result.status == 10) {
+						 userName = result.data;
+					}
+				}
+			});
+	return userName;
 }

@@ -33,7 +33,7 @@
 						<input type="text" name="userCode" required lay-verify="identity|required" class="layui-input">
 					</div>
 					<label class="layui-form-label" >姓名:</label>
-					 <div class="layui-form-mid layui-word-aux" id="userName"></div>
+					 <div class="layui-form-mid" style="font-size:16px;color:red;font-weight: bolder;" id="userName"></div>
 				</div>
 				<div class="layui-form-item">
 					<label class="layui-form-label" >转账金额</label>
@@ -62,13 +62,36 @@
                 form = layui.form;
 				var balance = getUserBalance($)
 				if(balance == null || balance == "undefined") {
-				//	location.href='html/error.html'; 
+					location.href='html/error.html'; 
 					return false;
 				}  else {
 				 $('#balance')[0].innerHTML = balance + " 元";
+				 
+				 //转账时， 对方姓名
+				 var userName;
+				 //校验姓名
+				 $("input[name='userCode'] ").blur(function(){
+					var value = $.trim($(this).val()); 
+					if(value.length == 18) {
+						var userName = getUserNameByUserCode($, value);
+						if(userName != null && userName != "undefined") {
+							var lastName = userName.charAt(userName.length - 1)
+							var name="";
+								for(var i = 0; i < userName.length - 1; i++) {
+									name += "* ";
+								}
+							name += lastName;
+							}
+							 $('#userName')[0].innerHTML = name;
+						}
+				 });  
 				form.verify({
-					
-					
+					identity:function(value){
+						if(userName == null || userName == "undefined") {
+							return "人员不存在，请重新输入！";
+						}
+					return true;
+					}
 				});
 				 form.on('submit(confirm)', function(data) {
 				 
