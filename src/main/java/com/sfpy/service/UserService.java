@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.springframework.stereotype.Service;
 
+import com.sfpy.constant.ResultStatus;
 import com.sfpy.dao.TbSfpyClientDao;
 import com.sfpy.entity.ResultInfo;
 import com.sfpy.entity.TB_SFPY_USER;
@@ -29,6 +30,12 @@ public class UserService {
 
 	}
 
+	/**
+	 * 查询登陆
+	 * @param userName
+	 * @param password
+	 * @return
+	 */
 	public ResultInfo checkLogin(String userName, String password) {
 		ResultInfo result = new ResultInfo();
 		StringBuffer cond = new StringBuffer();
@@ -53,6 +60,28 @@ public class UserService {
 				result.setMsg("");
 			}
 		} catch (Exception e) {
+		}
+		return result;
+	}
+	
+	/**
+	 * 根据clientId获取用户信息
+	 * @param clientId
+	 * @return
+	 * @throws Exception
+	 */
+	public ResultInfo getUserAccountByClientId(Object clientId) throws Exception {
+		ResultInfo result = null;
+		Map<String, Object> userData = TbSfpyClientDao.getInstance().getDataById(clientId);
+		if(userData != null) {
+			Object userCode = userData.get(TbSfpyClient.CLIENT_IDENTITY.name);
+			if(userCode != null) {
+				result = new ResultInfo();
+				result.setStatus(ResultStatus.SUCCESS.getId());
+				result.setMsg(ResultStatus.SUCCESS.getDesc());
+				result.setData(userCode);;
+				return result;
+			}
 		}
 		return result;
 	}

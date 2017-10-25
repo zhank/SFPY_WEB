@@ -11,10 +11,16 @@ import com.sfpy.service.UserService;
 
 @Controller
 @RequestMapping("/user")
-public class LoginController {
+public class ClientQueryController {
 	
 	@Autowired
 	private UserService userService;
+	
+	@RequestMapping("/getUserCode.do")
+	@ResponseBody
+	public ResultInfo execute(String clientId) throws Exception {
+		return  userService.getUserAccountByClientId(clientId);
+	}
 	
 	@RequestMapping("/login.do")
 	@ResponseBody
@@ -22,5 +28,4 @@ public class LoginController {
 		ResultInfo resultInfo = userService.checkLogin(userName, password);
 		return resultInfo;
 	}
-
 }

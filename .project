@@ -41,14 +41,9 @@
 	</natures>
 	<linkedResources>
 		<link>
-			<name>debug</name>
+			<name>src/debug</name>
 			<type>2</type>
-			<location>D:/code/webWorkspace/myWeb/WebContent/WEB-INF/classes</location>
-		</link>
-		<link>
-			<name>debug2</name>
-			<type>2</type>
-			<location>D:/code/webWorkspace/myWeb/WebContent/WEB-INF/classes</location>
+			<location>D:/Web Projects/myWeb-0.0.1-r20171023/myWeb/WebContent/WEB-INF/classes</location>
 		</link>
 		<link>
 			<name>debug5</name>

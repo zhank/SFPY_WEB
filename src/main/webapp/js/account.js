@@ -2,9 +2,9 @@
 			  var layer = layui.layer,
 			  table = layui.table,  form = layui.form;
 			  $ = layui.jquery;
-			  var userCode = "32032219921217621X";
-			  queryUser(table, userCode);
-			  
+			  var clientId = getCookie("clientId");
+			  var userCode = queryUserCodeById($ , clientId);
+			  queryUser(table,userCode);
 			  //查询功能
 			  //监听提交
 			  form.on('submit(queryUser)', function(data){
@@ -13,6 +13,29 @@
 			  });
 	     
 });
+
+function queryUserCodeById($, clientId) {
+		var userCode;
+		$.ajax({
+			async:false,
+			url:"http://localhost:8088/user/getUserCode.do",
+			type:"post",
+			data: {"clientId":clientId},
+			dataType:"json",
+			success:function(result){
+				if(result.status == 10) {
+					 userCode = result.data;
+				}
+			},
+			error:function(XMLHttpRequest, textstatus,errorThrown) {
+				 layer.msg(XMLHttpRequest.status);
+				 layer.msg(XMLHttpRequest.readystate);
+				 layer.msg(textstatus);
+				return false;
+			}
+		});
+		return userCode;
+}
 
 function queryUser(table, userCode) {
 	$.ajax({
