@@ -32,7 +32,7 @@ public class AccountQueryService {
 			
 			Map<String, Object> dataMap = new HashMap<String, Object>();
 			//Object clientId = userMap.get(TbSfpyClient.CLIENT_ID.name);
-			Object clientName = userMap.get(TbSfpyClient.CLIENT_NAME.name);
+			Object clientName = userMap.get(TbSfpyClient.CLIENT_REALLY_NAME.name);
 			Object clientBankId = userMap.get(TbSfpyClient.CLIENT_BANK_ID.name);
 			Object clientIdentity = userMap.get(TbSfpyClient.CLIENT_IDENTITY.name);
 			String bankName = BankInfo.UNKNOWN.getDesc();
@@ -43,7 +43,7 @@ public class AccountQueryService {
 			Object accountCode = userMap.get(TbSfpyClient.CLIENT_ACCOUNT_CODE.name);
 			
 			//dataMap.put(TbSfpyClient.CLIENT_ID.name, clientId);
-			dataMap.put(TbSfpyClient.CLIENT_NAME.name, clientName);
+			dataMap.put(TbSfpyClient.CLIENT_REALLY_NAME.name, clientName);
 			dataMap.put(TbSfpyClient.CLIENT_IDENTITY.name, clientIdentity);
 			dataMap.put(TbSfpyClient.CLIENT_BANK_ID.name, bankName);
 			dataMap.put(TbSfpyClient.CLIENT_BALANCE.name, clientBalance);

@@ -22,6 +22,12 @@ public class ClientQueryController {
 		return  userService.getUserAccountByClientId(clientId);
 	}
 	
+	@RequestMapping("/getUserNameByUserCode.do")
+	@ResponseBody
+	public ResultInfo getUserNameByUserCode(String userCode) throws Exception {
+		return  userService.getUserNameByUserCode(userCode);
+	}
+	
 	@RequestMapping("/login.do")
 	@ResponseBody
 	public ResultInfo execute(@RequestParam("userName") String userName, @RequestParam("password")  String password) {

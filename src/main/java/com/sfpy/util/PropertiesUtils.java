@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.util.Properties;
 
 public class PropertiesUtils {
-	 static Properties property = new Properties();  
+	 public static Properties property = new Properties();  
 	    public static boolean loadFile(String fileName){   
 	        try {  
 	        	String appBase = FindWebRoot.getAppRoot();
