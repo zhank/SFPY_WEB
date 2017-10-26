@@ -28,7 +28,9 @@ public class Main {
 	
 	public static void main(String[] args) throws Exception {
 		EvnCheck.loadLog4jCfg();
-		
+
+
+		//idea≤‚ ‘
 		Tomcat tomcat = new Tomcat();
 		tomcat.setHostname("localhost");
 		tomcat.setPort(8088);
