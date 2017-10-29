@@ -31,10 +31,10 @@ import org.slf4j.LoggerFactory;
 
 /**
  * IDbOp的通用实现，适用于所有数据库操作。与特定数据库相关的优化类可以继承此类，覆盖需要优化的方法。
- * 
+ *
  * <p>
  * 该类概念上类似Apache的commons-dbutils，但dbutils还是复杂了些，且对Date类的处理还要做些改动，所以未使用。
- * 
+ *
  * @author zhangk
  * @version 1.0
  * @see IDbOp
@@ -47,7 +47,7 @@ public class DbOpBase implements IDbOp, Serializable {
 
 	/**
 	 * 根据数值的类型调用不同的setXXX方法
-	 * 
+	 *
 	 * @param pstmt
 	 * @param values
 	 * @throws Exception
@@ -67,15 +67,15 @@ public class DbOpBase implements IDbOp, Serializable {
 
 	/**
 	 * 返回ResultSet结果中的数据，会根据数据库类型自动转换为java类型
-	 * 
+	 *
 	 * @param index
 	 * @param rs
 	 * @param rsmd
 	 * @return
 	 * @throws Exception
 	 */
-	protected static final Object getRsObj(int index, ResultSet rs, ResultSetMetaData rsmd) throws Exception {		
-		switch (rsmd.getColumnType(index)) {		
+	protected static final Object getRsObj(int index, ResultSet rs, ResultSetMetaData rsmd) throws Exception {
+		switch (rsmd.getColumnType(index)) {
 		case Types.LONGVARBINARY:
 		case Types.VARBINARY:
 		case Types.BINARY:
@@ -100,10 +100,10 @@ public class DbOpBase implements IDbOp, Serializable {
 	            case 1:
 	            	//仅为oracle的情况下使用  by maj 2016.11.02
 	            	if (rsmd.getClass().getPackage().getName().equals("oracle.jdbc.driver"))
-	            	{	            
+	            	{
 	            		Boolean b = rs.getBoolean(index);
-	            		if (rs.wasNull())	            		
-	            			b = null;	            				            		
+	            		if (rs.wasNull())
+	            			b = null;
 	            		return b;
 	            	}
 	            	else
@@ -172,7 +172,7 @@ public class DbOpBase implements IDbOp, Serializable {
 
 	/**
 	 * 插入记录
-	 * 
+	 *
 	 * @param conn
 	 *            数据库连接
 	 * @param table
@@ -187,14 +187,14 @@ public class DbOpBase implements IDbOp, Serializable {
 
 	/**
 	 * 插入记录
-	 * 
+	 *
 	 * @param conn
 	 *            数据库连接
 	 * @param table
 	 *            表名
 	 * @param dataMap
 	 *            插入数据的Map，其中的key就是字段名，value是对应该字段的数据
-	 * @param isAutoGenKey 
+	 * @param isAutoGenKey
 	 *            是否自增
 	 * @throws Exception
 	 */
@@ -204,16 +204,16 @@ public class DbOpBase implements IDbOp, Serializable {
 	}
 	/**
 	 * 插入记录
-	 * 
+	 *
 	 * @param conn
 	 *            数据库连接
 	 * @param table
 	 *            表名
 	 * @param dataMap
 	 *            插入数据的Map，其中的key就是字段名，value是对应该字段的数据
-	 * @param colList 
+	 * @param colList
 	 * 			     插入完成后需要返回的字段名称
-	 * @param isAutoGenKey 
+	 * @param isAutoGenKey
 	 *            是否自增
 	 * @throws Exception
 	 */
@@ -252,7 +252,7 @@ public class DbOpBase implements IDbOp, Serializable {
 			log.debug("insert SQL: " + sql);
 		// 设置参数
 		PreparedStatement pstmt = null;
-		if (isAutoGenKey) {	
+		if (isAutoGenKey) {
 			if (colList != null)
 				pstmt = conn.prepareStatement(sql.toString(), colList);
 			else
@@ -270,20 +270,20 @@ public class DbOpBase implements IDbOp, Serializable {
 
 		// 执行
 		ResultSet rs = null;
-		
+
 		int autoIncreaseId = 0;
-		try {							
-			pstmt.executeUpdate();			
+		try {
+			pstmt.executeUpdate();
 			if (isAutoGenKey)
-			{									
+			{
 				rs = pstmt.getGeneratedKeys();
-				if (rs.next()) 		
-				{			
+				if (rs.next())
+				{
 					autoIncreaseId = rs.getInt(1);
-				}																					
-			}						
+				}
+			}
 		} finally {
-			if (rs != null) 
+			if (rs != null)
 			{
 				rs.close();
 			}
@@ -295,7 +295,7 @@ public class DbOpBase implements IDbOp, Serializable {
 
 	/**
 	 * 更新表记录的多个字段
-	 * 
+	 *
 	 * @param conn
 	 *            数据库连接
 	 * @param table
@@ -354,7 +354,7 @@ public class DbOpBase implements IDbOp, Serializable {
 
 	/**
 	 * 更新表记录的一个字段
-	 * 
+	 *
 	 * @param conn
 	 *            数据库连接
 	 * @param table
@@ -402,7 +402,7 @@ public class DbOpBase implements IDbOp, Serializable {
 
 	/**
 	 * 删除记录
-	 * 
+	 *
 	 * @param conn
 	 *            数据库连接
 	 * @param table
@@ -444,7 +444,7 @@ public class DbOpBase implements IDbOp, Serializable {
 
 	/**
 	 * 获取一条记录，以map返回
-	 * 
+	 *
 	 * @param conn
 	 *            数据库连接
 	 * @param table
@@ -470,7 +470,7 @@ public class DbOpBase implements IDbOp, Serializable {
 
 	/**
 	 * 获取一条记录，以数组方式返回。
-	 * 
+	 *
 	 * @param conn
 	 *            数据库连接
 	 * @param table
@@ -493,7 +493,7 @@ public class DbOpBase implements IDbOp, Serializable {
 
 	/**
 	 * 获取一条数据的实现，根据map参数决定以map还是数组方式返回
-	 * 
+	 *
 	 * @param conn
 	 *            数据库连接
 	 * @param table
@@ -592,7 +592,7 @@ public class DbOpBase implements IDbOp, Serializable {
 
 	/**
 	 * 通用查询，以List[map1, map2...]形式返回
-	 * 
+	 *
 	 * @param conn
 	 *            数据库连接
 	 * @param table
@@ -634,7 +634,7 @@ public class DbOpBase implements IDbOp, Serializable {
 	}
 	/**
 	 * 通用查询，以List[array1, array2...]形式返回
-	 * 
+	 *
 	 * @param conn
 	 *            数据库连接
 	 * @param table
@@ -668,7 +668,7 @@ public class DbOpBase implements IDbOp, Serializable {
 
 	/**
 	 * 查询的具体实现，根据最后参数决定是以map-list还是array-list返回
-	 * 
+	 *
 	 * @param conn
 	 *            数据库连接
 	 * @param table
@@ -905,11 +905,11 @@ public class DbOpBase implements IDbOp, Serializable {
 		}
 
 		return ret;
-		
+
 	}
 	/**
 	 * 得到记录个数
-	 * 
+	 *
 	 * @param conn
 	 *            数据库连接
 	 * @param table
@@ -963,7 +963,7 @@ public class DbOpBase implements IDbOp, Serializable {
 
 	/**
 	 * 得到记录个数
-	 * 
+	 *
 	 * @param type
 	 *            数据类型
 	 * @param conn
@@ -1080,39 +1080,39 @@ public class DbOpBase implements IDbOp, Serializable {
 		}
 		return insert(conn, table, dataMap, true);
 	}
-	
-	
-	private String getTableId(Connection conn, String tableName) throws SQLException 
-	{  
+
+
+	private String getTableId(Connection conn, String tableName) throws SQLException
+	{
 		String result = null;
 		String userName = conn.getMetaData().getUserName();
 		String dbType = getDbType(conn).toLowerCase();
-		ResultSet rs = conn.getMetaData().getPrimaryKeys(null, getLegalUserName(userName, dbType), tableName);  
+		ResultSet rs = conn.getMetaData().getPrimaryKeys(null, getLegalUserName(userName, dbType), tableName);
 		while(rs.next())
 		{
 			result = (String) rs.getObject("COLUMN_NAME");
 		}
 		return result;
-	} 
-	 
+	}
+
 	private String getDbType(Connection conn) throws SQLException
 	{
 		return conn.getMetaData().getDatabaseProductName();
 	}
-	
-	private String getLegalUserName(String user, String type) 
-	{  
-		String result;  
+
+	private String getLegalUserName(String user, String type)
+	{
+		String result;
         if (user != null)
-        {  
-            if (type.equals("oracle")) 	              
-                result = user.toUpperCase();  	             	    
-            else   
-                result = user;  	              
-        } 
-        else 
-            result = "public";	         
-        return result;  
-	}  
+        {
+            if (type.equals("oracle"))
+                result = user.toUpperCase();
+            else
+                result = user;
+        }
+        else
+            result = "public";
+        return result;
+	}
 
 }

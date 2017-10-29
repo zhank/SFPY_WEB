@@ -1,10 +1,7 @@
 package com.sfpy.main;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.util.HashMap;
-import java.util.Map;
-
+import com.sfpy.util.EvnCheck;
+import com.sfpy.util.FindWebRoot;
 import org.apache.catalina.Context;
 import org.apache.catalina.core.StandardContext;
 import org.apache.catalina.deploy.WebXml;
@@ -15,12 +12,13 @@ import org.apache.catalina.startup.WebRuleSet;
 import org.apache.tomcat.util.descriptor.DigesterFactory;
 import org.apache.tomcat.util.digester.Digester;
 
-import com.sfpy.util.EvnCheck;
-import com.sfpy.util.FindWebRoot;
+import java.io.File;
+import java.io.FileInputStream;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Main {
-	
-	//private static final Logger logger = LoggerFactory.getLogger(Main.class);
+
 	/**
 	 * 共享会话
 	 */
@@ -52,7 +50,7 @@ public class Main {
 		System.out.println("登陆地址:http://localhost:8088");
 
 		File globalWebXml = new File(baseDir + "/WIN-INF/web.xml");
-		Map<String, String> mimeMappings = parseMimeMappingFromWebXml(globalWebXml
+		Map<String,  String> mimeMappings = parseMimeMappingFromWebXml(globalWebXml
 				.getCanonicalPath());
 		// 2.4. Context
 		Context context = tomcat.addWebapp("/",
@@ -113,7 +111,7 @@ public class Main {
 			System.out.println("Failed to parse the '" + webXmlFilePath + "' file: "
 					+ e.getMessage());
 		} finally {
-			//FileTools.iStreamClose(is);
+
 		}
 		return mimeMappings;
 	}
