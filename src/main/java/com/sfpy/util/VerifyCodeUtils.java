@@ -10,13 +10,15 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.util.Arrays;
 import java.util.Random;
+
 /**
- * <p><b>VerifyCodeUtils Description:</b> (验证码生成)</p>
- * <b>DATE:</b> 2016年6月2日 下午3:53:34
+ * 验证码生成
  */
 public class VerifyCodeUtils{
-     
-    //使用到Algerian字体，系统里没有的话需要安装字体，字体只显示大写，去掉了1,0,i,o几个容易混淆的字符
+
+    /**
+     使用到Algerian字体，系统里没有的话需要安装字体，字体只显示大写，去掉了1,0,i,o几个容易混淆的字符
+     */
     public static final String VERIFY_CODES = "23456789ABCDEFGHJKLMNPQRSTUVWXYZ";
     private static Random random = new Random();
  
@@ -150,8 +152,8 @@ public class VerifyCodeUtils{
             g2.drawLine(x, y, x + xl + 40, y + yl + 20);
         }
          
-        // 添加噪点
-        float yawpRate = 0.05f;// 噪声率
+        // 添加噪点 // 噪声率
+        float yawpRate = 0.05f;
         int area = (int) (yawpRate * w * h);
         for (int i = 0; i < area; i++) {
             int x = random.nextInt(w);
@@ -159,8 +161,9 @@ public class VerifyCodeUtils{
             int rgb = getRandomIntColor();
             image.setRGB(x, y, rgb);
         }
-         
-        shear(g2, w, h, c);// 使图片扭曲
+
+        // 使图片扭曲
+        shear(g2, w, h, c);
  
         g2.setColor(getRandColor(100, 160));
         int fontSize = h-4;
@@ -236,8 +239,9 @@ public class VerifyCodeUtils{
     }
  
     private static void shearY(Graphics g, int w1, int h1, Color color) {
- 
-        int period = random.nextInt(40) + 10; // 50;
+
+        // 50;
+        int period = random.nextInt(40) + 10;
  
         boolean borderGap = true;
         int frames = 20;
@@ -253,10 +257,9 @@ public class VerifyCodeUtils{
                 g.drawLine(i, (int) d, i, 0);
                 g.drawLine(i, (int) d + h1, i, h1);
             }
- 
         }
- 
     }
+
     public static void main(String[] args) throws IOException{
         File dir = new File("F:/demo");
         int w = 200, h = 80;

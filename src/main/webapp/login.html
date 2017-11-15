@@ -71,6 +71,12 @@
             border-color: #009688;
             color: #009688
         }
+        .index-form{
+        width:300px;
+        }
+        .login-regist-div{
+            margin-top:20px;
+        }
     </style>
 </head>
 
@@ -85,7 +91,7 @@
                     <h1>LOGIN IN</h1>
                 </header>
                 <div class="kit-login-main">
-                    <form action="/" class="layui-form" method="post">
+                    <form action="/" class="layui-form index-form" method="post">
                         <div class="layui-form-item">
                             <label class="kit-login-icon">
                                 <i class="layui-icon">&#xe612;</i>
@@ -107,13 +113,16 @@
                                     <img id="verifitionCodeImg" src="http://localhost:8088/index/verif.do" style="cursor:pointer;width:100px"  title="点击刷新" />
                                 </span>
                         </div>
-                        <div class="layui-form-item">
+                        <div class="layui-form-item login-regist-div">
                             <div class="kit-pull-left kit-login-remember">
                                 <input type="checkbox" name="rememberMe" value="true" lay-skin="primary" checked title="记住帐号?">
                             </div>
                             <div class="kit-pull-right">
                                 <button class="layui-btn layui-btn-primary" lay-submit lay-filter="login">
                                     <i class="fa fa-sign-in" aria-hidden="true"></i> 登录
+                                </button>
+                                <button class="layui-btn layui-btn-primary" >
+                                    立即注册
                                 </button>
                             </div>
                             <div class="kit-clear"></div>
@@ -135,62 +144,6 @@
 <script src="plugins/sideshow/js/rAF.js"></script>
 <script src="plugins/sideshow/js/demo-1.js"></script>
 <script src="js/cookie_util.js"></script>
-<script>
-    layui.use(['layer', 'form'], function() {
-    var layer = layui.layer,
-    $ = layui.jquery,
-    form = layui.form;
-
-    $('#verifitionCodeImg').on('click', function() {
-    //document.getElementById('verifitionCodeImg').scr=;
-    $("#verifitionCodeImg").attr("src","http://localhost:8088/index/verif.do?"+Math.random());
-    });
-
-    //清理左侧菜单缓存
-    var index = layer.load(2, {
-    shade: [0.3, '#333']
-    });
-    $(window).on('load', function() {
-    layer.close(index);
-
-    form.on('submit(login)', function(data) {
-    var userName = data.field.userName,
-    password = data.field.password,
-    validCode = data.field.validCode;
-    if(validCode == "" || validCode == "undefine") {
-    layer.msg('验证码不能为空！',{time:2000, shift: 5, icon: 5});
-    return false;
-    }
-    if(userName == "" || password == "") {
-    layer.msg('用户名或密码不能为空！',{time:2000, shift: 5, icon: 5});
-    return false;
-    }
-    $.ajax({
-    url:"http://localhost:8088/user/login.do",
-    type:"post",
-    data: {"userName":userName,"password":password,"validCode":validCode},
-    dataType:"json",
-    success:function(result){
-    if(result.status == 10) {
-    addCookie("clientId", result.data);
-    location.href='html/index.html';
-    } else {
-    layer.msg(result.msg,{time:2000, shift: 5, icon: 5},function(){});
-    }
-    },
-    error:function(XMLHttpRequest, textstatus,errorThrown) {
-    layer.msg(XMLHttpRequest.status);
-    layer.msg(XMLHttpRequest.readystate);
-    layer.msg(textstatus);
-    return false;
-    }
-    });
-    return false;
-    });
-    }());
-
-    });
-</script>
+<script src="js/login.js"></script>
 </body>
-
 </html>
