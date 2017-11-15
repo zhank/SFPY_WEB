@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.sfpy.entity.ResultInfo;
 import com.sfpy.service.UserService;
 
+import javax.servlet.http.HttpServletRequest;
+
 @Controller
 @RequestMapping("/user")
 public class ClientQueryController {
@@ -30,8 +32,9 @@ public class ClientQueryController {
 	
 	@RequestMapping("/login.do")
 	@ResponseBody
-	public ResultInfo execute(@RequestParam("userName") String userName, @RequestParam("password")  String password) {
-		ResultInfo resultInfo = userService.checkLogin(userName, password);
+	public ResultInfo execute(@RequestParam("userName") String userName, @RequestParam("password")  String password,
+							  String validCode, HttpServletRequest request) {
+		ResultInfo resultInfo = userService.checkLogin(userName, password, validCode, request);
 		return resultInfo;
 	}
 }

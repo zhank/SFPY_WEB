@@ -1,16 +1,17 @@
 package com.sfpy.service;
 
-import java.util.List;
-import java.util.Map;
-
-import org.springframework.stereotype.Service;
-
 import com.sfpy.constant.ResultStatus;
 import com.sfpy.constant.UserStatus;
 import com.sfpy.dao.TbSfpyClientDao;
 import com.sfpy.entity.ResultInfo;
 import com.sfpy.entity.TB_SFPY_USER;
 import com.sfpy.entity.TbSfpyClient;
+import org.springframework.stereotype.Service;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import java.util.List;
+import java.util.Map;
 
 @Service
 public class UserService {
@@ -37,8 +38,23 @@ public class UserService {
 	 * @param password
 	 * @return
 	 */
-	public ResultInfo checkLogin(String userName, String password) {
+	public ResultInfo checkLogin(String userName, String password, String validCode, HttpServletRequest request) {
 		ResultInfo result = new ResultInfo();
+
+		HttpSession session = request.getSession(true);
+		String verifitionCode =(String)session.getAttribute("verfitionCode");
+		if(verifitionCode == null) {
+			result.setMsg("验证码获取失败，请重新登陆！");
+			result.setStatus(-1);
+			return result;
+		} else {
+			if(!verifitionCode.equalsIgnoreCase(validCode)) {
+				result.setMsg("验证码输入错误，请重新输入！");
+				result.setStatus(-1);
+				return result;
+			}
+		}
+
 		StringBuffer cond = new StringBuffer();
 		cond.append(TbSfpyClient.CLIENT_NAME.toSqlEQ(userName)).append(" AND ")
 				.append(TbSfpyClient.CLIENT_PSWD.toSqlEQ(password));
