@@ -2,6 +2,7 @@ package com.sfpy.main;
 
 import com.sfpy.util.EvnCheck;
 import com.sfpy.util.FindWebRoot;
+import com.sfpy.util.PropertiesUtils;
 import org.apache.catalina.Context;
 import org.apache.catalina.core.StandardContext;
 import org.apache.catalina.deploy.WebXml;
@@ -23,15 +24,21 @@ public class Main {
 	 * 共享会话
 	 */
 	protected static boolean shareSession = false;
-	
+
 	public static void main(String[] args) throws Exception {
 		EvnCheck.loadLog4jCfg();
 
-
+		//加载配置文件
+		PropertiesUtils.loadFile("config.properties");
+		String startPort = PropertiesUtils.getPropertyValue("port");
+		int port = 80;
+		if(startPort != null && !startPort.equals("")) {
+			port = Integer.parseInt(startPort);
+		}
 		//idea测试
 		Tomcat tomcat = new Tomcat();
-		tomcat.setHostname("localhost");
-		tomcat.setPort(8088);
+		tomcat.setHostname("JSOSO");
+		tomcat.setPort(port);
 		
 		String baseDir = FindWebRoot.getAppRoot();
 		tomcat.setBaseDir(baseDir);
@@ -47,7 +54,7 @@ public class Main {
 			}
 		}
 		System.out.println("Finded Base Web Root is :" + appBase);
-		System.out.println("登陆地址:http://localhost:8088");
+		System.out.println("登陆地址:http://localhost:" + port);
 
 		File globalWebXml = new File(baseDir + "/WIN-INF/web.xml");
 		Map<String,  String> mimeMappings = parseMimeMappingFromWebXml(globalWebXml

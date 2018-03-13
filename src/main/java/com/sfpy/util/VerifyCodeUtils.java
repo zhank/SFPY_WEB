@@ -12,29 +12,30 @@ import java.util.Arrays;
 import java.util.Random;
 
 /**
- * éªŒè¯ç ç”Ÿæˆ
+ * ÑéÖ¤ÂëÉú³É
+ * @author sfpy
  */
 public class VerifyCodeUtils{
 
     /**
-     ä½¿ç”¨åˆ°Algerianå­—ä½“ï¼Œç³»ç»Ÿé‡Œæ²¡æœ‰çš„è¯éœ€è¦å®‰è£…å­—ä½“ï¼Œå­—ä½“åªæ˜¾ç¤ºå¤§å†™ï¼Œå»æ‰äº†1,0,i,oå‡ ä¸ªå®¹æ˜“æ··æ·†çš„å­—ç¬¦
+     Ê¹ÓÃµ½Algerian×ÖÌå£¬ÏµÍ³ÀïÃ»ÓĞµÄ»°ĞèÒª°²×°×ÖÌå£¬×ÖÌåÖ»ÏÔÊ¾´óĞ´£¬È¥µôÁË1,0,i,o¼¸¸öÈİÒ×»ìÏıµÄ×Ö·û
      */
     public static final String VERIFY_CODES = "23456789ABCDEFGHJKLMNPQRSTUVWXYZ";
     private static Random random = new Random();
- 
- 
+
+
     /**
-     * ä½¿ç”¨ç³»ç»Ÿé»˜è®¤å­—ç¬¦æºç”ŸæˆéªŒè¯ç 
-     * @param verifySize    éªŒè¯ç é•¿åº¦
+     * Ê¹ÓÃÏµÍ³Ä¬ÈÏ×Ö·ûÔ´Éú³ÉÑéÖ¤Âë
+     * @param verifySize    ÑéÖ¤Âë³¤¶È
      * @return
      */
     public static String generateVerifyCode(int verifySize){
         return generateVerifyCode(verifySize, VERIFY_CODES);
     }
     /**
-     * ä½¿ç”¨æŒ‡å®šæºç”ŸæˆéªŒè¯ç 
-     * @param verifySize    éªŒè¯ç é•¿åº¦
-     * @param sources   éªŒè¯ç å­—ç¬¦æº
+     * Ê¹ÓÃÖ¸¶¨Ô´Éú³ÉÑéÖ¤Âë
+     * @param verifySize    ÑéÖ¤Âë³¤¶È
+     * @param sources   ÑéÖ¤Âë×Ö·ûÔ´
      * @return
      */
     public static String generateVerifyCode(int verifySize, String sources){
@@ -49,9 +50,9 @@ public class VerifyCodeUtils{
         }
         return verifyCode.toString();
     }
-     
+
     /**
-     * ç”ŸæˆéšæœºéªŒè¯ç æ–‡ä»¶,å¹¶è¿”å›éªŒè¯ç å€¼
+     * Éú³ÉËæ»úÑéÖ¤ÂëÎÄ¼ş,²¢·µ»ØÑéÖ¤ÂëÖµ
      * @param w
      * @param h
      * @param outputFile
@@ -64,9 +65,9 @@ public class VerifyCodeUtils{
         outputImage(w, h, outputFile, verifyCode);
         return verifyCode;
     }
-     
+
     /**
-     * è¾“å‡ºéšæœºéªŒè¯ç å›¾ç‰‡æµ,å¹¶è¿”å›éªŒè¯ç å€¼
+     * Êä³öËæ»úÑéÖ¤ÂëÍ¼Æ¬Á÷,²¢·µ»ØÑéÖ¤ÂëÖµ
      * @param w
      * @param h
      * @param os
@@ -79,9 +80,9 @@ public class VerifyCodeUtils{
         outputImage(w, h, os, verifyCode);
         return verifyCode;
     }
-     
+
     /**
-     * ç”ŸæˆæŒ‡å®šéªŒè¯ç å›¾åƒæ–‡ä»¶
+     * Éú³ÉÖ¸¶¨ÑéÖ¤ÂëÍ¼ÏñÎÄ¼ş
      * @param w
      * @param h
      * @param outputFile
@@ -105,9 +106,9 @@ public class VerifyCodeUtils{
             throw e;
         }
     }
-     
+
     /**
-     * è¾“å‡ºæŒ‡å®šéªŒè¯ç å›¾ç‰‡æµ
+     * Êä³öÖ¸¶¨ÑéÖ¤ÂëÍ¼Æ¬Á÷
      * @param w
      * @param h
      * @param os
@@ -131,18 +132,18 @@ public class VerifyCodeUtils{
         }
         Arrays.sort(fractions);
 
-        // è®¾ç½®è¾¹æ¡†è‰²
+        // ÉèÖÃ±ß¿òÉ«
         g2.setColor(Color.GRAY);
         g2.fillRect(0, 0, w, h);
-         
+
         Color c = getRandColor(200, 250);
-        // è®¾ç½®èƒŒæ™¯è‰²
+        // ÉèÖÃ±³¾°É«
         g2.setColor(c);
         g2.fillRect(0, 2, w, h-4);
-         
-        //ç»˜åˆ¶å¹²æ‰°çº¿
+
+        //»æÖÆ¸ÉÈÅÏß
         Random random = new Random();
-        // è®¾ç½®çº¿æ¡çš„é¢œè‰²
+        // ÉèÖÃÏßÌõµÄÑÕÉ«
         g2.setColor(getRandColor(160, 200));
         for (int i = 0; i < 20; i++) {
             int x = random.nextInt(w - 1);
@@ -151,8 +152,8 @@ public class VerifyCodeUtils{
             int yl = random.nextInt(12) + 1;
             g2.drawLine(x, y, x + xl + 40, y + yl + 20);
         }
-         
-        // æ·»åŠ å™ªç‚¹ // å™ªå£°ç‡
+
+        // Ìí¼ÓÔëµã // ÔëÉùÂÊ
         float yawpRate = 0.05f;
         int area = (int) (yawpRate * w * h);
         for (int i = 0; i < area; i++) {
@@ -162,9 +163,9 @@ public class VerifyCodeUtils{
             image.setRGB(x, y, rgb);
         }
 
-        // ä½¿å›¾ç‰‡æ‰­æ›²
+        // Ê¹Í¼Æ¬Å¤Çú
         shear(g2, w, h, c);
- 
+
         g2.setColor(getRandColor(100, 160));
         int fontSize = h-4;
         Font font = new Font("Algerian", Font.ITALIC, fontSize);
@@ -176,11 +177,11 @@ public class VerifyCodeUtils{
             g2.setTransform(affine);
             g2.drawChars(chars, i, 1, ((w-10) / verifySize) * i + 5, h/2 + fontSize/2 - 10);
         }
-         
+
         g2.dispose();
         ImageIO.write(image, "jpg", os);
     }
-     
+
     private static Color getRandColor(int fc, int bc) {
         if (fc > 255)
             fc = 255;
@@ -191,7 +192,7 @@ public class VerifyCodeUtils{
         int b = fc + random.nextInt(bc - fc);
         return new Color(r, g, b);
     }
-     
+
     private static int getRandomIntColor() {
         int[] rgb = getRandomRgb();
         int color = 0;
@@ -201,7 +202,7 @@ public class VerifyCodeUtils{
         }
         return color;
     }
-     
+
     private static int[] getRandomRgb() {
         int[] rgb = new int[3];
         for (int i = 0; i < 3; i++) {
@@ -209,25 +210,25 @@ public class VerifyCodeUtils{
         }
         return rgb;
     }
- 
+
     private static void shear(Graphics g, int w1, int h1, Color color) {
         shearX(g, w1, h1, color);
         shearY(g, w1, h1, color);
     }
-     
+
     private static void shearX(Graphics g, int w1, int h1, Color color) {
- 
+
         int period = random.nextInt(2);
- 
+
         boolean borderGap = true;
         int frames = 1;
         int phase = random.nextInt(2);
- 
+
         for (int i = 0; i < h1; i++) {
             double d = (double) (period >> 1)
                     * Math.sin((double) i / (double) period
-                            + (6.2831853071795862D * (double) phase)
-                            / (double) frames);
+                    + (6.2831853071795862D * (double) phase)
+                    / (double) frames);
             g.copyArea(0, i, w1, 1, (int) d, 0);
             if (borderGap) {
                 g.setColor(color);
@@ -235,22 +236,22 @@ public class VerifyCodeUtils{
                 g.drawLine((int) d + w1, i, w1, i);
             }
         }
- 
+
     }
- 
+
     private static void shearY(Graphics g, int w1, int h1, Color color) {
 
         // 50;
         int period = random.nextInt(40) + 10;
- 
+
         boolean borderGap = true;
         int frames = 20;
         int phase = 7;
         for (int i = 0; i < w1; i++) {
             double d = (double) (period >> 1)
                     * Math.sin((double) i / (double) period
-                            + (6.2831853071795862D * (double) phase)
-                            / (double) frames);
+                    + (6.2831853071795862D * (double) phase)
+                    / (double) frames);
             g.copyArea(i, 0, 1, h1, 0, (int) d);
             if (borderGap) {
                 g.setColor(color);
